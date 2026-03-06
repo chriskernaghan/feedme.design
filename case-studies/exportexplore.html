@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: ExportExplore - feedme.design</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --midnight: #0a0e27;
+            --slate: #1a1f3a;
+            --cream: #f5f1e8;
+            --sand: #e8dcc4;
+            --accent: #ff6b35;
+            --accent-dim: #ff8c5f;
+            --text-dark: #2d3142;
+            --text-light: #a8a8b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Epilogue", sans-serif; background: var(--cream); color: var(--text-dark); overflow-x: hidden; line-height: 1.6; }
+
+        /* Nav */
+        nav { position: fixed; top: 0; width: 100%; padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: var(--cream); border-bottom: 1px solid var(--sand); }
+        .logo { font-family: "DM Serif Display", serif; font-size: 1.8rem; color: var(--midnight); letter-spacing: -0.02em; text-decoration: none; }
+        .nav-links a { margin-left: 2.5rem; text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 0.95rem; position: relative; transition: color 0.3s ease; }
+        .nav-links a::after { content: ""; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s ease; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+        /* Dropdown */
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-toggle { cursor: pointer; }
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: white; border: 1px solid var(--sand); border-radius: 8px; min-width: 200px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-top: 0.5rem; }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu a { display: block; padding: 0.8rem 1.2rem; margin: 0; color: var(--text-dark); transition: background 0.2s ease, color 0.2s ease; border-bottom: 1px solid var(--sand); }
+        .dropdown-menu a:last-child { border-bottom: none; }
+        .dropdown-menu a:hover { background: var(--sand); color: var(--accent); }
+        .dropdown-menu a::after { display: none; }
+
+        /* Hamburger */
+        .hamburger { display: none; flex-direction: column; align-items: center; cursor: pointer; background: none; border: none; padding: 0.5rem; }
+        .hamburger-bars { display: flex; flex-direction: column; gap: 5px; }
+        .hamburger-bars span { display: block; width: 24px; height: 2px; background: var(--midnight); border-radius: 2px; transition: all 0.3s ease; }
+        .hamburger-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--midnight); margin-top: 4px; }
+        .hamburger.open .hamburger-bars span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open .hamburger-bars span:nth-child(2) { opacity: 0; }
+        .hamburger.open .hamburger-bars span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        .mobile-menu { display: none; position: fixed; top: 73px; left: 0; width: 100%; background: var(--cream); border-bottom: 1px solid var(--sand); flex-direction: column; z-index: 999; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a { text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 1.1rem; padding: 1.1rem 2rem; border-bottom: 1px solid var(--sand); transition: color 0.3s ease, background 0.3s ease; }
+        .mobile-menu a:last-child { border-bottom: none; }
+        .mobile-menu a:hover { color: var(--accent); background: var(--sand); }
+        .mobile-dropdown-header { padding: 1.1rem 2rem; font-weight: 600; color: var(--text-dark); border-bottom: 1px solid var(--sand); }
+        .mobile-dropdown a { padding-left: 3rem; }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Hero */
+        .case-hero { padding: 14rem 4rem 8rem; background: linear-gradient(135deg, var(--midnight) 0%, var(--slate) 100%); position: relative; overflow: hidden; }
+        .case-hero::before { content: ""; position: absolute; top: -20%; right: -10%; width: 60%; height: 140%; background: radial-gradient(circle, rgba(255,107,53,0.15) 0%, transparent 60%); pointer-events: none; }
+        .case-hero-content { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+        .case-label { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; display: block; animation: fadeInUp 0.8s ease-out backwards; }
+        .case-hero h1 { font-family: "DM Serif Display", serif; font-size: clamp(3rem, 6vw, 5rem); color: var(--cream); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 2rem; animation: fadeInUp 0.8s ease-out 0.1s backwards; }
+        .case-hero-intro { font-size: 1.3rem; color: var(--text-light); line-height: 1.7; margin-bottom: 3rem; animation: fadeInUp 0.8s ease-out 0.2s backwards; }
+        .case-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; animation: fadeInUp 0.8s ease-out 0.3s backwards; }
+        .case-meta-item { border-left: 2px solid var(--accent); padding-left: 1rem; }
+        .case-meta-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.5rem; }
+        .case-meta-value { font-size: 1.1rem; color: var(--cream); font-weight: 500; }
+
+        /* Main content */
+        .case-content { max-width: 900px; margin: 0 auto; padding: 6rem 4rem; }
+        .case-section { margin-bottom: 5rem; }
+        .case-section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+        .case-section h2 { font-family: "DM Serif Display", serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--midnight); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+        .case-section p { font-size: 1.15rem; line-height: 1.8; color: var(--text-dark); margin-bottom: 1.5rem; }
+        .case-list { list-style: none; margin: 2rem 0; }
+        .case-list li { font-size: 1.1rem; line-height: 1.8; color: var(--text-dark); margin-bottom: 1rem; padding-left: 2rem; position: relative; }
+        .case-list li::before { content: "→"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+
+        /* Outcome grid */
+        .outcome-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .outcome-card { background: white; padding: 2.5rem; border-radius: 16px; border-left: 4px solid var(--accent); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .outcome-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+        .outcome-card h3 { font-family: "DM Serif Display", serif; font-size: 1.5rem; color: var(--midnight); margin-bottom: 0.8rem; }
+        .outcome-card p { font-size: 1rem; line-height: 1.7; color: var(--text-dark); opacity: 0.85; margin: 0; }
+
+        /* Timeline */
+        .timeline { background: var(--sand); border-radius: 16px; padding: 3rem; margin: 3rem 0; }
+        .timeline-items { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+        .timeline-item { text-align: center; }
+        .timeline-number { font-family: "DM Serif Display", serif; font-size: 3rem; color: var(--accent); display: block; margin-bottom: 0.5rem; font-style: italic; }
+        .timeline-label { font-size: 0.9rem; color: var(--text-dark); font-weight: 500; }
+
+        /* Image placeholders */
+        .case-image { width: 100%; border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); margin: 3rem 0; background: var(--sand); aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; color: var(--text-light); font-size: 0.9rem; }
+        .responsive-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+        /* CTA */
+        .case-cta { background: linear-gradient(135deg, var(--slate) 0%, var(--midnight) 100%); padding: 6rem 4rem; text-align: center; }
+        .case-cta h2 { font-family: "DM Serif Display", serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--cream); margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+        .case-cta p { font-size: 1.2rem; color: var(--text-light); margin-bottom: 2.5rem; }
+        .cta-button { display: inline-block; padding: 1.2rem 3rem; background: var(--accent); color: white; text-decoration: none; font-weight: 600; border-radius: 50px; transition: all 0.4s cubic-bezier(0.175,0.885,0.32,1.275); box-shadow: 0 10px 30px rgba(255,107,53,0.3); }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(255,107,53,0.4); background: var(--accent-dim); }
+
+        /* Footer */
+        footer { background: var(--midnight); padding: 4rem; text-align: center; color: var(--text-light); }
+        footer p { margin-bottom: 1rem; }
+        footer a { color: var(--accent); text-decoration: none; transition: color 0.3s ease; }
+        footer a:hover { color: var(--accent-dim); }
+
+        @media (max-width: 768px) {
+            nav { padding: 1.5rem 2rem; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .case-hero { padding: 12rem 2rem 6rem; }
+            .case-content { padding: 4rem 2rem; }
+            .case-cta { padding: 4rem 2rem; }
+            .timeline { padding: 2rem; }
+            .responsive-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="../index.html" class="logo">feedme.design</a>
+        <div class="nav-links">
+            <a href="../index.html#services">Services</a>
+            <a href="../index.html#process">Process</a>
+            <a href="../index.html#pricing">Pricing</a>
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle active">Case Studies</a>
+                <div class="dropdown-menu">
+                    <a href="catagen.html">Catagen</a>
+                    <a href="exportexplore.html">ExportExplore</a>
+                </div>
+            </div>
+            <a href="../blog.html">Blog</a>
+            <a href="../index.html#contact">Contact</a>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <div class="hamburger-bars">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <span class="hamburger-label">Menu</span>
+        </button>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../index.html#services">Services</a>
+        <a href="../index.html#process">Process</a>
+        <a href="../index.html#pricing">Pricing</a>
+        <div class="mobile-dropdown-header">Case Studies</div>
+        <a href="catagen.html">Catagen</a>
+        <a href="exportexplore.html">ExportExplore</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../index.html#contact">Contact</a>
+    </div>
+
+    <div class="case-hero">
+        <div class="case-hero-content">
+            <span class="case-label">Case Study</span>
+            <h1>ExportExplore: A Fresh Start for a Growing Business</h1>
+            <p class="case-hero-intro">How we rebuilt an outdated website that was losing leads into a professional platform that reflects the scale and professionalism of the business.</p>
+            <div class="case-meta">
+                <div class="case-meta-item">
+                    <div class="case-meta-label">Client</div>
+                    <div class="case-meta-value">ExportExplore</div>
+                </div>
+                <div class="case-meta-item">
+                    <div class="case-meta-label">Industry</div>
+                    <div class="case-meta-value">International Trade</div>
+                </div>
+                <div class="case-meta-item">
+                    <div class="case-meta-label">Timeline</div>
+                    <div class="case-meta-value">4 weeks initial build</div>
+                </div>
+                <div class="case-meta-item">
+                    <div class="case-meta-label">Ongoing</div>
+                    <div class="case-meta-value">2+ years</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="case-content">
+
+        <div class="case-section">
+            <div class="case-section-label">The Challenge</div>
+            <h2>An Outdated Site Holding Back Growth</h2>
+            <p>ExportExplore came to us with a problem: their website no longer reflected the business they had become. As the company scaled and their services evolved, the outdated site was actively working against them.</p>
+            <ul class="case-list">
+                <li>Website design and messaging didn't match the professionalism of the business</li>
+                <li>Lost leads because prospects couldn't see the full scope of services offered</li>
+                <li>Founder recognized the gap between their capabilities and how they were presenting online</li>
+                <li>Site had become difficult to update and maintain</li>
+            </ul>
+            <p>They needed a complete fresh start — not just visual updates, but a rebuild that could grow with the business and accurately represent what ExportExplore had become.</p>
+        </div>
+
+        <div class="case-section">
+            <div class="case-section-label">The Solution</div>
+            <h2>A Modern WordPress Site Built for Growth</h2>
+            <p>We rebuilt ExportExplore's entire web presence from the ground up, working closely with their team to create a site that truly represents their expertise in international trade.</p>
+            <ul class="case-list">
+                <li><strong>Fresh design:</strong> Modern, professional aesthetic that reflects the scale of the business</li>
+                <li><strong>Elementor page builder:</strong> Client had experience with Elementor, so we built with it to give them comfortable editing capabilities</li>
+                <li><strong>Local hosting partner:</strong> Set up with a reliable local hosting company for performance and support</li>
+                <li><strong>Performance optimization:</strong> Fast load times and clean code from day one</li>
+                <li><strong>Security hardening:</strong> Implemented security best practices and monitoring</li>
+            </ul>
+            <p>The goal was to give ExportExplore a platform that accurately represents their expertise while remaining easy for their team to manage and update.</p>
+        </div>
+
+        <div class="case-image">[Desktop mockup placeholder - add exportexplore-desktop.png]</div>
+
+        <div class="timeline">
+            <div class="timeline-items">
+                <div class="timeline-item">
+                    <span class="timeline-number">4</span>
+                    <div class="timeline-label">Weeks from brief to launch</div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-number">2+</span>
+                    <div class="timeline-label">Years ongoing partnership</div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-number">0</span>
+                    <div class="timeline-label">Lost leads since relaunch</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="case-section">
+            <div class="case-section-label">The Outcome</div>
+            <h2>A Website That Represents the Business Properly</h2>
+            <p>The new site transformed how ExportExplore presents itself online, giving them a platform that matches their professionalism and expertise.</p>
+            
+            <div class="outcome-grid">
+                <div class="outcome-card">
+                    <h3>Professional Presentation</h3>
+                    <p>A modern, polished site that reflects the scale and sophistication of their international trade services.</p>
+                </div>
+                <div class="outcome-card">
+                    <h3>No More Lost Leads</h3>
+                    <p>Prospects now see the full scope of ExportExplore's capabilities, leading to better qualified conversations.</p>
+                </div>
+                <div class="outcome-card">
+                    <h3>Easy Updates</h3>
+                    <p>Elementor gives the team familiar, intuitive editing tools they're comfortable using.</p>
+                </div>
+                <div class="outcome-card">
+                    <h3>Long-Term Partnership</h3>
+                    <p>Two years of ongoing support means the site stays secure, fast, and up to date while the business continues to grow.</p>
+                </div>
+            </div>
+
+            <div style="margin: 3rem 0;">
+                <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--midnight); margin: 0 0 1rem;">Built for Every Device</h3>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-dark); margin-bottom: 1rem;">The site is fully responsive, delivering a professional experience whether prospects are researching services on desktop or browsing on mobile.</p>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-dark); margin-bottom: 2rem;">Clean navigation and clear calls to action ensure visitors can easily find what they need and get in touch.</p>
+                <div class="responsive-grid">
+                    <div class="case-image">[Mobile homepage placeholder - add exportexplore-mobile.png]</div>
+                    <div class="case-image">[Mobile menu placeholder - add exportexplore-mobile-menu.png]</div>
+                </div>
+            </div>
+
+            <p>Today, ExportExplore has a website that properly represents their expertise in international trade — and a platform that will continue to grow alongside the business.</p>
+        </div>
+
+        <div style="background: var(--midnight); border-radius: 20px; padding: 4rem 3rem; text-align: center; margin: 4rem 0;">
+            <p style="font-family: 'DM Serif Display', serif; font-size: 1.5rem; font-style: italic; color: var(--cream); line-height: 1.7; margin-bottom: 2rem;">"Chris delivered exactly what we needed — a professional website that finally reflects the business we've built. The rebuild was smooth, and his ongoing support has been invaluable."</p>
+            <div style="color: var(--text-light);">
+                <div style="font-weight: 600; color: var(--cream); margin-bottom: 0.3rem;">Declan Barry</div>
+                <div style="font-size: 0.9rem;">Founder, ExportExplore</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="case-cta">
+        <h2>Does your website reflect your business?</h2>
+        <p>Let's talk about giving you a site that matches your professionalism.</p>
+        <a href="../index.html#contact" class="cta-button">Get Your Free Audit</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 feedme.design. Expert WordPress maintenance for your peace of mind.</p>
+        <p><a href="mailto:chris[at]feedme.design">chris[at]feedme.design</a></p>
+    </footer>
+
+    <script>
+        var hamburger = document.getElementById("hamburger");
+        var mobileMenu = document.getElementById("mobileMenu");
+
+        if (hamburger && mobileMenu) {
+            hamburger.addEventListener("click", function() {
+                hamburger.classList.toggle("open");
+                mobileMenu.classList.toggle("open");
+            });
+
+            document.querySelectorAll(".mobile-menu a").forEach(function(link) {
+                link.addEventListener("click", function() {
+                    hamburger.classList.remove("open");
+                    mobileMenu.classList.remove("open");
+                });
+            });
+        }
+    </script>
+
+</body>
+</html>
