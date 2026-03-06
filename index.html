@@ -29,6 +29,17 @@
         .nav-links a:hover { color: var(--accent); }
         .nav-links a:hover::after { width: 100%; }
 
+
+        /* Dropdown */
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-toggle { cursor: pointer; }
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: white; border: 1px solid var(--sand); border-radius: 8px; min-width: 200px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-top: 0.5rem; }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu a { display: block; padding: 0.8rem 1.2rem; margin: 0; color: var(--text-dark); transition: background 0.2s ease, color 0.2s ease; border-bottom: 1px solid var(--sand); }
+        .dropdown-menu a:last-child { border-bottom: none; }
+        .dropdown-menu a:hover { background: var(--sand); color: var(--accent); }
+        .dropdown-menu a::after { display: none; }
+
         /* Hamburger */
         .hamburger { display: none; flex-direction: column; align-items: center; cursor: pointer; background: none; border: none; padding: 0.5rem; }
         .hamburger-bars { display: flex; flex-direction: column; gap: 5px; }
@@ -43,6 +54,9 @@
         .mobile-menu.open { display: flex; }
         .mobile-menu a { text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 1.1rem; padding: 1.1rem 2rem; border-bottom: 1px solid var(--sand); transition: color 0.3s ease, background 0.3s ease; }
         .mobile-menu a:last-child { border-bottom: none; }
+        .mobile-dropdown-header { padding: 1.1rem 2rem; font-weight: 600; color: var(--text-dark); border-bottom: 1px solid var(--sand); }
+        .mobile-dropdown a { padding-left: 3rem; }
+
         .mobile-menu a:hover { color: var(--accent); background: var(--sand); }
 
         /* Animations */
@@ -171,15 +185,6 @@
             .client-card:nth-child(3) { border-right: 1px solid rgba(0,0,0,0.1); }
         }
     </style>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-N336R5797V"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-N336R5797V');
-</script>
 </head>
 <body>
 
@@ -189,7 +194,13 @@
             <a href="#services">Services</a>
             <a href="#process">Process</a>
             <a href="#pricing">Pricing</a>
-            <a href="case-studies/catagen.html">Case Studies</a>
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle">Case Studies</a>
+                <div class="dropdown-menu">
+                    <a href="case-studies/catagen.html">Catagen</a>
+                    <a href="case-studies/exportexplore.html">ExportExplore</a>
+                </div>
+            </div>
             <a href="blog.html">Blog</a>
             <a href="#contact">Contact</a>
         </div>
@@ -207,7 +218,13 @@
         <a href="#services">Services</a>
         <a href="#process">Process</a>
         <a href="#pricing">Pricing</a>
-        <a href="case-studies/catagen.html">Case Studies</a>
+        <div class="dropdown">
+                <a href="#" class="dropdown-toggle">Case Studies</a>
+                <div class="dropdown-menu">
+                    <a href="case-studies/catagen.html">Catagen</a>
+                    <a href="case-studies/exportexplore.html">ExportExplore</a>
+                </div>
+            </div>
         <a href="blog.html">Blog</a>
         <a href="#contact">Contact</a>
     </div>
@@ -221,7 +238,7 @@
     </section>
 
     <section class="stats">
-        <div class="stat-item"><span class="stat-number">10+</span><span class="stat-label">Sites Maintained</span></div>
+        <div class="stat-item"><span class="stat-number">500+</span><span class="stat-label">Sites Maintained</span></div>
         <div class="stat-item"><span class="stat-number">99.9%</span><span class="stat-label">Uptime Guaranteed</span></div>
         <div class="stat-item"><span class="stat-number">24/7</span><span class="stat-label">Monitoring</span></div>
         <div class="stat-item"><span class="stat-number">&lt; 1hr</span><span class="stat-label">Response Time</span></div>
@@ -232,7 +249,7 @@
         <div class="clients-grid">
             <a href="case-studies/catagen.html" class="client-card">Catagen</a>
             <a href="https://climahtechgreenflight.co.uk" target="_blank" rel="noopener" class="client-card">ClimaTech Green Flight</a>
-            <a href="https://exportexplore.com" target="_blank" rel="noopener" class="client-card">ExportExplore</a>
+            <a href="case-studies/exportexplore.html" class="client-card">ExportExplore</a>
             <a href="https://inclusioniq.co.uk" target="_blank" rel="noopener" class="client-card">InclusionIQ</a>
         </div>
     </section>
@@ -367,4 +384,3 @@
 
         document.querySelectorAll(".mobile-menu a, .nav-links a").forEach(function(link) {
             link.addEventListener("click", function() {
-          
