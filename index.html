@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>feedme.design - WordPress Maintenance for Businesses</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --midnight: #0a0e27;
+            --slate: #1a1f3a;
+            --cream: #f5f1e8;
+            --sand: #e8dcc4;
+            --accent: #ff6b35;
+            --accent-dim: #ff8c5f;
+            --text-dark: #2d3142;
+            --text-light: #a8a8b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Epilogue", sans-serif; background: var(--cream); color: var(--text-dark); overflow-x: hidden; line-height: 1.6; }
+
+        /* Nav */
+        nav { position: fixed; top: 0; width: 100%; padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: var(--cream); border-bottom: 1px solid var(--sand); }
+        .logo { font-family: "DM Serif Display", serif; font-size: 1.8rem; color: var(--midnight); letter-spacing: -0.02em; text-decoration: none; }
+        .nav-links a { margin-left: 2.5rem; text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 0.95rem; position: relative; transition: color 0.3s ease; }
+        .nav-links a::after { content: ""; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s ease; }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* Hamburger */
+        .hamburger { display: none; flex-direction: column; align-items: center; cursor: pointer; background: none; border: none; padding: 0.5rem; }
+        .hamburger-bars { display: flex; flex-direction: column; gap: 5px; }
+        .hamburger-bars span { display: block; width: 24px; height: 2px; background: var(--midnight); border-radius: 2px; transition: all 0.3s ease; }
+        .hamburger-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--midnight); margin-top: 4px; }
+        .hamburger.open .hamburger-bars span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open .hamburger-bars span:nth-child(2) { opacity: 0; }
+        .hamburger.open .hamburger-bars span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* Mobile menu */
+        .mobile-menu { display: none; position: fixed; top: 73px; left: 0; width: 100%; background: var(--cream); border-bottom: 1px solid var(--sand); flex-direction: column; z-index: 999; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a { text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 1.1rem; padding: 1.1rem 2rem; border-bottom: 1px solid var(--sand); transition: color 0.3s ease, background 0.3s ease; }
+        .mobile-menu a:last-child { border-bottom: none; }
+        .mobile-menu a:hover { color: var(--accent); background: var(--sand); }
+
+        /* Animations */
+        @keyframes float { 0%, 100% { transform: translate(0,0) rotate(0deg); } 50% { transform: translate(-50px,50px) rotate(5deg); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Hero */
+        .hero { min-height: 100vh; display: flex; align-items: center; padding: 0 4rem; padding-top: 80px; position: relative; overflow: hidden; }
+        .hero::before { content: ""; position: absolute; top: -50%; right: -20%; width: 80%; height: 150%; background: radial-gradient(circle, rgba(255,107,53,0.08) 0%, transparent 70%); animation: float 20s ease-in-out infinite; }
+        .hero-content { max-width: 900px; z-index: 1; animation: fadeInUp 1s ease-out 0.3s backwards; }
+        .hero h1 { font-family: "DM Serif Display", serif; font-size: clamp(3rem, 8vw, 6rem); line-height: 1.1; color: var(--midnight); margin-bottom: 1.5rem; letter-spacing: -0.03em; }
+        .hero-accent { color: var(--accent); font-style: italic; }
+        .hero p { font-size: 1.3rem; color: var(--text-dark); margin-bottom: 3rem; opacity: 0.85; font-weight: 300; max-width: 600px; animation: fadeInUp 1s ease-out 0.5s backwards; }
+        .cta-button { display: inline-block; padding: 1.2rem 3rem; background: var(--accent); color: white; text-decoration: none; font-weight: 600; border-radius: 50px; transition: all 0.4s cubic-bezier(0.175,0.885,0.32,1.275); box-shadow: 0 10px 30px rgba(255,107,53,0.3); animation: fadeInUp 1s ease-out 0.7s backwards; }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(255,107,53,0.4); background: var(--accent-dim); }
+
+        /* Stats */
+        .stats { background: var(--midnight); padding: 6rem 4rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 4rem; position: relative; overflow: hidden; }
+        .stats::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0v60M0 30h60' stroke='%23ffffff' stroke-width='0.5' opacity='0.03'/%3E%3C/svg%3E"); }
+        .stat-item { text-align: center; z-index: 1; }
+        .stat-number { font-family: "DM Serif Display", serif; font-size: 4rem; color: var(--accent); display: block; margin-bottom: 0.5rem; }
+        .stat-label { color: var(--cream); font-size: 1.1rem; opacity: 0.9; }
+
+        /* Clients */
+        .clients { padding: 4rem; background: var(--sand); text-align: center; }
+        .clients-label { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dark); opacity: 0.6; margin-bottom: 2.5rem; }
+        .clients-grid { display: grid; grid-template-columns: repeat(4,1fr); max-width: 1000px; margin: 0 auto; }
+        .client-card { text-decoration: none; color: var(--text-dark); font-family: "DM Serif Display", serif; font-size: clamp(1rem,2vw,1.25rem); padding: 1.5rem 1rem; border-right: 1px solid rgba(0,0,0,0.1); transition: color 0.3s ease; letter-spacing: -0.01em; }
+        .client-card:last-child { border-right: none; }
+        .client-card:hover { color: var(--accent); }
+
+        /* Services */
+        .services { padding: 8rem 4rem; background: var(--cream); }
+        .section-header { text-align: center; margin-bottom: 5rem; }
+        .section-header h2 { font-family: "DM Serif Display", serif; font-size: clamp(2.5rem,5vw,4rem); color: var(--midnight); margin-bottom: 1rem; letter-spacing: -0.02em; }
+        .section-header p { font-size: 1.2rem; color: var(--text-dark); opacity: 0.7; max-width: 600px; margin: 0 auto; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 3rem; max-width: 1200px; margin: 0 auto; }
+        .service-card { background: white; padding: 3rem; border-radius: 20px; transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease; border: 2px solid transparent; position: relative; overflow: hidden; }
+        .service-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--accent), var(--accent-dim)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); border-color: var(--sand); }
+        .service-card:hover::before { transform: scaleX(1); }
+        .service-icon { font-size: 3rem; margin-bottom: 1.5rem; display: block; }
+        .service-card h3 { font-family: "DM Serif Display", serif; font-size: 1.8rem; color: var(--midnight); margin-bottom: 1rem; }
+        .service-card p { color: var(--text-dark); opacity: 0.8; line-height: 1.7; }
+
+        /* Process */
+        .process { padding: 8rem 4rem; background: linear-gradient(135deg, var(--slate) 0%, var(--midnight) 100%); }
+        .process-steps { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 3rem; }
+        .process-step { display: grid; grid-template-columns: 80px 1fr; gap: 2rem; }
+        .step-number { font-family: "DM Serif Display", serif; font-size: 4rem; color: var(--accent); opacity: 0.3; font-style: italic; }
+        .step-content h3 { font-family: "DM Serif Display", serif; font-size: 1.8rem; color: var(--cream); margin-bottom: 0.8rem; }
+        .step-content p { color: var(--text-light); line-height: 1.8; }
+
+        /* Pricing */
+        .pricing { padding: 8rem 4rem; background: var(--cream); }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; align-items: stretch; }
+        .pricing-card { background: white; border-radius: 24px; padding: 2.5rem; border: 2px solid var(--sand); transition: all 0.4s ease; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+        .pricing-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); border-color: var(--accent); }
+        .pricing-card.featured { background: var(--midnight); border-color: var(--accent); transform: scale(1.03); }
+        .pricing-card.featured:hover { transform: scale(1.03) translateY(-8px); }
+        .featured-label { position: absolute; top: 1.5rem; right: 1.5rem; background: var(--accent); color: white; font-size: 0.7rem; font-weight: 600; padding: 0.3rem 0.8rem; border-radius: 50px; letter-spacing: 0.05em; text-transform: uppercase; }
+        .pricing-tier { font-family: "DM Serif Display", serif; font-size: 1.1rem; color: var(--text-light); margin-bottom: 0.5rem; letter-spacing: 0.05em; text-transform: uppercase; }
+        .pricing-card.featured .pricing-tier { color: var(--accent); }
+        .pricing-price { font-family: "DM Serif Display", serif; font-size: 3.5rem; color: var(--midnight); line-height: 1; margin-bottom: 0.3rem; letter-spacing: -0.03em; }
+        .pricing-card.featured .pricing-price { color: var(--cream); }
+        .pricing-price sup { font-size: 1.5rem; vertical-align: super; letter-spacing: 0; }
+        .pricing-period { font-size: 0.9rem; color: var(--text-light); margin-bottom: 2rem; }
+        .pricing-hours { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--sand); padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; color: var(--text-dark); margin-bottom: 2rem; }
+        .pricing-card.featured .pricing-hours { background: rgba(255,255,255,0.1); color: var(--cream); }
+        .pricing-divider { height: 1px; background: var(--sand); margin-bottom: 2rem; }
+        .pricing-card.featured .pricing-divider { background: rgba(255,255,255,0.1); }
+        .pricing-features { list-style: none; margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: 0.8rem; flex: 1; }
+        .pricing-features li { font-size: 0.95rem; color: var(--text-dark); opacity: 0.85; display: flex; align-items: center; gap: 0.6rem; }
+        .pricing-card.featured .pricing-features li { color: var(--text-light); opacity: 1; }
+        .pricing-features li::before { content: "✓"; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+        .pricing-cta { display: block; text-align: center; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease; background: var(--sand); color: var(--midnight); margin-top: auto; }
+        .pricing-cta:hover { background: var(--accent); color: white; box-shadow: 0 8px 25px rgba(255,107,53,0.3); }
+        .pricing-card.featured .pricing-cta { background: var(--accent); color: white; box-shadow: 0 8px 25px rgba(255,107,53,0.3); }
+        .pricing-card.featured .pricing-cta:hover { background: var(--accent-dim); }
+        .pricing-custom { background: transparent; border: 2px dashed var(--sand); justify-content: center; text-align: center; gap: 1rem; }
+        .pricing-custom:hover { border-color: var(--accent); border-style: solid; }
+        .pricing-custom h3 { font-family: "DM Serif Display", serif; font-size: 1.8rem; color: var(--midnight); line-height: 1.2; margin-bottom: 1rem; }
+        .pricing-custom p { color: var(--text-dark); opacity: 0.7; font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem; flex: unset; }
+
+        /* Latest Posts */
+        .latest-posts { padding: 8rem 4rem; background: var(--sand); }
+        .posts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px,1fr)); gap: 2.5rem; max-width: 1200px; margin: 0 auto 3rem; }
+        .post-card { background: var(--cream); border-radius: 20px; padding: 2.5rem; text-decoration: none; color: inherit; transition: all 0.3s ease; display: flex; flex-direction: column; gap: 1rem; border: 2px solid transparent; }
+        .post-card:hover { transform: translateY(-6px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); border-color: var(--accent); }
+        .post-meta { display: flex; align-items: center; gap: 1rem; font-size: 0.85rem; color: var(--text-light); }
+        .post-tag { background: var(--accent); color: white; padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; }
+        .post-card h3 { font-family: "DM Serif Display", serif; font-size: 1.5rem; color: var(--midnight); line-height: 1.2; }
+        .post-card p { color: var(--text-dark); opacity: 0.75; line-height: 1.7; flex: 1; }
+        .post-read-more { color: var(--accent); font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 0.4rem; transition: gap 0.3s ease; }
+        .post-card:hover .post-read-more { gap: 0.8rem; }
+        .posts-footer { text-align: center; }
+
+        /* Contact */
+        .contact-section { padding: 8rem 4rem; background: linear-gradient(135deg, var(--slate) 0%, var(--midnight) 100%); position: relative; overflow: hidden; }
+        .contact-section::before { content: ""; position: absolute; top: -50%; left: -20%; width: 60%; height: 150%; background: radial-gradient(circle, rgba(255,107,53,0.08) 0%, transparent 70%); pointer-events: none; }
+        .contact-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+        .contact-header { text-align: center; margin-bottom: 4rem; }
+        .contact-header h2 { font-family: "DM Serif Display", serif; font-size: clamp(2.5rem,5vw,4rem); color: var(--cream); margin-bottom: 1rem; letter-spacing: -0.02em; }
+        .contact-header p { font-size: 1.2rem; color: var(--text-light); opacity: 0.9; }
+        .fillout-wrapper { background: white; border-radius: 24px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.3); }
+
+        /* Footer */
+        footer { background: var(--midnight); padding: 4rem; text-align: center; color: var(--text-light); }
+        footer p { margin-bottom: 1rem; }
+        footer a { color: var(--accent); text-decoration: none; transition: color 0.3s ease; }
+        footer a:hover { color: var(--accent-dim); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav { padding: 1.5rem 2rem; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .hero { padding: 0 2rem; }
+            .stats { padding: 4rem 2rem; gap: 2rem; }
+            .services, .process, .contact-section, .latest-posts, .pricing, .clients { padding: 5rem 2rem; }
+            .process-step { grid-template-columns: 60px 1fr; gap: 1rem; }
+            .step-number { font-size: 3rem; }
+            .pricing-card.featured { transform: scale(1); }
+            .clients-grid { grid-template-columns: repeat(2,1fr); }
+            .client-card:nth-child(2) { border-right: none; }
+            .client-card:nth-child(3) { border-right: 1px solid rgba(0,0,0,0.1); }
+        }
+    </style>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N336R5797V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-N336R5797V');
+</script>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">feedme.design</a>
+        <div class="nav-links">
+            <a href="#services">Services</a>
+            <a href="#process">Process</a>
+            <a href="#pricing">Pricing</a>
+            <a href="case-studies/catagen.html">Case Studies</a>
+            <a href="blog.html">Blog</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <div class="hamburger-bars">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <span class="hamburger-label">Menu</span>
+        </button>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#pricing">Pricing</a>
+        <a href="case-studies/catagen.html">Case Studies</a>
+        <a href="blog.html">Blog</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Keep your WordPress site <span class="hero-accent">running flawlessly</span></h1>
+            <p>We handle the maintenance, updates, and optimisation so you can focus on growing your business. Expert WordPress care for businesses that can't afford downtime.</p>
+            <a href="#contact" class="cta-button">Start Your Free Audit</a>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stat-item"><span class="stat-number">500+</span><span class="stat-label">Sites Maintained</span></div>
+        <div class="stat-item"><span class="stat-number">99.9%</span><span class="stat-label">Uptime Guaranteed</span></div>
+        <div class="stat-item"><span class="stat-number">24/7</span><span class="stat-label">Monitoring</span></div>
+        <div class="stat-item"><span class="stat-number">&lt; 1hr</span><span class="stat-label">Response Time</span></div>
+    </section>
+
+    <section class="clients">
+        <div class="clients-label">Trusted by businesses across the UK</div>
+        <div class="clients-grid">
+            <a href="case-studies/catagen.html" class="client-card">Catagen</a>
+            <a href="https://climahtechgreenflight.co.uk" target="_blank" rel="noopener" class="client-card">ClimaTech Green Flight</a>
+            <a href="https://exportexplore.com" target="_blank" rel="noopener" class="client-card">ExportExplore</a>
+            <a href="https://inclusioniq.co.uk" target="_blank" rel="noopener" class="client-card">InclusionIQ</a>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="section-header">
+            <h2>What We Do</h2>
+            <p>Comprehensive WordPress maintenance designed to keep your site secure, fast, and worry-free</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card"><span class="service-icon">&#x1F6E1;&#xFE0F;</span><h3>Security &amp; Updates</h3><p>Proactive security monitoring, regular updates for WordPress core, themes, and plugins. We patch vulnerabilities before they become problems.</p></div>
+            <div class="service-card"><span class="service-icon">&#x26A1;</span><h3>Performance Optimisation</h3><p>Lightning-fast load times through caching, image optimisation, database cleanup, and CDN configuration. Your visitors deserve speed.</p></div>
+            <div class="service-card"><span class="service-icon">&#x1F4BE;</span><h3>Daily Backups</h3><p>Automated daily backups stored securely off-site. If anything goes wrong, we can restore your site within minutes.</p></div>
+            <div class="service-card"><span class="service-icon">&#x1F50D;</span><h3>Uptime Monitoring</h3><p>24/7 monitoring with instant alerts. We detect and resolve issues before your customers notice anything wrong.</p></div>
+            <div class="service-card"><span class="service-icon">&#x1F41B;</span><h3>Bug Fixes &amp; Support</h3><p>Quick resolution of technical issues, broken links, compatibility problems, and general troubleshooting. Real humans, real help.</p></div>
+            <div class="service-card"><span class="service-icon">&#x1F4CA;</span><h3>Monthly Reporting</h3><p>Transparent insights into site health, performance metrics, security status, and all maintenance activities performed.</p></div>
+        </div>
+    </section>
+
+    <section id="process" class="process">
+        <div class="section-header">
+            <h2 style="color:var(--cream);">How It Works</h2>
+            <p style="color:var(--text-light);">Simple, transparent, and designed around your needs</p>
+        </div>
+        <div class="process-steps">
+            <div class="process-step"><div class="step-number">01</div><div class="step-content"><h3>Free Site Audit</h3><p>We analyse your WordPress site to identify security vulnerabilities, performance bottlenecks, and optimisation opportunities. You'll receive a detailed report with actionable recommendations.</p></div></div>
+            <div class="process-step"><div class="step-number">02</div><div class="step-content"><h3>Custom Care Plan</h3><p>Based on your audit, we create a tailored maintenance plan that fits your site's specific needs and your budget. No cookie-cutter packages - just what you actually need.</p></div></div>
+            <div class="process-step"><div class="step-number">03</div><div class="step-content"><h3>Seamless Onboarding</h3><p>We handle all the technical setup: backups, monitoring, security hardening, and optimisation. Your site is protected from day one with zero downtime during the transition.</p></div></div>
+            <div class="process-step"><div class="step-number">04</div><div class="step-content"><h3>Ongoing Excellence</h3><p>We proactively maintain your site, resolve issues before they impact users, and provide monthly reports. You have unlimited support whenever you need it.</p></div></div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing">
+        <div class="section-header">
+            <h2>Simple, Transparent Pricing</h2>
+            <p>No surprises, no hidden fees - just reliable WordPress care at a fixed monthly rate</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-tier">Silver</div>
+                <div class="pricing-price"><sup>£</sup>99</div>
+                <div class="pricing-period">per month</div>
+                <div class="pricing-hours">&#x23F1; 5 hours included</div>
+                <div class="pricing-divider"></div>
+                <ul class="pricing-features"><li>WordPress core updates</li><li>Plugin &amp; theme updates</li><li>Daily backups</li><li>Uptime monitoring</li><li>Monthly report</li></ul>
+                <a href="#contact" class="pricing-cta">Get Started</a>
+            </div>
+            <div class="pricing-card featured">
+                <div class="featured-label">Most Popular</div>
+                <div class="pricing-tier">Gold</div>
+                <div class="pricing-price"><sup>£</sup>169</div>
+                <div class="pricing-period">per month</div>
+                <div class="pricing-hours">&#x23F1; 10 hours included</div>
+                <div class="pricing-divider"></div>
+                <ul class="pricing-features"><li>Everything in Silver</li><li>Performance optimisation</li><li>Security scanning</li><li>Bug fixes &amp; support</li><li>Priority response</li></ul>
+                <a href="#contact" class="pricing-cta">Get Started</a>
+            </div>
+            <div class="pricing-card">
+                <div class="pricing-tier">Platinum</div>
+                <div class="pricing-price"><sup>£</sup>239</div>
+                <div class="pricing-period">per month</div>
+                <div class="pricing-hours">&#x23F1; 15 hours included</div>
+                <div class="pricing-divider"></div>
+                <ul class="pricing-features"><li>Everything in Gold</li><li>Content updates</li><li>Database optimisation</li><li>Dedicated account manager</li><li>Same-day response</li></ul>
+                <a href="#contact" class="pricing-cta">Get Started</a>
+            </div>
+            <div class="pricing-card pricing-custom">
+                <div class="pricing-tier">Custom</div>
+                <h3>Need something bespoke?</h3>
+                <p>For agencies and businesses with specific requirements, we offer flexible retainer arrangements tailored to your needs.</p>
+                <a href="#contact" class="pricing-cta">Let's Talk</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="latest-posts">
+        <div class="section-header">
+            <h2>From the Blog</h2>
+            <p>Practical WordPress advice for business owners</p>
+        </div>
+        <div class="posts-grid">
+            <a href="posts/why-wordpress-maintenance-matters.html" class="post-card">
+                <div class="post-meta"><span class="post-tag">Maintenance</span><span>14 Feb 2026</span></div>
+                <h3>Why WordPress Maintenance Is Not Optional Anymore</h3>
+                <p>Most business owners don't think about their WordPress site until something goes wrong. By then, the damage is already done.</p>
+                <span class="post-read-more">Read more</span>
+            </a>
+            <a href="posts/speed-kills-slow-websites.html" class="post-card">
+                <div class="post-meta"><span class="post-tag">Performance</span><span>10 Feb 2026</span></div>
+                <h3>Speed Kills: What a Slow Website Is Costing Your Business</h3>
+                <p>Every extra second your site takes to load, you're losing customers. The numbers are more brutal than most people realise.</p>
+                <span class="post-read-more">Read more</span>
+            </a>
+            <a href="posts/wordpress-security-basics.html" class="post-card">
+                <div class="post-meta"><span class="post-tag">Security</span><span>5 Feb 2026</span></div>
+                <h3>The 5 WordPress Security Basics Every Business Owner Should Know</h3>
+                <p>You don't need to be a developer to protect your WordPress site. These five fundamentals cover 80% of the risk.</p>
+                <span class="post-read-more">Read more</span>
+            </a>
+        </div>
+        <div class="posts-footer">
+            <a href="blog.html" class="cta-button" style="background:var(--midnight);box-shadow:none;">View All Posts</a>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="contact-inner">
+            <div class="contact-header">
+                <h2>Get your free site audit</h2>
+                <p>Tell us about your site and we'll take a look - no obligation, no sales pitch</p>
+            </div>
+            <div class="fillout-wrapper">
+                <div style="width:100%;height:500px;" data-fillout-id="jYdzYYJ7r9us" data-fillout-embed-type="standard" data-fillout-inherit-parameters data-fillout-dynamic-resize></div>
+                <script src="https://server.fillout.com/embed/v1/"></script>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 feedme.design. Expert WordPress maintenance for your peace of mind.</p>
+        <p><a href="/cdn-cgi/l/email-protection#9bf8f3e9f2e8c0faefc6fdfefefff6feb5fffee8f2fcf5">chris[at]feedme.design</a></p>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        var hamburger = document.getElementById("hamburger");
+        var mobileMenu = document.getElementById("mobileMenu");
+
+        hamburger.addEventListener("click", function() {
+            hamburger.classList.toggle("open");
+            mobileMenu.classList.toggle("open");
+        });
+
+        document.querySelectorAll(".mobile-menu a, .nav-links a").forEach(function(link) {
+            link.addEventListener("click", function() {
+          

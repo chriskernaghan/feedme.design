@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speed Kills: What a Slow Website Is Costing Your Business — feedme.design</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .post-hero {
+            padding: 12rem 4rem 5rem;
+            background: var(--cream);
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+
+        .post-tag {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .post-hero h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--midnight);
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .post-meta {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .post-meta span::before { content: '·'; margin-right: 1.5rem; }
+        .post-meta span:first-child::before { content: ''; margin: 0; }
+
+        .post-body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 4rem 8rem;
+        }
+
+        .post-body p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: var(--text-dark);
+            margin-bottom: 1.8rem;
+        }
+
+        .post-body h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2rem;
+            color: var(--midnight);
+            margin: 3rem 0 1.2rem;
+            letter-spacing: -0.02em;
+        }
+
+        .post-body strong { color: var(--midnight); font-weight: 600; }
+
+        .post-body blockquote {
+            border-left: 4px solid var(--accent);
+            padding: 1rem 2rem;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .post-body blockquote p {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            margin: 0;
+            color: var(--midnight);
+        }
+
+        .stat-callout {
+            background: var(--midnight);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-callout-item .number {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3rem;
+            color: var(--accent);
+            display: block;
+        }
+
+        .stat-callout-item .label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .post-nav {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 4rem;
+            border-top: 1px solid var(--sand);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .post-nav a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .post-nav a:hover { opacity: 0.7; }
+
+        .post-cta {
+            max-width: 800px;
+            margin: 0 auto 6rem;
+            padding: 0 4rem;
+        }
+
+        .post-cta-inner {
+            background: var(--midnight);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .post-cta-inner h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2rem;
+            color: var(--cream);
+            margin-bottom: 1rem;
+        }
+
+        .post-cta-inner p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .post-hero, .post-body, .post-nav, .post-cta { padding-left: 2rem; padding-right: 2rem; }
+            .post-nav { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="../index.html" class="logo">feedme.design</a>
+        <div class="nav-links">
+            <a href="../index.html#services">Services</a>
+            <a href="../index.html#process">Process</a>
+            <a href="../index.html#pricing">Pricing</a>
+            <a href="../blog.html" class="active">Blog</a>
+            <a href="../index.html#contact">Contact</a>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <div class="hamburger-bars">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <span class="hamburger-label">Menu</span>
+        </button>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../index.html#services">Services</a>
+        <a href="../index.html#process">Process</a>
+        <a href="../index.html#pricing">Pricing</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../index.html#contact">Contact</a>
+    </div>
+
+    <div class="post-hero">
+        <div class="post-tag">Performance</div>
+        <h1>Speed Kills: What a Slow Website Is Costing Your Business</h1>
+        <div class="post-meta">
+            <span>Chris — feedme.design</span>
+            <span>10 February 2026</span>
+            <span>4 min read</span>
+        </div>
+    </div>
+
+    <div class="post-body">
+        <p>There's a number that tends to stop business owners in their tracks when I share it: <strong>53% of mobile users abandon a website that takes longer than three seconds to load.</strong> More than half. Gone. Before they've even seen what you do.</p>
+
+        <p>And yet, the average WordPress site — left to its own devices, plugins accumulating, images unoptimised, no caching in place — loads in five, six, seven seconds or more. Some I've audited take twelve.</p>
+
+        <div class="stat-callout">
+            <div class="stat-callout-item">
+                <span class="number">53%</span>
+                <span class="label">of mobile users leave after 3 seconds</span>
+            </div>
+            <div class="stat-callout-item">
+                <span class="number">1s</span>
+                <span class="label">delay = 7% drop in conversions</span>
+            </div>
+            <div class="stat-callout-item">
+                <span class="number">2×</span>
+                <span class="label">faster sites see double the engagement</span>
+            </div>
+        </div>
+
+        <h2>The Invisible Tax on Your Business</h2>
+
+        <p>The frustrating thing about page speed is that you never see the customers you lose. They arrived, waited, left. No bounce notification. No angry email. Just silence where a sale could have been.</p>
+
+        <p>Google has been factoring page speed into search rankings since 2010, and they've doubled down on it with Core Web Vitals. A slow site isn't just losing the customers who visit — it's ranking lower in search results, so fewer people find it in the first place. It's a compound problem: slow speeds reduce visitors, and reduced visitors lower your authority, which reduces your ranking, which reduces your visitors further.</p>
+
+        <blockquote>
+            <p>Every second you shave off your load time is money directly recovered from the floor.</p>
+        </blockquote>
+
+        <h2>Why WordPress Sites Slow Down</h2>
+
+        <p>WordPress isn't inherently slow. A well-optimised WordPress site can load in under a second. But out of the box, running default settings, with a theme that loads fifteen Google Fonts and a page builder that injects scripts on every page? It's slow. And it gets slower over time.</p>
+
+        <p><strong>Images are usually the biggest culprit.</strong> Someone uploads a 4MB photo from their iPhone, and WordPress serves that same 4MB file to every visitor. Modern image formats like WebP can cut that down by 80% with no visible quality loss. Most WordPress sites aren't using them.</p>
+
+        <p><strong>Plugins pile up.</strong> Each plugin can add CSS files, JavaScript files, database queries. Some plugins — particularly page builders, sliders, and form tools — are notoriously heavy. Many load their assets everywhere, even on pages where they're not used.</p>
+
+        <p><strong>No caching.</strong> Without caching, WordPress has to rebuild every page from scratch for every visitor: query the database, assemble the template, deliver the HTML. With caching, most visitors get a pre-built static file. The difference in server response time is dramatic.</p>
+
+        <p><strong>Cheap hosting.</strong> Shared hosting is fine for getting started, but a server that's handling thousands of sites on the same machine will always struggle under load. Moving to a quality managed WordPress host often shaves seconds off load time with zero other changes.</p>
+
+        <h2>What Actually Fixes It</h2>
+
+        <p>The good news is that most speed problems are fixable, and the fixes have a very high return on investment. A proper performance pass on a slow WordPress site typically involves: implementing a caching layer, converting images to modern formats and serving them at the right sizes, loading CSS and JavaScript more efficiently, moving to a better host if necessary, and cleaning up the database.</p>
+
+        <p>Done well, it's not unusual to see a site go from a six-second load time to under two seconds. That's not a marginal improvement — that's a fundamentally different experience for your visitors, and different results for your business.</p>
+
+        <h2>How Fast Should Your Site Be?</h2>
+
+        <p>As a rough benchmark: under two seconds is good, under one second is excellent. You can check your own site right now using Google PageSpeed Insights — just paste in your URL and you'll get a score and a breakdown of what's dragging you down. If you're scoring below 70, there's meaningful work to be done.</p>
+
+        <p>If you'd rather have someone else look at it, that's what we're here for.</p>
+    </div>
+
+    <div class="post-cta">
+        <div class="post-cta-inner">
+            <h3>Find out how fast (or slow) your site really is</h3>
+            <p>We'll run a full performance audit and tell you exactly what's slowing you down.</p>
+            <a href="/cdn-cgi/l/email-protection#9ffcf7edf6ecdff9fafafbf2fab1fbfaecf6f8f1" class="cta-button">Get a Free Performance Audit</a>
+        </div>
+    </div>
+
+    <div class="post-nav">
+        <a href="why-wordpress-maintenance-matters.html">← Why WordPress Maintenance Isn't Optional</a>
+        <a href="wordpress-security-basics.html">The 5 WordPress Security Basics →</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 feedme.design. Expert WordPress maintenance for your peace of mind.</p>
+        <p><a href="/cdn-cgi/l/email-protection#3c5f544e554f7c5a

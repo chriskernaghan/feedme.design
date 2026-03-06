@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: Catagen - feedme.design</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --midnight: #0a0e27;
+            --slate: #1a1f3a;
+            --cream: #f5f1e8;
+            --sand: #e8dcc4;
+            --accent: #ff6b35;
+            --accent-dim: #ff8c5f;
+            --text-dark: #2d3142;
+            --text-light: #a8a8b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Epilogue", sans-serif; background: var(--cream); color: var(--text-dark); overflow-x: hidden; line-height: 1.6; }
+
+        /* Nav */
+        nav { position: fixed; top: 0; width: 100%; padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: var(--cream); border-bottom: 1px solid var(--sand); }
+        .logo { font-family: "DM Serif Display", serif; font-size: 1.8rem; color: var(--midnight); letter-spacing: -0.02em; text-decoration: none; }
+        .nav-links a { margin-left: 2.5rem; text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 0.95rem; position: relative; transition: color 0.3s ease; }
+        .nav-links a::after { content: ""; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s ease; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+        /* Hamburger */
+        .hamburger { display: none; flex-direction: column; align-items: center; cursor: pointer; background: none; border: none; padding: 0.5rem; }
+        .hamburger-bars { display: flex; flex-direction: column; gap: 5px; }
+        .hamburger-bars span { display: block; width: 24px; height: 2px; background: var(--midnight); border-radius: 2px; transition: all 0.3s ease; }
+        .hamburger-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--midnight); margin-top: 4px; }
+        .hamburger.open .hamburger-bars span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open .hamburger-bars span:nth-child(2) { opacity: 0; }
+        .hamburger.open .hamburger-bars span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        .mobile-menu { display: none; position: fixed; top: 73px; left: 0; width: 100%; background: var(--cream); border-bottom: 1px solid var(--sand); flex-direction: column; z-index: 999; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a { text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 1.1rem; padding: 1.1rem 2rem; border-bottom: 1px solid var(--sand); transition: color 0.3s ease, background 0.3s ease; }
+        .mobile-menu a:last-child { border-bottom: none; }
+        .mobile-menu a:hover { color: var(--accent); background: var(--sand); }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Hero */
+        .case-hero {
+            padding: 14rem 4rem 8rem;
+            background: linear-gradient(135deg, var(--midnight) 0%, var(--slate) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .case-hero::before {
+            content: "";
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 60%;
+            height: 140%;
+            background: radial-gradient(circle, rgba(255,107,53,0.15) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .case-hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .case-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            display: block;
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+
+        .case-hero h1 {
+            font-family: "DM Serif Display", serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            color: var(--cream);
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.1s backwards;
+        }
+
+        .case-hero-intro {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .case-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.3s backwards;
+        }
+
+        .case-meta-item {
+            border-left: 2px solid var(--accent);
+            padding-left: 1rem;
+        }
+
+        .case-meta-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .case-meta-value {
+            font-size: 1.1rem;
+            color: var(--cream);
+            font-weight: 500;
+        }
+
+        /* Main content */
+        .case-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 6rem 4rem;
+        }
+
+        .case-section {
+            margin-bottom: 5rem;
+        }
+
+        .case-section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .case-section h2 {
+            font-family: "DM Serif Display", serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--midnight);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+        }
+
+        .case-section p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .case-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .case-list li {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .case-list li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* Outcome grid */
+        .outcome-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .outcome-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            border-left: 4px solid var(--accent);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .outcome-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .outcome-card h3 {
+            font-family: "DM Serif Display", serif;
+            font-size: 1.5rem;
+            color: var(--midnight);
+            margin-bottom: 0.8rem;
+        }
+
+        .outcome-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-dark);
+            opacity: 0.85;
+            margin: 0;
+        }
+
+        /* Timeline */
+        .timeline {
+            background: var(--sand);
+            border-radius: 16px;
+            padding: 3rem;
+            margin: 3rem 0;
+        }
+
+        .timeline-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .timeline-item {
+            text-align: center;
+        }
+
+        .timeline-number {
+            font-family: "DM Serif Display", serif;
+            font-size: 3rem;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.5rem;
+            font-style: italic;
+        }
+
+        .timeline-label {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        /* Testimonial placeholder */
+        .testimonial-placeholder {
+            background: var(--midnight);
+            border-radius: 20px;
+            padding: 4rem 3rem;
+            text-align: center;
+            margin: 4rem 0;
+            border: 2px dashed rgba(255,107,53,0.3);
+        }
+
+        .testimonial-placeholder p {
+            color: var(--text-light);
+            font-size: 1rem;
+            font-style: italic;
+            margin: 0;
+        }
+
+        /* CTA */
+        .case-cta {
+            background: linear-gradient(135deg, var(--slate) 0%, var(--midnight) 100%);
+            padding: 6rem 4rem;
+            text-align: center;
+        }
+
+        .case-cta h2 {
+            font-family: "DM Serif Display", serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--cream);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .case-cta p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+            box-shadow: 0 10px 30px rgba(255,107,53,0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255,107,53,0.4);
+            background: var(--accent-dim);
+        }
+
+        /* Footer */
+        footer { background: var(--midnight); padding: 4rem; text-align: center; color: var(--text-light); }
+        footer p { margin-bottom: 1rem; }
+        footer a { color: var(--accent); text-decoration: none; transition: color 0.3s ease; }
+        footer a:hover { color: var(--accent-dim); }
+
+
+        /* Images */
+        .case-logo {
+            max-width: 300px;
+            height: auto;
+            margin-bottom: 2rem;
+        }
+
+        .case-image {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            margin: 3rem 0;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .image-grid img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        @media (max-width: 768px) {
+            .responsive-grid { grid-template-columns: 1fr !important; }
+            .case-logo { max-width: 200px; }
+            .image-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .responsive-grid { grid-template-columns: 1fr !important; }
+            nav { padding: 1.5rem 2rem; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .case-hero { padding: 12rem 2rem 6rem; }
+            .case-content { padding: 4rem 2rem; }
+            .case-cta { padding: 4rem 2rem; }
+            .timeline { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="../index.html" class="logo">feedme.design</a>
+        <div class="nav-links">
+            <a href="../index.html#services">Services</a>
+            <a href="../index.html#process">Process</a>
+            <a href="../index.html#pricing">Pricing</a>
+            <a href="../blog.html">Blog</a>
+            <a href="../index.html#contact">Contact</a>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <div class="hamburger-bars">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <span class="hamburger-label">Menu</span>
+        </button>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../index.html#services">Services</a>
+        <a href="../index.html#process">Process</a>
+        <a href="../index.html#pricing">Pricing</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../index.html#contact">Contact</a>
+    </div>
+
+    <div class="case-hero">
+        <div class="case-hero-content">
+            <img src="catagen-logo.png" alt="Catagen" class="case-logo">
+            <span class="case-label">Case Study</span>
+            <h1>Catagen: From Squarespace to Scalable WordPress</h1>
+            <p class="case-hero-intro">How we migrated a growing emissions testing company to a flexible, enterprise-grade WordPress solution that scales with their team.</p>
+            <div class="case-meta">
+                <div class="case-meta-item">
+                    <div class="case-meta-label">Client</div>
+                    <div class="case-meta-value">Catagen</div>
+                </div>
+                <div class="case-meta-item">
+                    <div class="case-meta-label">Industry</div>
+                    <div class="case-meta-value">Green Emissions Testing</div>
+                </div>
+                <div class="case-meta-item">
+                    <div class="case-meta-label">Timeline</div>
+                    <div class="case-meta-value">6-8 weeks initial build</div>
+                </div>
+                <div class="case-meta-item">
+                    <div class="case-meta-label">Ongoing</div>
+                    <div class="case-meta-value">4+ years</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="case-content">
+
+        <div class="case-section">
+            <div class="case-section-label">The Challenge</div>
+            <h2>Hitting the Limits of Squarespace</h2>
+            <p>Catagen came to us with a problem many growing businesses face: they had outgrown their website platform. Their Squarespace site had served them well in the early days, but as their team expanded and their technical requirements became more sophisticated, the limitations became clear.</p>
+            <ul class="case-list">
+                <li>Limited flexibility for custom functionality and integrations</li>
+                <li>Difficulty scaling the site as the business grew</li>
+                <li>Team needed more control over content and structure</li>
+                <li>Wanted a solution that could evolve with the business without requiring a rebuild every few years</li>
+            </ul>
+            <p>They needed a platform that could handle their current requirements while remaining flexible enough to accommodate future growth — without sacrificing the ease of use their team had come to expect.</p>
+        </div>
+
+        <div class="case-section">
+            <div class="case-section-label">The Solution</div>
+            <h2>Enterprise WordPress, Done Right</h2>
+            <p>We rebuilt Catagen's entire web presence from the ground up on WordPress, hosted on WP Engine — a managed WordPress platform known for enterprise-grade performance, security, and reliability.</p>
+            <p>The approach was straightforward but comprehensive:</p>
+            <ul class="case-list">
+                <li><strong>Custom theme development:</strong> Built a bespoke WordPress theme tailored to Catagen's brand and technical requirements</li>
+                <li><strong>Divi integration:</strong> Incorporated Divi page builder to give the Catagen team intuitive, drag-and-drop editing capabilities without sacrificing code quality</li>
+                <li><strong>WP Engine hosting:</strong> Migrated to WP Engine for automatic backups, staging environments, and enterprise-level security</li>
+                <li><strong>Performance optimization:</strong> Configured caching, CDN, and image optimization from day one</li>
+                <li><strong>Security hardening:</strong> Implemented security best practices, monitoring, and regular updates</li>
+            </ul>
+            <p>The goal was to give Catagen the best of both worlds: the power and flexibility of WordPress with the ease of use they had on Squarespace.</p>
+        </div>
+
+        
+        <img src="catagen-desktop.png" alt="Catagen website desktop view" class="case-image">
+
+        <div class="timeline">
+            <div class="timeline-items">
+                <div class="timeline-item">
+                    <span class="timeline-number">6-8</span>
+                    <div class="timeline-label">Weeks from design to launch</div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-number">4+</span>
+                    <div class="timeline-label">Years ongoing partnership</div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-number">1</span>
+                    <div class="timeline-label">Platform that scales</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="case-section">
+            <div class="case-section-label">The Outcome</div>
+            <h2>A Website That Works as Hard as They Do</h2>
+            <p>The migration to WordPress wasn't just a technical upgrade — it fundamentally changed how Catagen manages their online presence.</p>
+            
+            <div class="outcome-grid">
+                <div class="outcome-card">
+                    <h3>Faster & More Scalable</h3>
+                    <p>Built on WP Engine's infrastructure with performance optimization baked in from the start. The site handles traffic spikes and content growth without breaking a sweat.</p>
+                </div>
+                <div class="outcome-card">
+                    <h3>Team Empowerment</h3>
+                    <p>Catagen staff can make content updates, add pages, and publish news without needing a developer. Divi gives them creative control with guardrails.</p>
+                </div>
+                <div class="outcome-card">
+                    <h3>Peace of Mind</h3>
+                    <p>Automated backups, security monitoring, and regular maintenance mean the Catagen team can focus on emissions testing — not WordPress troubleshooting.</p>
+                </div>
+                <div class="outcome-card">
+                    <h3>Long-Term Partnership</h3>
+                    <p>Four years of ongoing support means we've evolved the site alongside the business, adding features and optimizations as needs change.</p>
+                </div>
+            </div>
+
+            <div style="margin: 3rem 0;">
+                <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--midnight); margin: 0 0 1rem;">Built for Every Device</h3>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-dark); margin-bottom: 1rem;">The site is fully responsive, delivering a seamless experience whether the Catagen team is updating content from a desktop or their customers are browsing on mobile.</p>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-dark); margin-bottom: 2rem;">The navigation adapts intelligently across devices, ensuring easy access to all content whether browsing services, reading case studies, or getting in touch.</p>
+                <div class="responsive-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <img src="catagen-mobile.png" alt="Catagen website mobile homepage" class="case-image">
+                    <img src="catagen-mobile-menu.png" alt="Catagen website mobile navigation" class="case-image">
+                </div>
+            </div>
+
+            <p>Today, Catagen has a website that reflects the quality and professionalism of their work in green emissions testing — and a platform that will grow with them for years to come.</p>
+        </div>
+
+        <div style="background: var(--midnight); border-radius: 20px; padding: 4rem 3rem; text-align: center; margin: 4rem 0;">
+            <p style="font-family: 'DM Serif Display', serif; font-size: 1.5rem; font-style: italic; color: var(--cream); line-height: 1.7; margin-bottom: 2rem;">"Chris handled our migration seamlessly and has been invaluable ever since. His technical expertise and responsiveness gave us confidence to focus on our business while he managed everything WordPress-related."</p>
+            <div style="color: var(--text-light);">
+                <div style="font-weight: 600; color: var(--cream); margin-bottom: 0.3rem;">Sonya</div>
+                <div style="font-size: 0.9rem;">Chief Commercialisation Officer, Catagen</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="case-cta">
+        <h2>Need a website that scales with your business?</h2>
+        <p>Let's talk about what a tailored WordPress solution could do for you.</p>
+        <a href="../index.html#contact" class="cta-button">Get Your Free Audit</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 feedme.design. Expert WordPress maintenance for your peace of mind.</p>
+        <p><a href="/cdn-cgi/l/email-protection#a2c1cad0cbd1f9c3d6ffc4c7c7c6cfc78cc6c7d1cbc5cc">chris[at]feedme.design</a></p>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        var hamburger = document.getElementById("hamburger");
+        var mobileMenu = document.getElementById("mobileMenu");
+
+        if (hamburger && mobileMenu) {
+            hamburger.addEventListener("click", function() {
+                hamburger.classList.toggle("open");
+                mobileMenu.classList.toggle("open");
+            });
+
+            document.querySelectorAll(".mobile-menu a").forEach(function(link) {
+                link.addEventListener("click", function() {
+                    hamburger.classLi

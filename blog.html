@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - feedme.design</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --midnight: #0a0e27; --slate: #1a1f3a; --cream: #f5f1e8; --sand: #e8dcc4; --accent: #ff6b35; --accent-dim: #ff8c5f; --text-dark: #2d3142; --text-light: #a8a8b8; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Epilogue", sans-serif; background: var(--cream); color: var(--text-dark); overflow-x: hidden; line-height: 1.6; }
+
+        /* Nav */
+        nav { position: fixed; top: 0; width: 100%; padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: var(--cream); border-bottom: 1px solid var(--sand); }
+        .logo { font-family: "DM Serif Display", serif; font-size: 1.8rem; color: var(--midnight); letter-spacing: -0.02em; text-decoration: none; }
+        .nav-links a { margin-left: 2.5rem; text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 0.95rem; position: relative; transition: color 0.3s ease; }
+        .nav-links a::after { content: ""; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s ease; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+        /* Hamburger */
+        .hamburger { display: none; flex-direction: column; align-items: center; cursor: pointer; background: none; border: none; padding: 0.5rem; }
+        .hamburger-bars { display: flex; flex-direction: column; gap: 5px; }
+        .hamburger-bars span { display: block; width: 24px; height: 2px; background: var(--midnight); border-radius: 2px; transition: all 0.3s ease; }
+        .hamburger-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--midnight); margin-top: 4px; }
+        .hamburger.open .hamburger-bars span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open .hamburger-bars span:nth-child(2) { opacity: 0; }
+        .hamburger.open .hamburger-bars span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* Mobile menu */
+        .mobile-menu { display: none; position: fixed; top: 73px; left: 0; width: 100%; background: var(--cream); border-bottom: 1px solid var(--sand); flex-direction: column; z-index: 999; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a { text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 1.1rem; padding: 1.1rem 2rem; border-bottom: 1px solid var(--sand); transition: color 0.3s ease, background 0.3s ease; }
+        .mobile-menu a:last-child { border-bottom: none; }
+        .mobile-menu a:hover { color: var(--accent); background: var(--sand); }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Blog Hero */
+        .blog-hero { padding: 12rem 4rem 6rem; background: var(--cream); position: relative; overflow: hidden; }
+        .blog-hero::before { content: ""; position: absolute; top: -50%; right: -20%; width: 60%; height: 150%; background: radial-gradient(circle, rgba(255,107,53,0.06) 0%, transparent 70%); }
+        .blog-hero h1 { font-family: "DM Serif Display", serif; font-size: clamp(3rem,6vw,5rem); color: var(--midnight); letter-spacing: -0.03em; margin-bottom: 1rem; animation: fadeInUp 0.8s ease-out backwards; }
+        .blog-hero p { font-size: 1.2rem; color: var(--text-dark); opacity: 0.7; animation: fadeInUp 0.8s ease-out 0.2s backwards; }
+
+        /* Filter */
+        .filter-bar { padding: 2rem 4rem; background: var(--cream); border-bottom: 1px solid var(--sand); display: flex; gap: 1rem; flex-wrap: wrap; }
+        .filter-tag { padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; border: 2px solid var(--sand); background: transparent; color: var(--text-dark); font-family: "Epilogue", sans-serif; }
+        .filter-tag:hover, .filter-tag.active { background: var(--accent); border-color: var(--accent); color: white; }
+
+        /* Posts */
+        .posts-list { padding: 5rem 4rem 8rem; max-width: 1200px; margin: 0 auto; }
+        .post-row { display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: start; padding: 3rem 0; border-bottom: 1px solid var(--sand); text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        .post-row:first-child { border-top: 1px solid var(--sand); }
+        .post-row:hover .post-row-title { color: var(--accent); }
+        .post-row:hover .post-row-arrow { transform: translateX(6px); }
+        .post-row-tag { display: inline-block; background: var(--accent); color: white; padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; margin-bottom: 0.8rem; }
+        .post-row-title { font-family: "DM Serif Display", serif; font-size: clamp(1.4rem,3vw,2rem); color: var(--midnight); margin-bottom: 0.8rem; line-height: 1.2; transition: color 0.3s ease; }
+        .post-row-excerpt { color: var(--text-dark); opacity: 0.7; line-height: 1.7; max-width: 700px; }
+        .post-row-meta { text-align: right; color: var(--text-light); font-size: 0.9rem; white-space: nowrap; }
+        .post-row-date { display: block; margin-bottom: 0.5rem; }
+        .post-row-arrow { font-size: 1.5rem; color: var(--accent); transition: transform 0.3s ease; }
+
+        /* Footer */
+        footer { background: var(--midnight); padding: 4rem; text-align: center; color: var(--text-light); }
+        footer p { margin-bottom: 1rem; }
+        footer a { color: var(--accent); text-decoration: none; transition: color 0.3s ease; }
+        footer a:hover { color: var(--accent-dim); }
+
+        @media (max-width: 768px) {
+            nav { padding: 1.5rem 2rem; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .blog-hero, .filter-bar { padding-left: 2rem; padding-right: 2rem; }
+            .posts-list { padding: 3rem 2rem 5rem; }
+            .post-row { grid-template-columns: 1fr; }
+            .post-row-meta { text-align: left; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">feedme.design</a>
+        <div class="nav-links">
+            <a href="index.html#services">Services</a>
+            <a href="index.html#process">Process</a>
+            <a href="index.html#pricing">Pricing</a>
+            <a href="blog.html" class="active">Blog</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <div class="hamburger-bars">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <span class="hamburger-label">Menu</span>
+        </button>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html#services">Services</a>
+        <a href="index.html#process">Process</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="blog.html">Blog</a>
+        <a href="index.html#contact">Contact</a>
+    </div>
+
+    <div class="blog-hero">
+        <h1>The Blog</h1>
+        <p>Practical WordPress advice for business owners who would rather be running their business</p>
+    </div>
+
+    <div class="filter-bar">
+        <button class="filter-tag active" data-filter="all">All Posts</button>
+        <button class="filter-tag" data-filter="Maintenance">Maintenance</button>
+        <button class="filter-tag" data-filter="Performance">Performance</button>
+        <button class="filter-tag" data-filter="Security">Security</button>
+    </div>
+
+    <div class="posts-list">
+        <a href="posts/why-wordpress-maintenance-matters.html" class="post-row" data-tag="Maintenance">
+            <div>
+                <span class="post-row-tag">Maintenance</span>
+                <div class="post-row-title">Why WordPress Maintenance Is Not Optional Anymore</div>
+                <div class="post-row-excerpt">Most business owners do not think about their WordPress site until something goes wrong. By then, the damage is already done - lost sales, frustrated customers, and a repair bill that always seems larger than it should be.</div>
+            </div>
+            <div class="post-row-meta">
+                <span class="post-row-date">14 Feb 2026</span>
+                <span class="post-row-arrow">→</span>
+            </div>
+        </a>
+        <a href="posts/speed-kills-slow-websites.html" class="post-row" data-tag="Performance">
+            <div>
+                <span class="post-row-tag">Performance</span>
+                <div class="post-row-title">Speed Kills: What a Slow Website Is Costing Your Business</div>
+                <div class="post-row-excerpt">Every extra second your site takes to load, you are losing customers. The numbers are more brutal than most people realise - and the fixes are often simpler than you would think.</div>
+            </div>
+            <div class="post-row-meta">
+                <span class="post-row-date">10 Feb 2026</span>
+                <span class="post-row-arrow">→</span>
+            </div>
+        </a>
+        <a href="posts/wordpress-security-basics.html" class="post-row" data-tag="Security">
+            <div>
+                <span class="post-row-tag">Security</span>
+                <div class="post-row-title">The 5 WordPress Security Basics Every Business Owner Should Know</div>
+                <div class="post-row-excerpt">You do not need to be a developer to protect your WordPress site. These five fundamentals cover 80% of the risk - and most of them take less than an afternoon to sort out.</div>
+            </div>
+            <div class="post-row-meta">
+                <span class="post-row-date">5 Feb 2026</span>
+                <span class="post-row-arrow">→</span>
+            </div>
+        </a>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 feedme.design. Expert WordPress maintenance for your peace of mind.</p>
+        <p><a href="mailto:chris[at]feedme.design">chris[at]feedme.design</a></p>
+    </footer>
+
+    <script>
+        var hamburger = document.getElementById("hamburger");
+        var mobileMenu = document.getElementById("mobileMenu");
+
+        hamburger.addEventListener("click", function() {
+            hamburger.classList.toggle("open");
+            mobileMenu.classList.toggle("open");
+        });
+
+        document.querySelectorAll(".mobile-menu a").forEach(function(link) {
+            link.addEventListener("click", function() {
+                hamburger.classList.remove("open");
+                mobileMenu.classList.remove("open");
+            });
+        });
+
+        var filterButtons = document.querySelectorAll(".filter-tag");
+        var postRows = document.querySelectorAll(".post-row");
+
+        filterButtons.forEach(function(btn) {
+            btn.addEventListener("click", function() {
+                filterButtons.forEach(function(b) { b.classList.remove("active"); });
+                btn.classList.add("active");
+                var filter = btn.dataset.filter;
+                postRows.forEach(function(row) {
+                    row.style.display = (filter === "all" || row.dataset.tag === filter) ? "grid" : "none";
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

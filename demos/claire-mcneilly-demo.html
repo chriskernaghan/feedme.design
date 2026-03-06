@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claire McNeilly Solicitor | Ballyclare</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --forest: #1B3A2D;
+            --forest-light: #274D3B;
+            --sage: #5A7A6A;
+            --copper: #B07942;
+            --copper-light: #C99260;
+            --cream: #F9F6F1;
+            --cream-dark: #EFE9DF;
+            --parchment: #F4F0E8;
+            --white: #FFFFFF;
+            --text: #2D3436;
+            --text-light: #6B7B75;
+            --border: #DDD7CC;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            overflow-x: hidden;
+        }
+
+        /* ===== NAV ===== */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s ease;
+        }
+
+        .nav.scrolled {
+            background: rgba(27, 58, 45, 0.97);
+            backdrop-filter: blur(12px);
+            padding: 0.75rem 2rem;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.12);
+        }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: -0.01em;
+        }
+
+        .nav-logo span { color: var(--copper-light); }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--copper-light); }
+
+        .nav-cta {
+            background: var(--copper) !important;
+            color: var(--white) !important;
+            padding: 0.6rem 1.4rem !important;
+            border-radius: 6px;
+            font-weight: 500 !important;
+            transition: all 0.3s !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--copper-light) !important;
+            transform: translateY(-1px);
+        }
+
+        .nav-mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav-mobile-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: white;
+            margin: 5px 0;
+            transition: all 0.3s;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(170deg, var(--forest) 0%, var(--forest-light) 45%, #2D5C47 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+            background-size: 80px 80px;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 180px;
+            background: linear-gradient(to top, var(--cream), transparent);
+            z-index: 2;
+        }
+
+        /* Decorative botanical line art */
+        .hero-decor {
+            position: absolute;
+            top: 10%;
+            right: 5%;
+            width: 350px;
+            height: 350px;
+            border: 1px solid rgba(176,121,66,0.08);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-decor::before {
+            content: '';
+            position: absolute;
+            top: 40px; left: 40px; right: 40px; bottom: 40px;
+            border: 1px solid rgba(176,121,66,0.06);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 8rem 2rem 6rem;
+        }
+
+        .hero-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s ease forwards 0.3s;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--copper-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: var(--copper);
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.6rem, 5vw, 3.8rem);
+            font-weight: 500;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--copper-light);
+        }
+
+        .hero-desc {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.75;
+            margin-bottom: 2.5rem;
+            max-width: 480px;
+            font-weight: 300;
+        }
+
+        .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--copper);
+            color: var(--white);
+            padding: 0.9rem 2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.92rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.02em;
+        }
+
+        .btn-primary:hover {
+            background: var(--copper-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(176,121,66,0.25);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: transparent;
+            color: var(--white);
+            padding: 0.9rem 2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.92rem;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.2);
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            border-color: rgba(255,255,255,0.4);
+            background: rgba(255,255,255,0.05);
+        }
+
+        /* Hero trust card */
+        .hero-trust {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s ease forwards 0.6s;
+        }
+
+        .trust-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .trust-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.75rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .trust-card-avatar {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--copper), var(--copper-light));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .trust-card-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .trust-card-role {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.45);
+            margin-top: 0.15rem;
+        }
+
+        .trust-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: rgba(255,255,255,0.03);
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .trust-item-icon {
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            background: rgba(176,121,66,0.15);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .trust-item-text {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.4;
+        }
+
+        .trust-item-text strong {
+            color: rgba(255,255,255,0.9);
+            font-weight: 500;
+        }
+
+        /* ===== SECTION STYLES ===== */
+        section { padding: 6rem 2rem; }
+
+        .section-container { max-width: 1100px; margin: 0 auto; }
+
+        .section-label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--copper);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 3.5vw, 2.6rem);
+            font-weight: 500;
+            color: var(--forest);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            max-width: 560px;
+            font-weight: 300;
+        }
+
+        /* ===== EXPERTISE ===== */
+        .expertise { background: var(--cream); }
+
+        .expertise-header { margin-bottom: 3.5rem; }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
+
+        .expertise-card {
+            background: var(--white);
+            border-radius: 14px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .expertise-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .expertise-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--copper), var(--copper-light));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .expertise-card:hover::before { transform: scaleX(1); }
+
+        .expertise-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(27,58,45,0.08);
+            border-color: var(--copper);
+        }
+
+        .expertise-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--parchment);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .expertise-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--forest);
+            margin-bottom: 0.6rem;
+        }
+
+        .expertise-card p {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            line-height: 1.65;
+            font-weight: 300;
+        }
+
+        /* Full-width 2 cards on second row */
+        .expertise-grid-row2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+            margin-top: 1.25rem;
+        }
+
+        /* ===== ABOUT ===== */
+        .about {
+            background: var(--forest);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -15%;
+            width: 50%;
+            height: 180%;
+            background: radial-gradient(ellipse, rgba(176,121,66,0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .about-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about .section-label { color: var(--copper-light); }
+        .about .section-title { color: var(--white); }
+        .about .section-subtitle { color: rgba(255,255,255,0.55); }
+
+        .about-text p {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.75;
+            margin-top: 1.5rem;
+            font-weight: 300;
+        }
+
+        .about-credentials {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .credential {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            transition: all 0.3s;
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        .credential.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .credential:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(176,121,66,0.25);
+        }
+
+        .credential-icon {
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
+            background: rgba(176,121,66,0.15);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .credential h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.2rem;
+        }
+
+        .credential p {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.45);
+            line-height: 1.5;
+        }
+
+        /* ===== APPROACH ===== */
+        .approach { background: var(--cream); }
+
+        .approach-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .approach-header .section-subtitle {
+            margin: 0 auto;
+        }
+
+        .approach-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            position: relative;
+        }
+
+        .approach-steps::before {
+            content: '';
+            position: absolute;
+            top: 36px;
+            left: 15%;
+            right: 15%;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .approach-step {
+            text-align: center;
+            position: relative;
+            opacity: 0;
+            transform: translateY(15px);
+        }
+
+        .approach-step.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .approach-step-number {
+            width: 72px;
+            height: 72px;
+            background: var(--white);
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.25rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--copper);
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s;
+        }
+
+        .approach-step:hover .approach-step-number {
+            border-color: var(--copper);
+            background: var(--copper);
+            color: white;
+        }
+
+        .approach-step h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--forest);
+            margin-bottom: 0.5rem;
+        }
+
+        .approach-step p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            font-weight: 300;
+            max-width: 280px;
+            margin: 0 auto;
+        }
+
+        /* ===== CONTACT ===== */
+        .contact { background: var(--cream-dark); }
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-form-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2.5rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 40px rgba(27,58,45,0.05);
+        }
+
+        .contact-form-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--forest);
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group { margin-bottom: 1.25rem; }
+
+        .form-group label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--forest);
+            margin-bottom: 0.4rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.88rem;
+            color: var(--text);
+            background: var(--parchment);
+            transition: border-color 0.3s, box-shadow 0.3s;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--copper);
+            box-shadow: 0 0 0 3px rgba(176,121,66,0.1);
+        }
+
+        .form-group textarea { height: 110px; resize: vertical; }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-submit {
+            width: 100%;
+            background: var(--copper);
+            color: white;
+            padding: 0.9rem;
+            border: none;
+            border-radius: 6px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 500;
+            font-size: 0.92rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 0.5rem;
+            letter-spacing: 0.02em;
+        }
+
+        .form-submit:hover {
+            background: var(--copper-light);
+            transform: translateY(-1px);
+        }
+
+        .contact-info { display: flex; flex-direction: column; justify-content: center; }
+
+        .contact-details-inner { margin-top: 2rem; }
+
+        .contact-detail {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            margin-bottom: 1.75rem;
+        }
+
+        .contact-detail-icon {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.05rem;
+        }
+
+        .contact-detail-title {
+            font-weight: 600;
+            color: var(--forest);
+            font-size: 0.92rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .contact-detail-text {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.5;
+            font-weight: 300;
+        }
+
+        .contact-detail-text a {
+            color: var(--copper);
+            text-decoration: none;
+        }
+
+        .contact-detail-text a:hover { text-decoration: underline; }
+
+        .contact-hours {
+            margin-top: 1.5rem;
+            padding: 1.25rem;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .contact-hours h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--forest);
+            margin-bottom: 0.6rem;
+        }
+
+        .contact-hours p {
+            font-size: 0.82rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--forest);
+            padding: 3rem 2rem 5rem;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .footer-logo span { color: var(--copper-light); }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.45);
+            text-decoration: none;
+            font-size: 0.82rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover { color: var(--copper-light); }
+
+        .footer-divider {
+            width: 100%;
+            height: 1px;
+            background: rgba(255,255,255,0.06);
+            margin: 1.5rem 0;
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            color: rgba(255,255,255,0.25);
+            font-size: 0.75rem;
+        }
+
+        /* ===== PREPARED BANNER ===== */
+        .prepared-banner {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 0.75rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            z-index: 999;
+            border-top: 2px solid var(--copper);
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
+        }
+
+        .prepared-banner p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.82rem;
+        }
+
+        .prepared-banner a {
+            color: var(--copper-light);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .prepared-banner a:hover { text-decoration: underline; }
+
+        .prepared-banner .dismiss-btn {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: rgba(255,255,255,0.5);
+            width: 24px; height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .prepared-banner .dismiss-btn:hover {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 968px) {
+            .hero-layout {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .hero-content { padding: 7rem 2rem 4rem; }
+
+            .hero-trust { max-width: 420px; }
+
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .expertise-grid-row2 {
+                grid-template-columns: 1fr;
+            }
+
+            .about-layout {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .approach-steps {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .approach-steps::before { display: none; }
+
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                background: rgba(27,58,45,0.98);
+                padding: 1.5rem 2rem;
+                gap: 1rem;
+            }
+
+            .nav-mobile-toggle { display: block; }
+
+            section { padding: 4rem 1.25rem; }
+
+            .hero-decor { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Nav -->
+    <nav class="nav" id="nav">
+        <a href="#" class="nav-logo">Claire McNeilly <span>Solicitor</span></a>
+        <button class="nav-mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="#expertise">Areas of Law</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#approach">How It Works</a></li>
+            <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-decor"></div>
+        <div class="hero-content">
+            <div class="hero-layout">
+                <div class="hero-text">
+                    <div class="hero-badge">Solicitor — Ballyclare, Co. Antrim</div>
+                    <h1>Clear legal advice, delivered with a <em>personal touch</em></h1>
+                    <p class="hero-desc">From buying your first home to planning for the future, Claire McNeilly Solicitor offers straightforward, expert guidance across property, agriculture, wills, and tax — right here in Ballyclare.</p>
+                    <div class="hero-actions">
+                        <a href="#contact" class="btn-primary">Book a Consultation</a>
+                        <a href="#expertise" class="btn-secondary">View Areas of Law</a>
+                    </div>
+                </div>
+                <div class="hero-trust">
+                    <div class="trust-card">
+                        <div class="trust-card-header">
+                            <div class="trust-card-avatar">CM</div>
+                            <div>
+                                <div class="trust-card-name">Claire McNeilly</div>
+                                <div class="trust-card-role">Principal Solicitor</div>
+                            </div>
+                        </div>
+                        <div class="trust-items">
+                            <div class="trust-item">
+                                <div class="trust-item-icon">⚖️</div>
+                                <div class="trust-item-text"><strong>Law Society of Northern Ireland</strong><br>Practising solicitor</div>
+                            </div>
+                            <div class="trust-item">
+                                <div class="trust-item-icon">🎓</div>
+                                <div class="trust-item-text"><strong>Queen's University Belfast</strong><br>Certificate in Legal Studies (Distinction)</div>
+                            </div>
+                            <div class="trust-item">
+                                <div class="trust-item-icon">🌿</div>
+                                <div class="trust-item-text"><strong>Agriculture specialist</strong><br>BSc (Hons) from University of Edinburgh</div>
+                            </div>
+                            <div class="trust-item">
+                                <div class="trust-item-icon">📍</div>
+                                <div class="trust-item-text"><strong>6 Doagh Road, Ballyclare</strong><br>BT39 9BG</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Areas of Expertise -->
+    <section class="expertise" id="expertise">
+        <div class="section-container">
+            <div class="expertise-header">
+                <div class="section-label">Areas of Law</div>
+                <h2 class="section-title">Expert advice where<br>it matters most</h2>
+                <p class="section-subtitle">Whether you're buying a farm, selling a house, making a will, or planning your estate, you'll get clear, practical advice from someone who understands the detail.</p>
+            </div>
+            <div class="expertise-grid">
+                <div class="expertise-card" data-animate>
+                    <div class="expertise-icon">🏠</div>
+                    <h3>Residential Conveyancing</h3>
+                    <p>Buying, selling, or remortgaging your home. A smooth, transparent process from offer to keys in hand, with regular updates throughout.</p>
+                </div>
+                <div class="expertise-card" data-animate>
+                    <div class="expertise-icon">🏢</div>
+                    <h3>Commercial Conveyancing</h3>
+                    <p>Sales, purchases, and leases of commercial property. Practical advice that protects your business interests from the start.</p>
+                </div>
+                <div class="expertise-card" data-animate>
+                    <div class="expertise-icon">🌾</div>
+                    <h3>Agriculture & Farming</h3>
+                    <p>Specialist legal support for the farming community — from land sales and tenancy agreements to succession planning and agricultural grants.</p>
+                </div>
+            </div>
+            <div class="expertise-grid-row2">
+                <div class="expertise-card" data-animate>
+                    <div class="expertise-icon">📜</div>
+                    <h3>Wills, Probate & Intestacy</h3>
+                    <p>Wills drafted to reflect your wishes, estate administration handled with care, and expert guidance when someone passes without a will.</p>
+                </div>
+                <div class="expertise-card" data-animate>
+                    <div class="expertise-icon">📊</div>
+                    <h3>Trusts, Tax & Financial Planning</h3>
+                    <p>Structuring your affairs to protect your family and your assets. Trust creation, inheritance tax planning, and long-term financial strategies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="section-container">
+            <div class="about-layout">
+                <div class="about-text">
+                    <div class="section-label">About Claire</div>
+                    <h2 class="section-title">Local knowledge,<br>genuine expertise</h2>
+                    <p class="section-subtitle">Claire McNeilly has been advising clients in the Ballyclare area for over a decade, combining deep legal expertise with an approachable, practical style.</p>
+                    <p>With a background in agriculture and extensive experience in property and estate law, Claire brings a unique perspective — particularly for farming families and rural businesses navigating complex legal matters. Every client receives direct, personal attention from a solicitor who genuinely understands their situation.</p>
+                </div>
+                <div class="about-credentials">
+                    <div class="credential" data-animate>
+                        <div class="credential-icon">🏛️</div>
+                        <div>
+                            <h4>Qualified Solicitor</h4>
+                            <p>Member of the Law Society of Northern Ireland with over a decade of experience in private practice.</p>
+                        </div>
+                    </div>
+                    <div class="credential" data-animate>
+                        <div class="credential-icon">🎓</div>
+                        <div>
+                            <h4>Queen's University Belfast</h4>
+                            <p>Certificate in Legal Studies, awarded with Distinction.</p>
+                        </div>
+                    </div>
+                    <div class="credential" data-animate>
+                        <div class="credential-icon">📐</div>
+                        <div>
+                            <h4>University of Ulster</h4>
+                            <p>Bachelor of Laws (LLB) — Law and Government.</p>
+                        </div>
+                    </div>
+                    <div class="credential" data-animate>
+                        <div class="credential-icon">🌿</div>
+                        <div>
+                            <h4>University of Edinburgh</h4>
+                            <p>BSc (Hons) in Agriculture — giving Claire rare specialist insight for farming clients.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Approach -->
+    <section class="approach" id="approach">
+        <div class="section-container">
+            <div class="approach-header">
+                <div class="section-label">How It Works</div>
+                <h2 class="section-title">Simple, straightforward<br>from start to finish</h2>
+                <p class="section-subtitle">No legal jargon, no unnecessary delays. Here's what to expect when you get in touch.</p>
+            </div>
+            <div class="approach-steps">
+                <div class="approach-step" data-animate>
+                    <div class="approach-step-number">1</div>
+                    <h3>Initial Conversation</h3>
+                    <p>Call or email to discuss your situation. Claire will give you an honest assessment of where things stand and what needs to happen.</p>
+                </div>
+                <div class="approach-step" data-animate>
+                    <div class="approach-step-number">2</div>
+                    <h3>Clear Advice & Costs</h3>
+                    <p>You'll receive a straightforward explanation of the legal process, a clear outline of costs, and a realistic timeline.</p>
+                </div>
+                <div class="approach-step" data-animate>
+                    <div class="approach-step-number">3</div>
+                    <h3>Personal Attention</h3>
+                    <p>Your matter is handled directly by Claire — not passed to a junior or lost in a large firm. You'll always know what's happening.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="section-container">
+            <div class="contact-layout">
+                <div class="contact-info">
+                    <div class="section-label">Contact</div>
+                    <h2 class="section-title">Let's talk about<br>how I can help</h2>
+                    <p class="section-subtitle">Whether you have a specific legal matter or just want to ask a question, you're welcome to get in touch. There's no obligation and no pressure.</p>
+                    <div class="contact-details-inner">
+                        <div class="contact-detail">
+                            <div class="contact-detail-icon">📍</div>
+                            <div>
+                                <div class="contact-detail-title">Office</div>
+                                <div class="contact-detail-text">6 Doagh Road<br>Ballyclare, BT39 9BG</div>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <div class="contact-detail-icon">📞</div>
+                            <div>
+                                <div class="contact-detail-title">Phone</div>
+                                <div class="contact-detail-text"><a href="tel:02893445566">028 9344 5566</a></div>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <div class="contact-detail-icon">✉️</div>
+                            <div>
+                                <div class="contact-detail-title">Email</div>
+                                <div class="contact-detail-text"><a href="mailto:claire@clairemcneilly.com">claire@clairemcneilly.com</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-hours">
+                        <h4>Office Hours</h4>
+                        <p>Monday – Friday: 9:00am – 5:00pm<br>Evening and weekend appointments available on request.</p>
+                    </div>
+                </div>
+                <div class="contact-form-card">
+                    <h3 class="contact-form-title">Send an Enquiry</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" placeholder="Jane">
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" placeholder="Smith">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="jane@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" placeholder="028 0000 0000">
+                    </div>
+                    <div class="form-group">
+                        <label>What can I help you with?</label>
+                        <select>
+                            <option>Buying or Selling a Home</option>
+                            <option>Commercial Property</option>
+                            <option>Agriculture & Farming</option>
+                            <option>Wills & Probate</option>
+                            <option>Trusts & Tax Planning</option>
+                            <option>Something else</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Tell me a bit more</label>
+                        <textarea placeholder="A brief overview of your situation — anything you'd like me to know ahead of our conversation."></textarea>
+                    </div>
+                    <button class="form-submit" onclick="alert('This is a design demo — the real form would send your enquiry to Claire McNeilly Solicitor.')">Send Enquiry →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">Claire McNeilly <span>Solicitor</span></div>
+            <ul class="footer-links">
+                <li><a href="#expertise">Areas of Law</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#approach">How It Works</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+        <div style="max-width:1100px;margin:0 auto;"><div class="footer-divider"></div></div>
+        <div class="footer-bottom">
+            <p>© 2026 Claire McNeilly Solicitor. 6 Doagh Road, Ballyclare, BT39 9BG. Regulated by the Law Society of Northern Ireland.</p>
+        </div>
+    </footer>
+
+    <!-- Prepared by -->
+    <div class="prepared-banner" id="prepared-banner">
+        <p>🎨 This design concept was prepared by <a href="https://feedme.design" target="_blank">feedme.design</a> — WordPress maintenance & development for local businesses.</p>
+        <button class="dismiss-btn" onclick="document.getElementById('prepared-banner').style.display='none'" aria-label="Dismiss">✕</button>
+    </div>
+
+    <script>
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        const animateElements = document.querySelectorAll('[data-animate]');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 120);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+        animateElements.forEach(el => observer.observe(el));
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    document.querySelector('.nav-links').classList.remove('open');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
