@@ -1351,6 +1351,12 @@ footer a:hover {
     font-weight: 700;
 }
 
+.case-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 /* Outcome grid */
 .outcome-grid {
     display: grid;
