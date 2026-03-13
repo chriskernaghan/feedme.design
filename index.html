@@ -154,6 +154,12 @@
             <p>Practical WordPress advice for business owners</p>
         </div>
         <div class="posts-grid">
+            <a href="posts/how-much-does-a-small-business-website-cost-northern-ireland.html" class="post-card">
+                <div class="post-meta"><span class="post-tag">General</span><span>13 Mar 2026</span></div>
+                <h3>How Much Does a Small Business Website Cost in Northern Ireland?</h3>
+                <p>A straight-talking guide to what you'll pay at each tier — from DIY builders to bespoke WordPress builds — and what to watch out for along the way.</p>
+                <span class="post-read-more">Read more</span>
+            </a>
             <a href="posts/why-wordpress-maintenance-matters.html" class="post-card">
                 <div class="post-meta"><span class="post-tag">Maintenance</span><span>14 Feb 2026</span></div>
                 <h3>Why WordPress Maintenance Is Not Optional Anymore</h3>
@@ -164,12 +170,6 @@
                 <div class="post-meta"><span class="post-tag">Performance</span><span>10 Feb 2026</span></div>
                 <h3>Speed Kills: What a Slow Website Is Costing Your Business</h3>
                 <p>Every extra second your site takes to load, you're losing customers. The numbers are more brutal than most people realise.</p>
-                <span class="post-read-more">Read more</span>
-            </a>
-            <a href="posts/wordpress-security-basics.html" class="post-card">
-                <div class="post-meta"><span class="post-tag">Security</span><span>5 Feb 2026</span></div>
-                <h3>The 5 WordPress Security Basics Every Business Owner Should Know</h3>
-                <p>You don't need to be a developer to protect your WordPress site. These five fundamentals cover 80% of the risk.</p>
                 <span class="post-read-more">Read more</span>
             </a>
         </div>
@@ -207,3 +207,10 @@
 
         document.querySelectorAll(".mobile-menu a, .nav-links a").forEach(function(link) {
             link.addEventListener("click", function() {
+                hamburger.classList.remove("open");
+                mobileMenu.classList.remove("open");
+            });
+        });
+    </script>
+</body>
+</html>
