@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordPress vs Squarespace: Which Is Right for Your Small Business? — feedme.design</title>
+    <meta name="description" content="Squarespace looks great in the adverts. But for most small businesses, WordPress is the better long-term choice. Here's why — and the exceptions where Squarespace makes sense.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Epilogue:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FAF7F2;
+            --midnight: #1a1a2e;
+            --orange: #E8611A;
+            --text-dark: #2d2d2d;
+            --text-light: #888;
+            --border: #e8e4de;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Epilogue', sans-serif;
+            background: var(--cream);
+            color: var(--text-dark);
+            line-height: 1.75;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 4rem;
+            background: var(--cream);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.4rem;
+            color: var(--midnight);
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 2rem; }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover, .nav-links a.active { color: var(--orange); }
+
+        /* POST HERO */
+        .post-hero {
+            padding: 9rem 4rem 4rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .post-tag {
+            display: inline-block;
+            background: var(--orange);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.75rem;
+            border-radius: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .post-hero h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--midnight);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .post-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+            padding-top: 1.25rem;
+        }
+
+        /* POST BODY */
+        .post-body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 4rem 5rem;
+        }
+
+        .post-body p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .post-body h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.75rem;
+            color: var(--midnight);
+            margin: 3rem 0 1rem;
+        }
+
+        .post-body h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--midnight);
+            margin: 2rem 0 0.5rem;
+        }
+
+        /* COMPARISON TABLE */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            font-size: 0.95rem;
+        }
+
+        .comparison-table th {
+            background: var(--midnight);
+            color: var(--cream);
+            padding: 0.9rem 1.25rem;
+            text-align: left;
+            font-family: 'DM Serif Display', serif;
+            font-weight: normal;
+            font-size: 1rem;
+        }
+
+        .comparison-table th:first-child { width: 35%; }
+
+        .comparison-table td {
+            padding: 0.85rem 1.25rem;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .comparison-table tr:last-child td { border-bottom: none; }
+
+        .comparison-table tr:nth-child(even) td { background: white; }
+
+        .win {
+            color: var(--orange);
+            font-weight: 600;
+        }
+
+        /* VERDICT CARD */
+        .verdict-card {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1.5rem;
+            align-items: start;
+            background: white;
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--orange);
+            border-radius: 6px;
+            padding: 1.75rem;
+            margin: 2rem 0;
+        }
+
+        .verdict-label {
+            background: var(--midnight);
+            color: var(--cream);
+            font-family: 'DM Serif Display', serif;
+            font-size: 0.9rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            white-space: nowrap;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .verdict-content h3 {
+            margin: 0 0 0.4rem;
+            font-size: 1.05rem;
+            color: var(--midnight);
+        }
+
+        .verdict-content p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* CALLOUT */
+        .callout {
+            background: var(--midnight);
+            color: var(--cream);
+            border-radius: 6px;
+            padding: 2rem 2.5rem;
+            margin: 2.5rem 0;
+        }
+
+        .callout p {
+            margin: 0;
+            font-size: 1rem;
+            color: rgba(250, 247, 242, 0.85);
+        }
+
+        .callout strong {
+            color: var(--cream);
+            display: block;
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* POST NAV */
+        .post-nav {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--border);
+            gap: 2rem;
+        }
+
+        .post-nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+        }
+
+        .post-nav a:hover { color: var(--orange); }
+        .post-nav .nav-label { color: var(--text-light); font-size: 0.8rem; display: block; margin-bottom: 0.25rem; }
+
+        /* POST CTA */
+        .post-cta {
+            background: var(--midnight);
+            padding: 5rem 4rem;
+            margin-top: 5rem;
+        }
+
+        .post-cta-inner {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .post-cta-inner h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2rem;
+            color: var(--cream);
+            margin-bottom: 1rem;
+        }
+
+        .post-cta-inner p {
+            color: rgba(250, 247, 242, 0.75);
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--orange);
+            color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover { opacity: 0.88; }
+
+        /* FOOTER */
+        footer {
+            background: var(--midnight);
+            color: rgba(250, 247, 242, 0.5);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.85rem;
+        }
+
+        footer a { color: rgba(250, 247, 242, 0.6); }
+
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.5rem; }
+            .nav-links { display: none; }
+            .post-hero, .post-body, .post-nav, .post-cta { padding-left: 1.5rem; padding-right: 1.5rem; }
+            .post-nav { flex-direction: column; }
+            .verdict-card { grid-template-columns: 1fr; }
+            .verdict-label { width: fit-content; }
+            .comparison-table { font-size: 0.85rem; }
+            .comparison-table th, .comparison-table td { padding: 0.7rem 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="../index.html" class="logo">feedme.design</a>
+        <div class="nav-links">
+            <a href="../index.html#services">Services</a>
+            <a href="../index.html#process">Process</a>
+            <a href="../blog.html" class="active">Blog</a>
+            <a href="../index.html#contact">Contact</a>
+        </div>
+    </nav>
+
+    <div class="post-hero">
+        <div class="post-tag">General</div>
+        <h1>WordPress vs Squarespace: Which Is Right for Your Small Business?</h1>
+        <div class="post-meta">
+            <span>Chris — feedme.design</span>
+            <span>13 March 2026</span>
+            <span>8 min read</span>
+        </div>
+    </div>
+
+    <div class="post-body">
+
+        <p>Squarespace has done a remarkable job of marketing itself. Podcast sponsorships, slick adverts, the promise of a beautiful website without any technical headaches. And if you've never built a website before, the pitch is genuinely appealing.</p>
+
+        <p>But appealing marketing isn't the same as the right tool for the job. For most small businesses — particularly those that want to grow, rank in Google, and aren't planning to rebuild their site from scratch in three years — WordPress is the better long-term choice. Here's why, and the situations where Squarespace does make sense.</p>
+
+        <h2>What you're actually comparing</h2>
+
+        <p>Before getting into specifics, it's worth understanding the fundamental difference between the two platforms. Squarespace is a hosted, all-in-one service: they handle your hosting, security, updates, and the software itself. You pay a monthly fee, you get access to their system, and everything runs on their infrastructure.</p>
+
+        <p>WordPress (specifically WordPress.org, the self-hosted version) is open-source software that you install on your own hosting. You own the code, you choose your hosting provider, and you're responsible for keeping things maintained. That sounds like more work — and in some ways it is — but it also means you're not locked into anyone's platform.</p>
+
+        <h2>Head to head</h2>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Area</th>
+                    <th>WordPress</th>
+                    <th>Squarespace</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Ownership</strong></td>
+                    <td><span class="win">You own everything</span> — files, database, content</td>
+                    <td>You rent access to their platform</td>
+                </tr>
+                <tr>
+                    <td><strong>SEO capability</strong></td>
+                    <td><span class="win">Extensive</span> — full control over technical SEO, schema, custom URLs, redirects</td>
+                    <td>Adequate for basics, but limited for anything serious</td>
+                </tr>
+                <tr>
+                    <td><strong>Flexibility</strong></td>
+                    <td><span class="win">Virtually unlimited</span> — 60,000+ plugins, custom code, any functionality imaginable</td>
+                    <td>What you see is largely what you get</td>
+                </tr>
+                <tr>
+                    <td><strong>Ease of use</strong></td>
+                    <td>Higher learning curve, especially initially</td>
+                    <td><span class="win">Simpler drag-and-drop interface</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Design quality</strong></td>
+                    <td>Depends entirely on your theme and developer</td>
+                    <td><span class="win">Consistently polished templates</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Cost over time</strong></td>
+                    <td>Higher upfront, <span class="win">lower ongoing</span> — hosting from £5–£30/mo</td>
+                    <td>Low upfront, but £15–£40/mo forever, with price increases over time</td>
+                </tr>
+                <tr>
+                    <td><strong>Maintenance</strong></td>
+                    <td>Requires regular updates and monitoring</td>
+                    <td><span class="win">Handled by Squarespace</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Scalability</strong></td>
+                    <td><span class="win">Scales to any size</span> — powers 43% of all websites on the internet</td>
+                    <td>Fine for small sites; can feel constrained as you grow</td>
+                </tr>
+                <tr>
+                    <td><strong>Portability</strong></td>
+                    <td><span class="win">Export and move anywhere</span></td>
+                    <td>Difficult to migrate away — your content is largely trapped</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>The case for WordPress</h2>
+
+        <h3>You actually own your website</h3>
+        <p>This is the argument that doesn't get made often enough. When you build on Squarespace, you're building on rented land. If Squarespace changes its pricing — and it has, repeatedly — you pay more or you start again. If they discontinue a feature, it disappears. If the company ever runs into trouble, your website does too. With WordPress, your files and database are yours. You can move hosts, change developers, or take the whole thing in a different direction without asking anyone's permission.</p>
+
+        <h3>SEO is where WordPress pulls away clearly</h3>
+        <p>Squarespace has improved its SEO tools considerably over the years, and for a basic setup it's perfectly adequate. But "adequate" isn't where you want to be if search traffic matters to your business. WordPress gives you granular control over every technical SEO element — structured data, canonical tags, XML sitemaps, custom redirects, Core Web Vitals optimisation — along with plugins like Yoast or Rank Math that make the process systematic. If getting found on Google is a priority, this is a meaningful difference.</p>
+
+        <h3>It grows with you</h3>
+        <p>Need a booking system? There's a plugin. Want to add a membership area, a job board, a product configurator, or a multilingual site? WordPress can do all of it. Squarespace can do some of it, within limits set by Squarespace. The gap between the two widens significantly the more complex your requirements become.</p>
+
+        <h3>The long-term cost stacks up differently</h3>
+        <p>Squarespace looks cheaper at the start. But at £20–£40 per month, you're spending £240–£480 per year, indefinitely, for a platform you don't own. A well-built WordPress site on decent managed hosting might cost £15–£25 per month to run, with no platform fee on top. Over three to five years the maths shifts decisively in WordPress's favour — before you even factor in the restrictions you've been living with.</p>
+
+        <h2>When Squarespace genuinely makes sense</h2>
+
+        <p>This isn't a one-sided case. There are situations where Squarespace is the right call:</p>
+
+        <div class="verdict-card">
+            <div class="verdict-label">Use<br>Squarespace</div>
+            <div class="verdict-content">
+                <h3>You need something live this week and won't be touching it much</h3>
+                <p>If you're a sole trader or freelancer who needs a simple presence online — a few pages, some photos, a contact form — and you're going to maintain it yourself, Squarespace gets you there faster. No hosting setup, no plugin decisions, no maintenance to think about.</p>
+            </div>
+        </div>
+
+        <div class="verdict-card">
+            <div class="verdict-label">Use<br>Squarespace</div>
+            <div class="verdict-content">
+                <h3>Your business is highly visual and design is the priority</h3>
+                <p>Photographers, artists, designers, and creative studios often find Squarespace's templates genuinely better suited to showcasing visual work than a typical WordPress build. If the portfolio is the product, Squarespace's polish can be worth the trade-offs.</p>
+            </div>
+        </div>
+
+        <div class="verdict-card">
+            <div class="verdict-label">Use<br>Squarespace</div>
+            <div class="verdict-content">
+                <h3>You have no developer and no plans to hire one</h3>
+                <p>WordPress without someone keeping an eye on it — updates, security, backups — is a risk. If you're genuinely going to manage everything yourself and you're not technical, Squarespace removes a class of problems you'd otherwise need to deal with. That's a legitimate reason to choose it.</p>
+            </div>
+        </div>
+
+        <h2>The migration conversation</h2>
+
+        <p>One thing worth flagging: if you're currently on Squarespace and wondering whether to move, the answer is usually yes — but do it properly. Squarespace doesn't make exporting easy, and a bad migration can cause real SEO damage if redirects aren't handled correctly. It's a job worth doing once, done right, rather than rushing and losing rankings you've spent months building.</p>
+
+        <div class="callout">
+            <strong>The bottom line</strong>
+            <p>Squarespace is a good product. But "good" and "right for your business" aren't the same thing. If you're building something you expect to grow, that you want to rank in search, and that you'd rather not rebuild in a few years when the platform's limitations start to bite — WordPress is the right foundation. The upfront complexity is real, but it's a one-time cost. The restrictions of a closed platform compound over time.</p>
+        </div>
+
+        <p>If you're weighing up the options for a new site, or thinking about migrating away from Squarespace, I'm happy to talk through what makes sense for your specific situation. No obligation — just a straight conversation.</p>
+
+    </div>
+
+    <div class="post-nav">
+        <a href="../blog.html">
+            <span class="nav-label">← Back to</span>
+            All posts
+        </a>
+    </div>
+
+    <div class="post-cta">
+        <div class="post-cta-inner">
+            <h3>Thinking about making the switch?</h3>
+            <p>If you're on Squarespace and wondering whether WordPress is worth the move, I can give you an honest answer based on what your site actually needs — not a generic pitch.</p>
+            <a href="mailto:chris@feedme.design" class="btn">Get in touch</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 feedme.design. Expert WordPress development for Northern Ireland businesses.</p>
+        <p><a href="mailto:chris@feedme.design">chris@feedme.design</a></p>
+    </footer>
+
+</body>
+</html>
