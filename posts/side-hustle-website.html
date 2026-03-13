@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Does Your Side Hustle Need a Website? — feedme.design</title>
+    <meta name="description" content="Not every side hustle needs a website straight away — but some absolutely do. Here's how to work out which camp you're in, and what to do about it.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Epilogue:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FAF7F2;
+            --midnight: #1a1a2e;
+            --orange: #E8611A;
+            --text-dark: #2d2d2d;
+            --text-light: #888;
+            --border: #e8e4de;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Epilogue', sans-serif;
+            background: var(--cream);
+            color: var(--text-dark);
+            line-height: 1.75;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 4rem;
+            background: var(--cream);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.4rem;
+            color: var(--midnight);
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 2rem; }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover, .nav-links a.active { color: var(--orange); }
+
+        /* POST HERO */
+        .post-hero {
+            padding: 9rem 4rem 4rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .post-tag {
+            display: inline-block;
+            background: var(--orange);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.75rem;
+            border-radius: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .post-hero h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--midnight);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .post-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+            padding-top: 1.25rem;
+        }
+
+        /* POST BODY */
+        .post-body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 4rem 5rem;
+        }
+
+        .post-body p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .post-body h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.75rem;
+            color: var(--midnight);
+            margin: 3rem 0 1rem;
+        }
+
+        .post-body h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--midnight);
+            margin: 2rem 0 0.5rem;
+        }
+
+        .post-body a {
+            color: var(--orange);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .post-body a:hover {
+            text-decoration: underline;
+        }
+
+        /* SIGNAL CARD */
+        .signal-card {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1.5rem;
+            align-items: start;
+            background: white;
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--orange);
+            border-radius: 6px;
+            padding: 1.75rem;
+            margin: 2rem 0;
+        }
+
+        .signal-badge {
+            background: var(--midnight);
+            color: var(--cream);
+            font-family: 'DM Serif Display', serif;
+            font-size: 1rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            white-space: nowrap;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        .signal-content h3 {
+            margin: 0 0 0.5rem;
+            font-size: 1.1rem;
+            color: var(--midnight);
+        }
+
+        .signal-content p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        .signal-content ul {
+            margin: 0.75rem 0 0 1.2rem;
+            font-size: 0.95rem;
+        }
+
+        .signal-content ul li { margin-bottom: 0.3rem; }
+
+        /* CALLOUT BOX */
+        .callout {
+            background: var(--midnight);
+            color: var(--cream);
+            border-radius: 6px;
+            padding: 2rem 2.5rem;
+            margin: 2.5rem 0;
+        }
+
+        .callout p {
+            margin: 0;
+            font-size: 1rem;
+            color: rgba(250, 247, 242, 0.85);
+        }
+
+        .callout strong {
+            color: var(--cream);
+            display: block;
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* POST CTA */
+        .post-cta {
+            background: var(--midnight);
+            padding: 5rem 4rem;
+            margin-top: 5rem;
+        }
+
+        .post-cta-inner {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .post-cta-inner h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2rem;
+            color: var(--cream);
+            margin-bottom: 1rem;
+        }
+
+        .post-cta-inner p {
+            color: rgba(250, 247, 242, 0.75);
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--orange);
+            color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover { opacity: 0.88; }
+
+        /* POST NAV */
+        .post-nav {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--border);
+            gap: 2rem;
+        }
+
+        .post-nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+        }
+
+        .post-nav a:hover { color: var(--orange); }
+        .post-nav .nav-label { color: var(--text-light); font-size: 0.8rem; display: block; margin-bottom: 0.25rem; }
+        .post-nav .next-post { text-align: right; }
+
+        /* FOOTER */
+        footer {
+            background: var(--midnight);
+            color: rgba(250, 247, 242, 0.5);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.85rem;
+        }
+
+        footer a { color: rgba(250, 247, 242, 0.6); }
+
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.5rem; }
+            .nav-links { display: none; }
+            .post-hero, .post-body, .post-nav, .post-cta { padding-left: 1.5rem; padding-right: 1.5rem; }
+            .post-nav { flex-direction: column; }
+            .signal-card { grid-template-columns: 1fr; }
+            .signal-badge { width: fit-content; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="../index.html" class="logo">feedme.design</a>
+        <div class="nav-links">
+            <a href="../index.html#services">Services</a>
+            <a href="../index.html#process">Process</a>
+            <a href="../blog.html" class="active">Blog</a>
+            <a href="../index.html#contact">Contact</a>
+        </div>
+    </nav>
+
+    <div class="post-hero">
+        <div class="post-tag">Side Hustle</div>
+        <h1>Does Your Side Hustle Need a Website?</h1>
+        <div class="post-meta">
+            <span>Chris — feedme.design</span>
+            <span>13 March 2026</span>
+            <span>6 min read</span>
+        </div>
+    </div>
+
+    <div class="post-body">
+
+        <p>Short answer: not always. But sometimes, absolutely yes — and getting the timing wrong in either direction costs you.</p>
+
+        <p>I talk to a lot of people who are running something on the side. Freelance design work, a small trades business, an online shop they're testing, a consultancy they've quietly started while still in their day job. And the question that comes up again and again is some version of "do I actually need a proper website yet, or is what I've got good enough?"</p>
+
+        <p>It's a genuinely good question, and the honest answer depends on what your hustle is and where it's at. So here's how I'd think through it.</p>
+
+        <h2>When you probably don't need one yet</h2>
+
+        <p>There's a version of this conversation where the right answer is "not yet." If you're still working out whether your idea has legs, burning time and money on a website before you've validated anything is a classic early mistake. A landing page, a social profile, or even just word of mouth is often enough to test whether people will actually pay you.</p>
+
+        <p>If you're getting clients purely through referrals and your pipeline is full, a website isn't going to move the needle much in the short term. And if you're selling through a marketplace — Etsy, Not On The High Street, Upwork, whatever — the platform is doing the discoverability work for you.</p>
+
+        <p>None of that means you'll never need one. It just means right now might not be the moment.</p>
+
+        <h2>When you absolutely do need one</h2>
+
+        <p>Here's where it flips. There are a handful of clear signals that tell you a proper website has stopped being optional.</p>
+
+        <div class="signal-card">
+            <div class="signal-badge">Signal<br>one</div>
+            <div class="signal-content">
+                <h3>People are Googling you before they get in touch</h3>
+                <p>The moment someone hears about you through a referral and searches your name or business before responding, you need something credible to land on. A Facebook page from 2022 with three posts, or worse — nothing at all — kills trust before you've even had a conversation. A clean, professional website says "this person takes what they do seriously."</p>
+            </div>
+        </div>
+
+        <div class="signal-card">
+            <div class="signal-badge">Signal<br>two</div>
+            <div class="signal-content">
+                <h3>You're trying to charge professional rates</h3>
+                <p>There's a ceiling on what people will pay someone who doesn't have a proper web presence. It's not entirely fair, but it's real. If you're a freelancer, consultant, or service provider trying to move upmarket — better clients, higher day rates, retainer relationships — your website is part of the case you're making for your own credibility. No website, or a bad one, quietly caps what you can charge.</p>
+            </div>
+        </div>
+
+        <div class="signal-card">
+            <div class="signal-badge">Signal<br>three</div>
+            <div class="signal-content">
+                <h3>You want inbound enquiries, not just referrals</h3>
+                <p>Referrals are brilliant, but they're someone else's decision. If you want leads to come to you — people finding you through Google, landing on your site, and getting in touch — you need something that can actually rank and convert. Social profiles don't do this reliably. A well-built website does.</p>
+            </div>
+        </div>
+
+        <div class="signal-card">
+            <div class="signal-badge">Signal<br>four</div>
+            <div class="signal-content">
+                <h3>You're starting to think about this as a real business</h3>
+                <p>There's a shift that happens at some point with a side hustle — you stop thinking of it as something you do on the side and start thinking of it as something you're building. That shift usually comes with a natural point where you want the thing to look and feel legitimate. A proper website is often part of that transition. It's not vanity — it changes how you present yourself, how clients treat you, and sometimes how seriously you take the thing yourself.</p>
+                <ul>
+                    <li>You're registering as a sole trader or setting up a limited company</li>
+                    <li>You're putting the hustle on your LinkedIn or business cards</li>
+                    <li>You're starting to think about going full-time</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>What about just using social media?</h2>
+
+        <p>Instagram, LinkedIn, TikTok — these are genuinely useful for building an audience and staying visible. But they have real limitations as a substitute for a website, and it's worth being clear-eyed about them.</p>
+
+        <p>You don't own your audience on any of those platforms. The algorithm changes, your account gets restricted, the platform falls out of fashion — and suddenly your entire online presence is disrupted. A website is yours. Your domain, your content, your contact form — no one can take that away or bury it in a feed update.</p>
+
+        <p>Social is also poor at communicating certain things: your full range of services, testimonials in any depth, pricing, your process, case studies. All the stuff that actually helps someone decide to hire you. A website does this far better.</p>
+
+        <p>The right answer for most people is both — social for visibility and community, a website as the destination you're pointing people toward.</p>
+
+        <div class="callout">
+            <strong>The hustle-to-business pipeline</strong>
+            <p>If you're at the stage where you're thinking seriously about turning your side hustle into something more — whether that's going full-time, finding co-founders, or building a proper brand around it — <a href="https://loopandhustle.com" style="color: rgba(250,247,242,0.9); font-weight: 600;">Loop & Hustle</a> is worth a read. It's a solid resource for the freelance and side hustle space, covering everything from productivity to getting your first clients and making the jump to full-time.</p>
+        </div>
+
+        <h2>What kind of website do you actually need?</h2>
+
+        <p>This is where a lot of people overcomplicate things. If you're at the early-to-mid stage of a side hustle, you don't need something enormous. Here's a sensible baseline:</p>
+
+        <h3>A clear home page</h3>
+        <p>Who you are, what you do, who it's for, and what they should do next. That's it. You'd be amazed how many websites bury or entirely omit the most basic information.</p>
+
+        <h3>A services or work page</h3>
+        <p>What do you actually offer? What does it cost, or at least what's the ballpark? If you're a creative, this is where your portfolio lives.</p>
+
+        <h3>Some form of social proof</h3>
+        <p>Testimonials, case studies, client logos — something that tells the person landing on your site that other people have trusted you and it went well. Even one or two genuine testimonials make a significant difference.</p>
+
+        <h3>A way to get in touch</h3>
+        <p>A contact form, an email address, a booking link — something that makes it easy for someone who's convinced to take the next step. Don't make people dig for this.</p>
+
+        <p>That's genuinely it for most side hustles. You can always add to it later — a blog, a resources section, more detailed case studies — but those four things are the foundation that makes a site actually useful.</p>
+
+        <h2>The bit people always underestimate</h2>
+
+        <p>Having a website and having a website that works are two different things. A slow, poorly built site that looks broken on mobile isn't better than no site — it's arguably worse, because it actively undermines confidence in you.</p>
+
+        <p>Whatever you build, make sure it loads quickly, looks right on a phone, and has a proper SSL certificate (that padlock in the browser bar). These aren't nice-to-haves — they're basics that anyone visiting your site will notice if they're missing, even if they can't quite name what's wrong.</p>
+
+        <p>If you've got a site already and you're not sure whether it's doing its job, have a look at it on your phone with fresh eyes. Would you trust this business? Would you get in touch? If the honest answer is no, that's worth sorting.</p>
+
+        <h2>So — do you need one?</h2>
+
+        <p>If your side hustle is still in the "testing the idea" phase, probably not yet. But if you're past that point — if you've got paying customers, you're thinking about this seriously, and you want to grow — then yes, a proper website is worth the investment. It's the difference between having something that works for you while you're busy doing everything else, and having to rely entirely on whoever happens to recommend you this week.</p>
+
+        <p>If you're trying to work out what the right setup looks like for where your hustle is right now, feel free to get in touch. I'm happy to have a straight conversation about what makes sense — and what doesn't.</p>
+
+    </div>
+
+    <div class="post-nav">
+        <a href="../blog.html">
+            <span class="nav-label">← Back to</span>
+            All posts
+        </a>
+    </div>
+
+    <div class="post-cta">
+        <div class="post-cta-inner">
+            <h3>Ready to get a proper website sorted?</h3>
+            <p>Tell me about your side hustle and what you're trying to achieve. I'll give you an honest steer on what you actually need — no jargon, no overselling.</p>
+            <a href="mailto:chris@feedme.design" class="btn">Get in touch</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 feedme.design. Expert WordPress development for Northern Ireland businesses.</p>
+        <p><a href="mailto:chris@feedme.design">chris@feedme.design</a></p>
+    </footer>
+
+</body>
+</html>
