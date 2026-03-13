@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Much Does a Small Business Website Cost in Northern Ireland? — feedme.design</title>
+    <meta name="description" content="A straight-talking guide to website costs for small businesses in Northern Ireland — from DIY builders to bespoke WordPress builds, with honest pricing at each tier.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Epilogue:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FAF7F2;
+            --midnight: #1a1a2e;
+            --orange: #E8611A;
+            --text-dark: #2d2d2d;
+            --text-light: #888;
+            --border: #e8e4de;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Epilogue', sans-serif;
+            background: var(--cream);
+            color: var(--text-dark);
+            line-height: 1.75;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 4rem;
+            background: var(--cream);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.4rem;
+            color: var(--midnight);
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 2rem; }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover, .nav-links a.active { color: var(--orange); }
+
+        /* POST HERO */
+        .post-hero {
+            padding: 9rem 4rem 4rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .post-tag {
+            display: inline-block;
+            background: var(--orange);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.75rem;
+            border-radius: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .post-hero h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--midnight);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .post-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+            padding-top: 1.25rem;
+        }
+
+        /* POST BODY */
+        .post-body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 4rem 5rem;
+        }
+
+        .post-body p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .post-body h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.75rem;
+            color: var(--midnight);
+            margin: 3rem 0 1rem;
+        }
+
+        .post-body h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--midnight);
+            margin: 2rem 0 0.5rem;
+        }
+
+        /* PRICE CARD */
+        .price-card {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1.5rem;
+            align-items: start;
+            background: white;
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--orange);
+            border-radius: 6px;
+            padding: 1.75rem;
+            margin: 2rem 0;
+        }
+
+        .price-badge {
+            background: var(--midnight);
+            color: var(--cream);
+            font-family: 'DM Serif Display', serif;
+            font-size: 1rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            white-space: nowrap;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        .price-content h3 {
+            margin: 0 0 0.5rem;
+            font-size: 1.1rem;
+            color: var(--midnight);
+        }
+
+        .price-content p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        .price-content ul {
+            margin: 0.75rem 0 0 1.2rem;
+            font-size: 0.95rem;
+        }
+
+        .price-content ul li { margin-bottom: 0.3rem; }
+
+        /* CALLOUT BOX */
+        .callout {
+            background: var(--midnight);
+            color: var(--cream);
+            border-radius: 6px;
+            padding: 2rem 2.5rem;
+            margin: 2.5rem 0;
+        }
+
+        .callout p {
+            margin: 0;
+            font-size: 1rem;
+            color: rgba(250, 247, 242, 0.85);
+        }
+
+        .callout strong {
+            color: var(--cream);
+            display: block;
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* POST CTA */
+        .post-cta {
+            background: var(--midnight);
+            padding: 5rem 4rem;
+            margin-top: 5rem;
+        }
+
+        .post-cta-inner {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .post-cta-inner h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2rem;
+            color: var(--cream);
+            margin-bottom: 1rem;
+        }
+
+        .post-cta-inner p {
+            color: rgba(250, 247, 242, 0.75);
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--orange);
+            color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover { opacity: 0.88; }
+
+        /* POST NAV */
+        .post-nav {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--border);
+            gap: 2rem;
+        }
+
+        .post-nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+        }
+
+        .post-nav a:hover { color: var(--orange); }
+        .post-nav .nav-label { color: var(--text-light); font-size: 0.8rem; display: block; margin-bottom: 0.25rem; }
+        .post-nav .next-post { text-align: right; }
+
+        /* FOOTER */
+        footer {
+            background: var(--midnight);
+            color: rgba(250, 247, 242, 0.5);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.85rem;
+        }
+
+        footer a { color: rgba(250, 247, 242, 0.6); }
+
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.5rem; }
+            .nav-links { display: none; }
+            .post-hero, .post-body, .post-nav, .post-cta { padding-left: 1.5rem; padding-right: 1.5rem; }
+            .post-nav { flex-direction: column; }
+            .price-card { grid-template-columns: 1fr; }
+            .price-badge { width: fit-content; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="../index.html" class="logo">feedme.design</a>
+        <div class="nav-links">
+            <a href="../index.html#services">Services</a>
+            <a href="../index.html#process">Process</a>
+            <a href="../blog.html" class="active">Blog</a>
+            <a href="../index.html#contact">Contact</a>
+        </div>
+    </nav>
+
+    <div class="post-hero">
+        <div class="post-tag">General</div>
+        <h1>How Much Does a Small Business Website Cost in Northern Ireland?</h1>
+        <div class="post-meta">
+            <span>Chris — feedme.design</span>
+            <span>13 March 2026</span>
+            <span>7 min read</span>
+        </div>
+    </div>
+
+    <div class="post-body">
+
+        <p>It's one of the most common questions I get from local business owners, and it's a completely fair one to ask. The problem is that "how much does a website cost?" is a bit like asking "how much does a car cost?" — the answer depends almost entirely on what you actually need.</p>
+
+        <p>So rather than giving you a number that means nothing without context, here's a plain-English breakdown of what's available at each price point, what you get for your money, and — honestly — where the traps are.</p>
+
+        <h2>The main options</h2>
+
+        <div class="price-card">
+            <div class="price-badge">Free –<br>£20/mo</div>
+            <div class="price-content">
+                <h3>DIY website builders (Wix, Squarespace, GoDaddy)</h3>
+                <p>These platforms let you drag and drop your way to a basic website with no technical knowledge required. They handle hosting, security, and updates for you — which sounds great on paper.</p>
+                <ul>
+                    <li>Quick to set up if your needs are simple</li>
+                    <li>Looks reasonable out of the box</li>
+                    <li>Limited flexibility as you grow</li>
+                    <li>You don't own the platform — if they change pricing or shut down, you start again</li>
+                    <li>SEO capabilities are often restricted</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="price-card">
+            <div class="price-badge">£500 –<br>£1,500</div>
+            <div class="price-content">
+                <h3>Budget web design agencies or freelancers</h3>
+                <p>At this level you're typically getting a templated WordPress site — a pre-built theme with your logo and content dropped in. For some businesses, that's perfectly fine. For others, it can look generic or limit what you can do down the line.</p>
+                <ul>
+                    <li>Usually WordPress-based, which is good for flexibility</li>
+                    <li>Template-driven, so it won't look unique to your business</li>
+                    <li>Varies a lot in quality — check their portfolio carefully</li>
+                    <li>Often little or no ongoing support included</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="price-card">
+            <div class="price-badge">£1,500 –<br>£4,000</div>
+            <div class="price-content">
+                <h3>Custom WordPress builds (where feedme.design sits)</h3>
+                <p>This is the sweet spot for most small businesses that take their online presence seriously. A custom build means your site is designed around how your business actually works — not fitted into someone else's template.</p>
+                <ul>
+                    <li>Tailored to your specific needs and goals</li>
+                    <li>Clean code, fast load times, proper mobile responsiveness</li>
+                    <li>Built with SEO in mind from the ground up</li>
+                    <li>You own it — no platform lock-in</li>
+                    <li>Typically includes a handover so you can edit content yourself</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="price-card">
+            <div class="price-badge">£5,000+</div>
+            <div class="price-content">
+                <h3>Large agencies and bespoke development</h3>
+                <p>At this level you're paying for larger teams, account managers, and fully bespoke functionality — ecommerce at scale, custom web applications, and the like. This is the right choice for some businesses, but overkill for most local NI small businesses that just need a solid, professional online presence.</p>
+            </div>
+        </div>
+
+        <h2>What people often forget to budget for</h2>
+
+        <p>The build cost is just part of the picture. Here's what catches people out:</p>
+
+        <h3>Domain name</h3>
+        <p>Typically £10–£20 per year. Small cost, but it's yours to renew annually. Don't let it lapse — losing your domain is a serious headache.</p>
+
+        <h3>Hosting</h3>
+        <p>Ranges from around £5/month for shared hosting up to £30–£50/month for managed WordPress hosting (like WP Engine). Shared hosting is fine to start; managed hosting is worth it once your site is bringing in real business.</p>
+
+        <h3>Ongoing maintenance</h3>
+        <p>WordPress requires regular updates — core, plugins, and themes — to stay secure and functional. A site that's left untouched for a year is a site that's accumulating risk. Many businesses pay a monthly retainer (typically £50–£150/month) to have someone handle this. Others deal with it themselves. Neither is wrong, but ignoring it entirely is.</p>
+
+        <h3>Content</h3>
+        <p>Someone has to write the copy and supply the photos. If that's you, great — but factor in the time. If you want professional copywriting or photography, that's an additional cost on top of the build.</p>
+
+        <div class="callout">
+            <strong>The question worth asking</strong>
+            <p>Don't just ask "how much does a website cost?" Ask "how much is a bad website costing me?" A site that loads slowly, looks dated on mobile, or doesn't show up in Google searches isn't free — it's losing you business every week.</p>
+        </div>
+
+        <h2>What's typical for Northern Ireland?</h2>
+
+        <p>The honest answer is that pricing in the NI market tends to sit a little below what you'd see quoted in London or Dublin — which is good news if you're buying locally. A solid custom WordPress site from a local developer will typically fall in the £1,500–£3,000 range depending on complexity, number of pages, and whether ecommerce is involved.</p>
+
+        <p>For a straightforward brochure site — five to eight pages, contact form, mobile-responsive, properly set up for search engines — that's a realistic budget to work with.</p>
+
+        <h2>How to avoid getting burned</h2>
+
+        <p>A few things worth checking before you commit to anyone:</p>
+
+        <h3>Ask to see their portfolio</h3>
+        <p>Look at real sites they've built for real businesses. Visit those sites on your phone. How fast do they load? Do they look professional? Would you be happy with something at that level?</p>
+
+        <h3>Ask who will own the site</h3>
+        <p>You should own your domain, your hosting account, and your website files. Some agencies retain ownership as a way to lock you in. Walk away from anyone who won't confirm you'll have full access to everything.</p>
+
+        <h3>Ask what happens after launch</h3>
+        <p>Is there any support included? What does it cost to make changes? Is there a maintenance plan available? A good developer will have a clear answer to all of these.</p>
+
+        <h3>Be wary of very low quotes</h3>
+        <p>A £300 website is almost always a template with your name on it, built in an hour, with no ongoing support. That might be fine as a placeholder, but it's rarely a long-term solution.</p>
+
+        <h2>The short version</h2>
+
+        <p>For most small businesses in Northern Ireland, a properly built WordPress website will cost somewhere between £1,500 and £3,500 for the initial build, plus ongoing hosting and maintenance costs of roughly £50–£150 per month depending on your setup and support needs.</p>
+
+        <p>That's not a trivial investment — but for a business that wants to be found online and make a good impression when people land on the site, it's money well spent. The businesses I've seen struggle most with their websites are usually the ones who cut corners at the start and ended up paying more to fix things later.</p>
+
+        <p>If you're trying to work out what the right budget looks like for your specific situation, feel free to get in touch. I'm happy to have a no-pressure conversation about what you actually need — and what you probably don't.</p>
+
+    </div>
+
+    <div class="post-nav">
+        <a href="../blog.html">
+            <span class="nav-label">← Back to</span>
+            All posts
+        </a>
+    </div>
+
+    <div class="post-cta">
+        <div class="post-cta-inner">
+            <h3>Not sure where to start?</h3>
+            <p>Tell me a bit about your business and what you're hoping a website will do for you. I'll give you an honest steer on what makes sense — no jargon, no sales pitch.</p>
+            <a href="mailto:chris@feedme.design" class="btn">Get in touch</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 feedme.design. Expert WordPress development for Northern Ireland businesses.</p>
+        <p><a href="mailto:chris@feedme.design">chris@feedme.design</a></p>
+    </footer>
+
+</body>
+</html>
