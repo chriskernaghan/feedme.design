@@ -7,122 +7,79 @@
     <meta name="description" content="Squarespace looks great in the adverts. But for most small businesses, WordPress is the better long-term choice. Here's why — and the exceptions where Squarespace makes sense.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Epilogue:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
     <style>
-        :root {
-            --cream: #FAF7F2;
-            --midnight: #1a1a2e;
-            --orange: #E8611A;
-            --text-dark: #2d2d2d;
-            --text-light: #888;
-            --border: #e8e4de;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Epilogue', sans-serif;
-            background: var(--cream);
-            color: var(--text-dark);
-            line-height: 1.75;
-        }
-
-        /* NAV */
-        nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.25rem 4rem;
-            background: var(--cream);
-            border-bottom: 1px solid var(--border);
-            z-index: 100;
-        }
-
-        .logo {
-            font-family: 'DM Serif Display', serif;
-            font-size: 1.4rem;
-            color: var(--midnight);
-            text-decoration: none;
-        }
-
-        .nav-links { display: flex; gap: 2rem; }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover, .nav-links a.active { color: var(--orange); }
-
-        /* POST HERO */
         .post-hero {
-            padding: 9rem 4rem 4rem;
+            padding: 12rem 4rem 5rem;
+            background: var(--cream);
             max-width: 800px;
             margin: 0 auto;
+            animation: fadeInUp 0.8s ease-out backwards;
         }
 
         .post-tag {
             display: inline-block;
-            background: var(--orange);
+            background: var(--accent);
             color: white;
-            font-size: 0.75rem;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
             font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            padding: 0.3rem 0.75rem;
-            border-radius: 2px;
             margin-bottom: 1.5rem;
         }
 
         .post-hero h1 {
             font-family: 'DM Serif Display', serif;
-            font-size: clamp(2rem, 5vw, 3rem);
+            font-size: clamp(2.5rem, 5vw, 4rem);
             color: var(--midnight);
-            line-height: 1.2;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
             margin-bottom: 1.5rem;
         }
 
         .post-meta {
-            display: flex;
-            gap: 1.5rem;
             color: var(--text-light);
             font-size: 0.9rem;
-            border-top: 1px solid var(--border);
-            padding-top: 1.25rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
         }
 
-        /* POST BODY */
+        .post-meta span::before { content: '·'; margin-right: 1.5rem; }
+        .post-meta span:first-child::before { content: ''; margin: 0; }
+
         .post-body {
             max-width: 800px;
             margin: 0 auto;
-            padding: 3rem 4rem 5rem;
+            padding: 3rem 4rem 8rem;
         }
 
         .post-body p {
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: var(--text-dark);
+            margin-bottom: 1.8rem;
         }
 
         .post-body h2 {
             font-family: 'DM Serif Display', serif;
-            font-size: 1.75rem;
+            font-size: 2rem;
             color: var(--midnight);
-            margin: 3rem 0 1rem;
+            margin: 3rem 0 1.2rem;
+            letter-spacing: -0.02em;
         }
 
         .post-body h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.4rem;
             color: var(--midnight);
-            margin: 2rem 0 0.5rem;
+            margin: 2rem 0 0.8rem;
         }
 
-        /* COMPARISON TABLE */
+        .post-body strong { color: var(--midnight); font-weight: 600; }
+
+        /* Comparison table */
         .comparison-table {
             width: 100%;
             border-collapse: collapse;
@@ -144,29 +101,25 @@
 
         .comparison-table td {
             padding: 0.85rem 1.25rem;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid var(--sand);
             vertical-align: top;
         }
 
         .comparison-table tr:last-child td { border-bottom: none; }
-
         .comparison-table tr:nth-child(even) td { background: white; }
 
-        .win {
-            color: var(--orange);
-            font-weight: 600;
-        }
+        .win { color: var(--accent); font-weight: 600; }
 
-        /* VERDICT CARD */
+        /* Verdict cards */
         .verdict-card {
             display: grid;
             grid-template-columns: auto 1fr;
             gap: 1.5rem;
             align-items: start;
             background: white;
-            border: 1px solid var(--border);
-            border-left: 4px solid var(--orange);
-            border-radius: 6px;
+            border: 1px solid var(--sand);
+            border-left: 4px solid var(--accent);
+            border-radius: 12px;
             padding: 1.75rem;
             margin: 2rem 0;
         }
@@ -184,21 +137,23 @@
         }
 
         .verdict-content h3 {
-            margin: 0 0 0.4rem;
-            font-size: 1.05rem;
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.2rem;
             color: var(--midnight);
+            margin: 0 0 0.4rem;
         }
 
         .verdict-content p {
-            margin: 0;
-            font-size: 0.95rem;
+            font-size: 1rem !important;
+            margin: 0 !important;
+            opacity: 0.85;
         }
 
-        /* CALLOUT */
+        /* Callout */
         .callout {
             background: var(--midnight);
             color: var(--cream);
-            border-radius: 6px;
+            border-radius: 16px;
             padding: 2rem 2.5rem;
             margin: 2.5rem 0;
         }
@@ -206,7 +161,7 @@
         .callout p {
             margin: 0;
             font-size: 1rem;
-            color: rgba(250, 247, 242, 0.85);
+            color: rgba(245, 241, 232, 0.85);
         }
 
         .callout strong {
@@ -217,36 +172,17 @@
             margin-bottom: 0.5rem;
         }
 
-        /* POST NAV */
-        .post-nav {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 3rem 4rem;
-            display: flex;
-            justify-content: space-between;
-            border-top: 1px solid var(--border);
-            gap: 2rem;
-        }
-
-        .post-nav a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-size: 0.9rem;
-        }
-
-        .post-nav a:hover { color: var(--orange); }
-        .post-nav .nav-label { color: var(--text-light); font-size: 0.8rem; display: block; margin-bottom: 0.25rem; }
-
-        /* POST CTA */
+        /* Post CTA */
         .post-cta {
-            background: var(--midnight);
-            padding: 5rem 4rem;
-            margin-top: 5rem;
+            max-width: 800px;
+            margin: 0 auto 6rem;
+            padding: 0 4rem;
         }
 
         .post-cta-inner {
-            max-width: 600px;
-            margin: 0 auto;
+            background: var(--midnight);
+            border-radius: 20px;
+            padding: 3rem;
             text-align: center;
         }
 
@@ -258,41 +194,35 @@
         }
 
         .post-cta-inner p {
-            color: rgba(250, 247, 242, 0.75);
+            color: var(--text-light);
             margin-bottom: 2rem;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
         }
 
-        .btn {
-            display: inline-block;
-            background: var(--orange);
-            color: white;
-            padding: 0.9rem 2rem;
-            border-radius: 4px;
+        /* Post nav */
+        .post-nav {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 4rem;
+            border-top: 1px solid var(--sand);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .post-nav a {
+            color: var(--accent);
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.95rem;
-            transition: opacity 0.2s;
+            transition: all 0.3s ease;
         }
 
-        .btn:hover { opacity: 0.88; }
-
-        /* FOOTER */
-        footer {
-            background: var(--midnight);
-            color: rgba(250, 247, 242, 0.5);
-            text-align: center;
-            padding: 2rem;
-            font-size: 0.85rem;
-        }
-
-        footer a { color: rgba(250, 247, 242, 0.6); }
+        .post-nav a:hover { opacity: 0.7; }
 
         @media (max-width: 768px) {
-            nav { padding: 1rem 1.5rem; }
-            .nav-links { display: none; }
-            .post-hero, .post-body, .post-nav, .post-cta { padding-left: 1.5rem; padding-right: 1.5rem; }
-            .post-nav { flex-direction: column; }
+            .post-hero, .post-body, .post-nav, .post-cta { padding-left: 2rem; padding-right: 2rem; }
+            .post-nav { flex-direction: column; text-align: center; }
             .verdict-card { grid-template-columns: 1fr; }
             .verdict-label { width: fit-content; }
             .comparison-table { font-size: 0.85rem; }
@@ -307,10 +237,36 @@
         <div class="nav-links">
             <a href="../index.html#services">Services</a>
             <a href="../index.html#process">Process</a>
-            <a href="../blog.html" class="active">Blog</a>
+            <a href="../index.html#pricing">Pricing</a>
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle">Case Studies</a>
+                <div class="dropdown-menu">
+                    <a href="../case-studies/catagen.html">Catagen</a>
+                    <a href="../case-studies/exportexplore.html">ExportExplore</a>
+                </div>
+            </div>
+            <a href="../blog.html">Blog</a>
             <a href="../index.html#contact">Contact</a>
         </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <div class="hamburger-bars">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <span class="hamburger-label">Menu</span>
+        </button>
     </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../index.html#services">Services</a>
+        <a href="../index.html#process">Process</a>
+        <a href="../index.html#pricing">Pricing</a>
+        <a href="../case-studies/catagen.html">Catagen</a>
+        <a href="../case-studies/exportexplore.html">ExportExplore</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../index.html#contact">Contact</a>
+    </div>
 
     <div class="post-hero">
         <div class="post-tag">General</div>
@@ -448,19 +404,16 @@
 
     </div>
 
-    <div class="post-nav">
-        <a href="../blog.html">
-            <span class="nav-label">← Back to</span>
-            All posts
-        </a>
-    </div>
-
     <div class="post-cta">
         <div class="post-cta-inner">
             <h3>Thinking about making the switch?</h3>
             <p>If you're on Squarespace and wondering whether WordPress is worth the move, I can give you an honest answer based on what your site actually needs — not a generic pitch.</p>
-            <a href="mailto:chris@feedme.design" class="btn">Get in touch</a>
+            <a href="../index.html#contact" class="cta-button">Get in touch</a>
         </div>
+    </div>
+
+    <div class="post-nav">
+        <a href="../blog.html">← All Posts</a>
     </div>
 
     <footer>
@@ -468,5 +421,21 @@
         <p><a href="mailto:chris@feedme.design">chris@feedme.design</a></p>
     </footer>
 
+    <script>
+        var hamburger = document.getElementById("hamburger");
+        var mobileMenu = document.getElementById("mobileMenu");
+
+        hamburger.addEventListener("click", function() {
+            hamburger.classList.toggle("open");
+            mobileMenu.classList.toggle("open");
+        });
+
+        document.querySelectorAll(".mobile-menu a, .nav-links a").forEach(function(link) {
+            link.addEventListener("click", function() {
+                hamburger.classList.remove("open");
+                mobileMenu.classList.remove("open");
+            });
+        });
+    </script>
 </body>
 </html>
