@@ -184,7 +184,7 @@ nav {
 .mobile-menu {
     display: none;
     position: fixed;
-    top: 73px;
+    top: 93px;
     left: 0;
     width: 100%;
     background: var(--cream);
