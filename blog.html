@@ -101,36 +101,7 @@
         <p><a href="mailto:chris@feedme.design">chris@feedme.design</a></p>
     </footer>
 
-    <script>
-        var hamburger = document.getElementById("hamburger");
-        var mobileMenu = document.getElementById("mobileMenu");
-
-        hamburger.addEventListener("click", function() {
-            hamburger.classList.toggle("open");
-            mobileMenu.classList.toggle("open");
-        });
-
-        document.querySelectorAll(".mobile-menu a").forEach(function(link) {
-            link.addEventListener("click", function() {
-                hamburger.classList.remove("open");
-                mobileMenu.classList.remove("open");
-            });
-        });
-
-        var filterButtons = document.querySelectorAll(".filter-tag");
-        var postRows = document.querySelectorAll(".post-row");
-
-        filterButtons.forEach(function(btn) {
-            btn.addEventListener("click", function() {
-                filterButtons.forEach(function(b) { b.classList.remove("active"); });
-                btn.classList.add("active");
-                var filter = btn.dataset.filter;
-                postRows.forEach(function(row) {
-                    row.style.display = (filter === "all" || row.dataset.tag === filter) ? "grid" : "none";
-                });
-            });
-        });
-    </script>
+<script src="/nav.js"></script>
 
 </body>
 </html>
