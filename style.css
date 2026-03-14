@@ -846,6 +846,7 @@ footer a:hover {
     border-radius: 50px;
     font-size: 0.75rem;
     font-weight: 600;
+    width: fit-content;
 }
 
 .post-card h3 {
