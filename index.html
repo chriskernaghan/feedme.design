@@ -11,41 +11,7 @@
 </head>
 <body>
 
-    <nav>
-        <a href="index.html" class="logo">feedme.design</a>
-        <div class="nav-links">
-            <a href="#services">Services</a>
-            <a href="#process">Process</a>
-            <a href="#pricing">Pricing</a>
-            <div class="dropdown">
-                <a href="#" class="dropdown-toggle">Case Studies</a>
-                <div class="dropdown-menu">
-                    <a href="case-studies/catagen.html">Catagen</a>
-                    <a href="case-studies/exportexplore.html">ExportExplore</a>
-                </div>
-            </div>
-            <a href="blog.html">Blog</a>
-            <a href="#contact">Contact</a>
-        </div>
-        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-            <div class="hamburger-bars">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <span class="hamburger-label">Menu</span>
-        </button>
-    </nav>
-
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="#services">Services</a>
-        <a href="#process">Process</a>
-        <a href="#pricing">Pricing</a>
-        <a href="case-studies/catagen.html">Case Studies — Catagen</a>
-        <a href="case-studies/exportexplore.html">Case Studies — ExportExplore</a>
-        <a href="blog.html">Blog</a>
-        <a href="#contact">Contact</a>
-    </div>
+    <div id="nav-placeholder"></div>
 
     <section class="hero">
         <div class="hero-content">
@@ -188,24 +154,10 @@
 
     <footer>
         <p>&copy; 2026 feedme.design. Expert WordPress maintenance for your peace of mind.</p>
-        <p><a href="/cdn-cgi/l/email-protection#9bf8f3e9f2e8c0faefc6fdfefefff6feb5fffee8f2fcf5">chris@feedme.design</a></p>
+        <p><a href="mailto:chris@feedme.design">chris@feedme.design</a></p>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        var hamburger = document.getElementById("hamburger");
-        var mobileMenu = document.getElementById("mobileMenu");
+    <script src="/nav.js"></script>
 
-        hamburger.addEventListener("click", function() {
-            hamburger.classList.toggle("open");
-            mobileMenu.classList.toggle("open");
-        });
-
-        document.querySelectorAll(".mobile-menu a, .nav-links a").forEach(function(link) {
-            link.addEventListener("click", function() {
-                hamburger.classList.remove("open");
-                mobileMenu.classList.remove("open");
-            });
-        });
-    </script>
 </body>
 </html>
