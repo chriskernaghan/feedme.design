@@ -6,12 +6,13 @@
     <title>Blog - feedme.design</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Epilogue:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Epilogue:wght@300;400;500;600&display=swap"></noscript>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="nav-placeholder"></div>
+    <div id="nav-placeholder"></div>
 
     <div class="blog-hero">
         <h1>The Blog</h1>
@@ -25,9 +26,21 @@
         <button class="filter-tag" data-filter="Security">Security</button>
         <button class="filter-tag" data-filter="General">General</button>
         <button class="filter-tag" data-filter="Side Hustle">Side Hustle</button>
+        <button class="filter-tag" data-filter="Web Design">Web Design</button>
     </div>
 
     <div class="posts-list">
+        <a href="posts/7-signs-your-small-business-website-needs-a-redesign.html" class="post-row" data-tag="Web Design">
+            <div>
+                <span class="post-row-tag">Web Design</span>
+                <div class="post-row-title">7 Signs Your Small Business Website Needs a Redesign</div>
+                <div class="post-row-excerpt">Most small business websites don't fail dramatically — they just quietly stop working. Here are seven signs it's time to do something about yours before it starts costing you business.</div>
+            </div>
+            <div class="post-row-meta">
+                <span class="post-row-date">15 Mar 2026</span>
+                <span class="post-row-arrow">→</span>
+            </div>
+        </a>
         <a href="posts/does-your-side-hustle-need-a-website.html" class="post-row" data-tag="Side Hustle">
             <div>
                 <span class="post-row-tag">Side Hustle</span>
@@ -96,10 +109,10 @@
         </a>
     </div>
 
-<div id="footer-placeholder"></div>
+    <div id="footer-placeholder"></div>
 
-<script src="/nav.js"></script>
-<script src="/footer.js"></script>
+    <script src="/nav.js"></script>
+    <script src="/footer.js"></script>
 
 </body>
 </html>
