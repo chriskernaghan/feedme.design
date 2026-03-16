@@ -7,12 +7,13 @@
     <meta name="description" content="If your website hasn't been touched in three years, it's probably costing you business right now. Here's what's going wrong — and what to do about it.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Epilogue:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Epilogue:wght@300;400;500;600&display=swap"></noscript>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
-  <div id="nav-placeholder"></div>
+    <div id="nav-placeholder"></div>
 
     <article>
         <div class="post-hero">
@@ -41,41 +42,43 @@
 
             <p>These aren't hypothetical. These are things I find regularly when I audit websites for businesses across Northern Ireland — solicitors in Ballyclare, tradespeople in Newtownabbey, accountants in Lisburn. The problems are almost always the same.</p>
 
-            <div class="problem-cards">
-                <div class="problem-card">
-                    <div class="problem-number">1</div>
-                    <div>
-                        <h3>The contact form is broken</h3>
-                        <p>This is the big one. WordPress sites using old contact plugins — Contact Form 7, WPForms, Gravity Forms — can silently stop sending email after a hosting migration, a PHP update, or a server configuration change. The form still looks fine. It still says "Message sent." The emails just never arrive. I've seen businesses go months without realising, wondering why enquiries had dried up.</p>
-                    </div>
+            <div class="tip-card">
+                <div class="tip-number">1</div>
+                <div class="tip-content">
+                    <h3>The contact form is broken</h3>
+                    <p>This is the big one. WordPress sites using old contact plugins — Contact Form 7, WPForms, Gravity Forms — can silently stop sending email after a hosting migration, a PHP update, or a server configuration change. The form still looks fine. It still says "Message sent." The emails just never arrive. I've seen businesses go months without realising, wondering why enquiries had dried up.</p>
                 </div>
-                <div class="problem-card">
-                    <div class="problem-number">2</div>
-                    <div>
-                        <h3>The site is too slow on mobile</h3>
-                        <p>The majority of people searching for a local solicitor, plumber or accountant are doing it on their phone. If your site takes more than three seconds to load, a significant chunk of those visitors are gone before they've seen a single word. Unoptimised images, too many plugins, and shared hosting all contribute to this. A Google PageSpeed score in the red isn't just an embarrassment — it actively costs you rankings.</p>
-                    </div>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-number">2</div>
+                <div class="tip-content">
+                    <h3>The site is too slow on mobile</h3>
+                    <p>The majority of people searching for a local solicitor, plumber or accountant are doing it on their phone. If your site takes more than three seconds to load, a significant chunk of those visitors are gone before they've seen a single word. Unoptimised images, too many plugins, and shared hosting all contribute. A Google PageSpeed score in the red isn't just an embarrassment — it actively costs you rankings.</p>
                 </div>
-                <div class="problem-card">
-                    <div class="problem-number">3</div>
-                    <div>
-                        <h3>The site isn't mobile-friendly</h3>
-                        <p>Different to load speed, and just as damaging. Text that's too small to read without pinching. Buttons that are almost impossible to tap. Menus that overflow off the screen. These aren't just minor inconveniences — they signal to a potential client that the business hasn't kept up. First impressions are made in under a second, and a broken mobile layout loses the sale before you've had a chance to make your case.</p>
-                    </div>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-number">3</div>
+                <div class="tip-content">
+                    <h3>The site isn't mobile-friendly</h3>
+                    <p>Different to load speed, and just as damaging. Text that's too small to read without pinching. Buttons that are almost impossible to tap. Menus that overflow off the screen. These aren't minor inconveniences — they signal to a potential client that the business hasn't kept up. First impressions are made in under a second, and a broken mobile layout loses the sale before you've had a chance to make your case.</p>
                 </div>
-                <div class="problem-card">
-                    <div class="problem-number">4</div>
-                    <div>
-                        <h3>Outdated or inaccurate content</h3>
-                        <p>A "Latest News" section with the most recent post from 2021. A "Meet the Team" page featuring someone who left two years ago. A phone number that connects to an old office. These details erode trust. Someone considering hiring you — a solicitor, an accountant, a contractor — is trying to decide if you're reliable. Finding stale content is the first sign that maybe you're not.</p>
-                    </div>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-number">4</div>
+                <div class="tip-content">
+                    <h3>Outdated or inaccurate content</h3>
+                    <p>A "Latest News" section with the most recent post from 2021. A "Meet the Team" page featuring someone who left two years ago. A phone number that connects to an old office. These details erode trust. Someone considering hiring you — a solicitor, an accountant, a contractor — is trying to decide if you're reliable. Finding stale content is the first sign that maybe you're not.</p>
                 </div>
-                <div class="problem-card">
-                    <div class="problem-number">5</div>
-                    <div>
-                        <h3>No clear next step</h3>
-                        <p>The visitor has landed on your site. They've read about your services. They're interested. And then... nothing. No obvious call to action, no phone number visible without scrolling, no prompt to get in touch. People won't hunt for a way to contact you — they'll just go back to Google and click the next result. The cost of a missing or weak CTA is almost invisible, but it's real.</p>
-                    </div>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-number">5</div>
+                <div class="tip-content">
+                    <h3>No clear next step</h3>
+                    <p>The visitor has landed on your site. They've read about your services. They're interested. And then — nothing. No obvious call to action, no phone number visible without scrolling, no prompt to get in touch. People won't hunt for a way to contact you. They'll go back to Google and click the next result. The cost of a missing or weak CTA is almost invisible, but it's real.</p>
                 </div>
             </div>
 
@@ -89,7 +92,7 @@
 
             <h2>What a neglected website is actually costing you</h2>
 
-            <p>It's hard to put an exact number on lost leads, but it's useful to think about it concretely. If your website gets 200 visits a month and one in ten visitors would potentially enquire — that's 20 enquiries. If your contact form is broken and you're only getting five, you've lost 15 potential conversations a month. Over a year, that's 180 missed enquiries. For a solicitor where a single new client might be worth £1,500–£5,000 in fees, the maths gets uncomfortable quickly.</p>
+            <p>It's hard to put an exact number on lost leads, but it's worth thinking about concretely. If your website gets 200 visits a month and one in ten visitors would potentially enquire — that's 20 enquiries. If your contact form is broken and you're only getting five, you've lost 15 potential conversations a month. Over a year, that's 180 missed enquiries. For a solicitor where a single new client might be worth £1,500–£5,000 in fees, the maths gets uncomfortable quickly.</p>
 
             <p>That's before you factor in the reputational cost. Someone who visits a broken website and bounces doesn't just not hire you — they form an impression. If they ever get a recommendation for your business in future, that first impression is already there.</p>
 
@@ -99,13 +102,13 @@
 
             <h2>What good website maintenance actually looks like</h2>
 
-            <p>This is where a lot of people have gaps in their expectations. "Maintenance" often gets conflated with hosting — keeping the lights on. Real maintenance is different. It includes:</p>
+            <p>This is where a lot of people have gaps in their expectations. "Maintenance" often gets conflated with hosting — keeping the lights on. Real maintenance is different.</p>
 
             <p><strong>Regular updates</strong> — WordPress core, themes, and plugins need to be updated systematically, not just whenever something breaks. Updates should be tested, not just applied blindly.</p>
 
             <p><strong>Uptime and performance monitoring</strong> — Knowing when your site goes down before your clients do. Tracking load times and acting when they creep up.</p>
 
-            <p><strong>Form testing</strong> — Regular checks that every contact form, booking form, and enquiry form is actually delivering to the right place.</p>
+            <p><strong>Form testing</strong> — Regular checks that every contact form, booking form, and enquiry form is actually delivering to the right inbox.</p>
 
             <p><strong>Security scanning</strong> — WordPress is the most common CMS on the internet, which also makes it the most targeted. An unmaintained site is a liability.</p>
 
@@ -119,22 +122,25 @@
 
             <p>The most useful thing you can do right now is get an objective set of eyes on it. Not a sales call, not a pitch for a full rebuild — just an honest look at what's working, what isn't, and what the priority fixes are. That's what I do with a free site audit, and more often than not it turns up at least one thing the business owner didn't know about.</p>
 
-            <div class="callout-box">
-                <p><strong>One thing worth knowing:</strong> most of the issues described here don't require a new website to fix. A broken contact form is usually a configuration problem. Slow load times are usually an image and plugin issue. Outdated content just needs a scheduled review. The average cost of fixing these things is a fraction of what a rebuild would cost — and for most businesses, it's all they need.</p>
-            </div>
-
-            <div class="post-cta">
-                <h3>Not sure if your website is working against you?</h3>
-                <p>I'll take an honest look — no obligation, no sales pitch. Just a clear picture of what's broken and what's worth fixing.</p>
-                <a href="../index.html#contact" class="btn">Get your free site audit</a>
+            <div class="callout">
+                <strong>Worth knowing</strong>
+                <p>Most of the issues described here don't require a new website to fix. A broken contact form is usually a configuration problem. Slow load times are usually an image and plugin issue. Outdated content just needs a scheduled review. The average cost of fixing these things is a fraction of what a rebuild would cost — and for most businesses, it's all they need.</p>
             </div>
 
         </div>
     </article>
 
+    <div class="post-cta">
+        <div class="post-cta-inner">
+            <h3>Not sure if your website is working against you?</h3>
+            <p>I'll take an honest look — no obligation, no sales pitch. Just a clear picture of what's broken and what's worth fixing.</p>
+            <a href="../index.html#contact" class="cta-button">Get your free site audit</a>
+        </div>
+    </div>
+
     <nav class="post-nav">
         <a href="wordpress-vs-squarespace-small-business.html">← WordPress vs Squarespace</a>
-        <a href="../blog.html" class="next">All posts →</a>
+        <a href="../blog.html">All posts →</a>
     </nav>
 
     <div id="footer-placeholder"></div>
