@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Northern Ireland Businesses Are Losing Leads to Bad Websites — feedme.design</title>
+    <meta name="description" content="If your website hasn't been touched in three years, it's probably costing you business right now. Here's what's going wrong — and what to do about it.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* ── Post hero ── */
+        .post-hero {
+            padding: 12rem 4rem 5rem;
+            background: var(--cream);
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+        .post-tag {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .post-hero h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            color: var(--midnight);
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        .post-meta {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        .post-meta span::before { content: '·'; margin-right: 1.5rem; }
+        .post-meta span:first-child::before { content: ''; margin: 0; }
+
+        /* ── Post body ── */
+        .post-body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 4rem 8rem;
+        }
+        .post-body p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: var(--text-dark);
+            margin-bottom: 1.8rem;
+        }
+        .post-body h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2rem;
+            color: var(--midnight);
+            margin: 3.5rem 0 1.2rem;
+            letter-spacing: -0.02em;
+        }
+        .post-body strong { color: var(--midnight); font-weight: 600; }
+        .post-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+        .post-body a:hover { text-decoration: none; }
+
+        /* ── Blockquote ── */
+        .post-body blockquote {
+            border-left: 4px solid var(--accent);
+            padding: 1rem 2rem;
+            margin: 2.5rem 0;
+            background: white;
+            border-radius: 0 12px 12px 0;
+        }
+        .post-body blockquote p {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            margin: 0;
+            color: var(--midnight);
+        }
+
+        /* ── Problem cards ── */
+        .problem-cards {
+            display: grid;
+            gap: 1.2rem;
+            margin: 2.5rem 0;
+        }
+        .problem-card {
+            background: white;
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 12px;
+            padding: 1.8rem 2rem;
+            display: grid;
+            grid-template-columns: 48px 1fr;
+            gap: 1.2rem;
+            align-items: start;
+        }
+        .problem-number {
+            width: 48px;
+            height: 48px;
+            background: var(--midnight);
+            color: var(--cream);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+        .problem-card h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--midnight);
+            margin: 0 0 0.5rem;
+        }
+        .problem-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin: 0;
+            color: var(--text-dark);
+        }
+
+        /* ── Callout box ── */
+        .callout-box {
+            background: var(--midnight);
+            color: var(--cream);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+        }
+        .callout-box p {
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 1rem;
+        }
+        .callout-box p:last-child { margin-bottom: 0; }
+        .callout-box strong { color: white; }
+        .callout-box a { color: var(--accent); }
+
+        /* ── Post CTA ── */
+        .post-cta {
+            background: linear-gradient(135deg, var(--slate) 0%, var(--midnight) 100%);
+            border-radius: 16px;
+            padding: 3rem;
+            text-align: center;
+            margin: 4rem 0 2rem;
+        }
+        .post-cta h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.8rem;
+            color: var(--cream);
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+        .post-cta p {
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+        .post-cta .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.9rem 2.2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: opacity 0.2s;
+        }
+        .post-cta .btn:hover { opacity: 0.85; text-decoration: none; }
+
+        /* ── Post nav ── */
+        .post-nav {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 4rem 6rem;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            padding-top: 2.5rem;
+            gap: 2rem;
+        }
+        .post-nav a {
+            color: var(--midnight);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.2s;
+        }
+        .post-nav a:hover { color: var(--accent); }
+        .post-nav .next { text-align: right; margin-left: auto; }
+
+        @media (max-width: 768px) {
+            .post-hero, .post-body { padding-left: 2rem; padding-right: 2rem; }
+            .post-nav { padding-left: 2rem; padding-right: 2rem; }
+            .problem-card { grid-template-columns: 40px 1fr; }
+            .post-cta { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="../index.html" class="logo">feedme<span>.</span>design</a>
+        <div class="nav-links">
+            <a href="../index.html#services">Services</a>
+            <a href="../index.html#pricing">Pricing</a>
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle">Case Studies ▾</a>
+                <div class="dropdown-menu">
+                    <a href="../case-studies/catagen.html">Catagen</a>
+                    <a href="../case-studies/exportexplore.html">ExportExplore</a>
+                </div>
+            </div>
+            <a href="../blog.html">Blog</a>
+            <a href="../index.html#contact" class="nav-cta">Get in touch</a>
+        </div>
+        <button class="hamburger" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <article>
+        <div class="post-hero">
+            <span class="post-tag">Local Business</span>
+            <h1>Why Northern Ireland Businesses Are Losing Leads to Bad Websites</h1>
+            <div class="post-meta">
+                <span>Chris Kernaghan</span>
+                <span>16 March 2026</span>
+                <span>6 min read</span>
+            </div>
+        </div>
+
+        <div class="post-body">
+
+            <p>Every week I come across a local business with a website that hasn't been touched in three or four years. The phone number's wrong. The contact form doesn't work. Half the page is broken on mobile. And yet the business owner has no idea, because nobody tells them — they just leave quietly and go somewhere else.</p>
+
+            <p>That quiet departure is the problem. A slow website or a broken form doesn't announce itself. There's no error message that says "you just lost a customer." People don't ring you to let you know your site is broken. They just disappear.</p>
+
+            <p>This piece is about what I see going wrong, why it matters more than most people think, and what to actually do about it.</p>
+
+            <blockquote>
+                <p>People don't ring you to let you know your site is broken. They just disappear.</p>
+            </blockquote>
+
+            <h2>The five things most often costing local businesses leads</h2>
+
+            <p>These aren't hypothetical. These are things I find regularly when I audit websites for businesses across Northern Ireland — solicitors in Ballyclare, tradespeople in Newtownabbey, accountants in Lisburn. The problems are almost always the same.</p>
+
+            <div class="problem-cards">
+                <div class="problem-card">
+                    <div class="problem-number">1</div>
+                    <div>
+                        <h3>The contact form is broken</h3>
+                        <p>This is the big one. WordPress sites using old contact plugins — Contact Form 7, WPForms, Gravity Forms — can silently stop sending email after a hosting migration, a PHP update, or a server configuration change. The form still looks fine. It still says "Message sent." The emails just never arrive. I've seen businesses go months without realising, wondering why enquiries had dried up.</p>
+                    </div>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-number">2</div>
+                    <div>
+                        <h3>The site is too slow on mobile</h3>
+                        <p>The majority of people searching for a local solicitor, plumber or accountant are doing it on their phone. If your site takes more than three seconds to load, a significant chunk of those visitors are gone before they've seen a single word. Unoptimised images, too many plugins, and shared hosting all contribute to this. A Google PageSpeed score in the red isn't just an embarrassment — it actively costs you rankings.</p>
+                    </div>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-number">3</div>
+                    <div>
+                        <h3>The site isn't mobile-friendly</h3>
+                        <p>Different to load speed, and just as damaging. Text that's too small to read without pinching. Buttons that are almost impossible to tap. Menus that overflow off the screen. These aren't just minor inconveniences — they signal to a potential client that the business hasn't kept up. First impressions are made in under a second, and a broken mobile layout loses the sale before you've had a chance to make your case.</p>
+                    </div>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-number">4</div>
+                    <div>
+                        <h3>Outdated or inaccurate content</h3>
+                        <p>A "Latest News" section with the most recent post from 2021. A "Meet the Team" page featuring someone who left two years ago. A phone number that connects to an old office. These details erode trust. Someone considering hiring you — a solicitor, an accountant, a contractor — is trying to decide if you're reliable. Finding stale content is the first sign that maybe you're not.</p>
+                    </div>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-number">5</div>
+                    <div>
+                        <h3>No clear next step</h3>
+                        <p>The visitor has landed on your site. They've read about your services. They're interested. And then... nothing. No obvious call to action, no phone number visible without scrolling, no prompt to get in touch. People won't hunt for a way to contact you — they'll just go back to Google and click the next result. The cost of a missing or weak CTA is almost invisible, but it's real.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Why this happens — and why it's not laziness</h2>
+
+            <p>Most businesses don't have a neglected website because they don't care. They have one because they were sold a website, paid for it, and then everyone moved on. The agency or freelancer who built it has no ongoing incentive to keep it healthy. The business owner is focused on running their business. And websites — unlike a broken boiler or a leaking roof — fail quietly, invisibly, without obvious symptoms.</p>
+
+            <p>WordPress in particular requires regular attention. Core updates, plugin updates, PHP version compatibility, email deliverability — these things drift out of alignment over time. A site that worked perfectly in 2021 may be silently broken in 2026, because the web moved and the site didn't.</p>
+
+            <p>The fix isn't to rebuild everything. For most businesses, it's a combination of a proper audit to identify what's actually broken, followed by a maintenance arrangement that keeps things working going forward. The rebuild conversation only becomes necessary when the foundation itself is beyond repair — and that's less common than people assume.</p>
+
+            <h2>What a neglected website is actually costing you</h2>
+
+            <p>It's hard to put an exact number on lost leads, but it's useful to think about it concretely. If your website gets 200 visits a month and one in ten visitors would potentially enquire — that's 20 enquiries. If your contact form is broken and you're only getting five, you've lost 15 potential conversations a month. Over a year, that's 180 missed enquiries. For a solicitor where a single new client might be worth £1,500–£5,000 in fees, the maths gets uncomfortable quickly.</p>
+
+            <p>That's before you factor in the reputational cost. Someone who visits a broken website and bounces doesn't just not hire you — they form an impression. If they ever get a recommendation for your business in future, that first impression is already there.</p>
+
+            <blockquote>
+                <p>180 missed enquiries a year. For a solicitor, that's potentially hundreds of thousands of pounds in unrealised fees.</p>
+            </blockquote>
+
+            <h2>What good website maintenance actually looks like</h2>
+
+            <p>This is where a lot of people have gaps in their expectations. "Maintenance" often gets conflated with hosting — keeping the lights on. Real maintenance is different. It includes:</p>
+
+            <p><strong>Regular updates</strong> — WordPress core, themes, and plugins need to be updated systematically, not just whenever something breaks. Updates should be tested, not just applied blindly.</p>
+
+            <p><strong>Uptime and performance monitoring</strong> — Knowing when your site goes down before your clients do. Tracking load times and acting when they creep up.</p>
+
+            <p><strong>Form testing</strong> — Regular checks that every contact form, booking form, and enquiry form is actually delivering to the right place.</p>
+
+            <p><strong>Security scanning</strong> — WordPress is the most common CMS on the internet, which also makes it the most targeted. An unmaintained site is a liability.</p>
+
+            <p><strong>Content accuracy</strong> — Someone with eyes on the site to flag when something looks stale or incorrect, rather than leaving it to accumulate over years.</p>
+
+            <p>None of this is glamorous. But it's the difference between a website that quietly loses you business and one that quietly generates it.</p>
+
+            <h2>The simplest first step</h2>
+
+            <p>If you're not sure whether your website has any of these issues, the honest answer is: it probably has at least one. The question is how serious.</p>
+
+            <p>The most useful thing you can do right now is get an objective set of eyes on it. Not a sales call, not a pitch for a full rebuild — just an honest look at what's working, what isn't, and what the priority fixes are. That's what I do with a free site audit, and more often than not it turns up at least one thing the business owner didn't know about.</p>
+
+            <div class="callout-box">
+                <p><strong>One thing worth knowing:</strong> most of the issues described here don't require a new website to fix. A broken contact form is usually a configuration problem. Slow load times are usually an image and plugin issue. Outdated content just needs a scheduled review. The average cost of fixing these things is a fraction of what a rebuild would cost — and for most businesses, it's all they need.</p>
+            </div>
+
+            <div class="post-cta">
+                <h3>Not sure if your website is working against you?</h3>
+                <p>I'll take an honest look — no obligation, no sales pitch. Just a clear picture of what's broken and what's worth fixing.</p>
+                <a href="../index.html#contact" class="btn">Get your free site audit</a>
+            </div>
+
+        </div>
+    </article>
+
+    <nav class="post-nav">
+        <a href="wordpress-vs-squarespace-small-business.html">← WordPress vs Squarespace</a>
+        <a href="../blog.html" class="next">All posts →</a>
+    </nav>
+
+    <footer>
+        <p>&copy; 2026 feedme.design. Expert WordPress maintenance for Northern Ireland businesses.</p>
+        <p><a href="mailto:chris@feedme.design">chris@feedme.design</a></p>
+    </footer>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('mobile-open');
+                hamburger.classList.toggle('active');
+            });
+        }
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', e => {
+                e.preventDefault();
+                const target = document.querySelector(anchor.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+
+</body>
+</html>
