@@ -2161,6 +2161,15 @@ footer a:hover {
    RESPONSIVE STYLES
    ========================================================================== */
 
+@media screen and (min-width: 3840px) {
+.hero-left h1{
+   max-width: 75%;
+}
+   .hero-left p{
+      width:70%;
+   }
+}
+
 @media (max-width: 1024px) {
     .hero {
         grid-template-columns: 1fr;
