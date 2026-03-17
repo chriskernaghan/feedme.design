@@ -418,6 +418,8 @@ footer a:hover {
     animation: fadeInUp 0.9s ease-out 0.45s backwards;
     position: relative;
     min-width: 0;
+    align-self:flex-start;
+    margin-top:1rem;
 }
 
 .browser-mockup {
