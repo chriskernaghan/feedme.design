@@ -601,51 +601,74 @@ footer a:hover {
 }
 
 /* ==========================================================================
-   HOMEPAGE — CLIENTS STRIP
+   HOMEPAGE — CLIENTS GRID
    ========================================================================== */
 
-.clients-strip {
+.clients-grid-section {
+    background: var(--sand);
+    padding: 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.clients-grid-inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 100%;
+}
+
+.clients-anchor {
+    background: var(--midnight);
+    padding: 3rem 2.5rem;
     display: flex;
     align-items: center;
-    gap: 1.25rem;
-    padding: 1.4rem 5rem;
-    background: var(--sand);
-    border-bottom: 1px solid rgba(0,0,0,0.06);
-    flex-wrap: wrap;
 }
 
-.clients-strip-label {
+.clients-anchor p {
+    font-family: "DM Serif Display", serif;
+    font-size: 1.2rem;
+    color: var(--cream);
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+    opacity: 0.9;
+}
+
+.clients-stat-card {
+    padding: 2.5rem;
+    border-left: 1px solid rgba(0,0,0,0.08);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    transition: background 0.25s ease;
+    color: inherit;
+}
+
+.clients-stat-card:hover {
+    background: rgba(0,0,0,0.03);
+}
+
+.clients-stat-name {
     font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--text-dark);
-    opacity: 0.45;
-    margin-right: 0.5rem;
-    white-space: nowrap;
+    opacity: 0.5;
 }
 
-.clients-strip-name {
-    text-decoration: none;
+.clients-stat-metric {
     font-family: "DM Serif Display", serif;
-    font-size: 1rem;
-    color: var(--text-dark);
-    opacity: 0.65;
-    transition: all 0.25s ease;
-    letter-spacing: -0.01em;
-    white-space: nowrap;
+    font-size: 2.5rem;
+    color: var(--midnight);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-top: 0.5rem;
 }
 
-.clients-strip-name:hover {
-    color: var(--accent);
-    opacity: 1;
-}
-
-.clients-strip-sep {
+.clients-stat-label {
+    font-size: 0.88rem;
     color: var(--text-dark);
-    opacity: 0.2;
-    font-size: 0.9rem;
-    user-select: none;
+    opacity: 0.6;
 }
 
 /* ==========================================================================
