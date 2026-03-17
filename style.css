@@ -418,15 +418,13 @@ footer a:hover {
     animation: fadeInUp 0.9s ease-out 0.45s backwards;
     position: relative;
     min-width: 0;
-    align-self:flex-start;
-    margin-top:4rem;
 }
 
 .browser-mockup {
     background: white;
     border-radius: 14px;
     border: 1px solid var(--sand);
-    overflow: visible !important;
+    overflow: hidden;
     box-shadow: 0 40px 80px rgba(10, 14, 39, 0.14), 0 8px 20px rgba(10, 14, 39, 0.06);
     transform: perspective(900px) rotateY(-4deg) rotateX(2deg);
     transition: transform 0.5s ease;
@@ -475,15 +473,9 @@ footer a:hover {
 .browser-screen {
     padding: 0;
     background: #f8f6f1;
+    min-height: 360px;
     border-radius: 0 0 14px 14px;
     overflow: hidden;
-    max-height:250px;
-}
-
-.browser-screen img{
-   height:100%;
-   width:100%;
-   object-fit:cover;
 }
 
 /* Skeleton mock content inside browser */
@@ -538,7 +530,7 @@ footer a:hover {
     border: 1px solid var(--sand);
 }
 
-.browser-badge a{
+.browser-badge {
     position: absolute;
     bottom: -14px;
     right: 2rem;
@@ -552,7 +544,14 @@ footer a:hover {
     align-items: center;
     gap: 0.5rem;
     letter-spacing: 0.04em;
-    text-decoration:none;
+}
+
+.browser-badge a {
+    color: var(--cream);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .badge-dot {
@@ -613,7 +612,8 @@ footer a:hover {
 
 .clients-grid-inner {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 1fr repeat(3, 1fr);
+    grid-template-rows: auto auto;
     max-width: 100%;
 }
 
@@ -622,6 +622,7 @@ footer a:hover {
     padding: 3rem 2.5rem;
     display: flex;
     align-items: center;
+    grid-row: 1 / 3;
 }
 
 .clients-anchor p {
@@ -636,12 +637,19 @@ footer a:hover {
 .clients-stat-card {
     padding: 2.5rem;
     border-left: 1px solid rgba(0,0,0,0.08);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
     text-decoration: none;
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
     transition: background 0.25s ease;
     color: inherit;
+}
+
+.clients-stat-card:nth-child(5),
+.clients-stat-card:nth-child(6),
+.clients-stat-card:nth-child(7) {
+    border-bottom: none;
 }
 
 .clients-stat-card:hover {
@@ -677,7 +685,7 @@ footer a:hover {
    ========================================================================== */
 
 .services {
-    padding: 9rem 5rem;
+    padding: 5rem 5rem 9rem;
     background: var(--cream);
 }
 
@@ -825,7 +833,7 @@ footer a:hover {
     font-size: 5rem;
     line-height: 1;
     color: var(--accent);
-    opacity: 0.15;
+    opacity: 0.35;
     font-style: italic;
     position: absolute;
     top: 2rem;
@@ -854,7 +862,7 @@ footer a:hover {
 
 .pricing {
     padding: 9rem 5rem;
-    background: var(--cream);
+    background: var(--sand);
 }
 
 .pricing .section-header {
@@ -1175,7 +1183,7 @@ footer a:hover {
 }
 
 .post-card-image--2 {
-    background: var(--slate);
+    background: #5c3d2e;
 }
 
 .post-card-image--2::before {
@@ -1185,7 +1193,7 @@ footer a:hover {
     left: 15%;
     width: 50%;
     height: 80%;
-    border: 1px solid rgba(255,107,53,0.2);
+    border: 1px solid rgba(255,107,53,0.3);
     border-radius: 50%;
 }
 
@@ -1203,7 +1211,7 @@ footer a:hover {
 }
 
 .post-card-image--3 {
-    background: #1c1a12;
+    background: #2a3d2e;
 }
 
 .post-card-image--3::before {
@@ -1215,8 +1223,8 @@ footer a:hover {
     height: 100%;
     background: repeating-linear-gradient(
         45deg,
-        rgba(255,107,53,0.04) 0px,
-        rgba(255,107,53,0.04) 1px,
+        rgba(255,107,53,0.06) 0px,
+        rgba(255,107,53,0.06) 1px,
         transparent 1px,
         transparent 28px
     );
@@ -2227,13 +2235,15 @@ footer a:hover {
         display: none;
     }
 
-    .clients-strip {
-        padding: 1.2rem 2rem;
-        gap: 0.8rem;
+    .clients-grid-inner {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
     }
 
-    .clients-strip-name {
-        font-size: 0.9rem;
+    .clients-anchor {
+        grid-row: auto;
+        grid-column: 1 / -1;
+        padding: 2rem;
     }
 
     .services,
