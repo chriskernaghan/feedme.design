@@ -184,7 +184,7 @@ nav {
 .mobile-menu {
     display: none;
     position: fixed;
-    top: 73px;
+    top: 97px;
     left: 0;
     width: 100%;
     background: var(--cream);
@@ -2220,6 +2220,10 @@ footer a:hover {
 @media (max-width: 768px) {
 
    .section-label{
+      display:none;
+   }
+
+   .pricing-custom{
       display:none;
    }
     nav {
