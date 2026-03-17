@@ -2218,6 +2218,10 @@ footer a:hover {
 }
 
 @media (max-width: 768px) {
+
+   .section-label{
+      display:none;
+   }
     nav {
         padding: 1.5rem 2rem;
     }
