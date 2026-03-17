@@ -776,7 +776,7 @@ footer a:hover {
    ========================================================================== */
 
 .process {
-    padding: 9rem 5rem;
+    padding: 12rem 4rem;
     background: var(--midnight);
     position: relative;
     overflow: hidden;
@@ -868,7 +868,7 @@ footer a:hover {
    ========================================================================== */
 
 .pricing {
-    padding: 9rem 5rem;
+    padding: 12rem 4rem;
     background: var(--sand);
 }
 
@@ -1088,7 +1088,7 @@ footer a:hover {
    ========================================================================== */
 
 .latest-posts {
-    padding: 9rem 5rem;
+    padding: 12rem 4rem;
     background: var(--sand);
 }
 
@@ -1307,7 +1307,7 @@ footer a:hover {
    ========================================================================== */
 
 .contact-section {
-    padding: 9rem 5rem;
+    padding: 12rem 4rem;
     background: linear-gradient(135deg, var(--slate) 0%, var(--midnight) 100%);
     position: relative;
     overflow: hidden;
