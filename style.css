@@ -344,7 +344,7 @@ footer a:hover {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
     align-items: center;
     gap: 3rem;
-    padding: 8rem 5rem 5rem;
+    padding: 2rem 4rem;
     position: relative;
     overflow: hidden;
 }
