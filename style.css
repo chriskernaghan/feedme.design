@@ -474,6 +474,8 @@ footer a:hover {
 
 .browser-screen {
     padding: 0;
+    line-height:0;
+    font-size:0;
     background: #f8f6f1;
     min-height: 360px;
     border-radius: 0 0 14px 14px;
