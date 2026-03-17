@@ -2162,6 +2162,10 @@ footer a:hover {
    ========================================================================== */
 
 @media screen and (min-width: 1440px) {
+.hero{
+   padding:12rem;
+}
+   
 .hero-left h1{
    max-width: 75%;
 }
