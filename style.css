@@ -2231,7 +2231,17 @@ footer a:hover {
     }
 
     .hero {
-        padding: 7rem 2rem 4rem;
+    padding: 9rem 2rem 6rem;
+    gap: 3rem;
+    }
+
+   .hero-left p {
+    margin-bottom: 3rem;
+    }
+
+   .hero-actions {
+    gap: 1.5rem;
+    margin-bottom: 1rem;
     }
 
     .hero-left h1 {
