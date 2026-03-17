@@ -429,6 +429,15 @@ footer a:hover {
     position: relative;
 }
 
+.browser-screenshot {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    border-radius: 0 0 14px 14px;
+}
+
 .browser-mockup:hover {
     transform: perspective(900px) rotateY(-1deg) rotateX(1deg);
 }
