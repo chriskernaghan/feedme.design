@@ -11,6 +11,7 @@
     --accent-dim: #ff8c5f;
     --text-dark: #2d3142;
     --text-light: #a8a8b8;
+    --snow: #ffffff;
 }
 
 * {
@@ -868,7 +869,7 @@ footer a:hover {
    ========================================================================== */
 
 .pricing {
-    padding: 6rem 4rem;
+    padding: 12rem 4rem;
     background: var(--sand);
 }
 
@@ -1089,7 +1090,7 @@ footer a:hover {
 
 .latest-posts {
     padding: 12rem 4rem;
-    background: var(--sand);
+    background: var(--snow);
 }
 
 .posts-inner {
@@ -1307,7 +1308,7 @@ footer a:hover {
    ========================================================================== */
 
 .contact-section {
-    padding: 6rem 4rem;
+    padding: 12rem 4rem;
     background: linear-gradient(135deg, var(--slate) 0%, var(--midnight) 100%);
     position: relative;
     overflow: hidden;
