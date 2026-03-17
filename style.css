@@ -2243,6 +2243,10 @@ footer a:hover {
     gap: 3rem;
     }
 
+   .hero-link{
+      display:none;
+   }
+
    .hero-left p {
     margin-bottom: 3rem;
     }
@@ -2255,6 +2259,10 @@ footer a:hover {
     .hero-left h1 {
         font-size: clamp(2.5rem, 8vw, 3.5rem);
     }
+
+   .cta-button{
+      width:100%;
+   }
 
     .marquee-strip {
         display: none;
