@@ -482,6 +482,7 @@ footer a:hover {
    object-fit: cover;
    height:100%;
    width:100%;
+   display:block;
 }
 
 /* Skeleton mock content inside browser */
