@@ -431,9 +431,6 @@ footer a:hover {
 
 .browser-screenshot {
     width: 100%;
-    height: 360px;
-    object-fit: cover;
-    object-position: top;
     display: block;
     border-radius: 0 0 14px 14px;
 }
