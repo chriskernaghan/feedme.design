@@ -664,13 +664,8 @@ footer a:hover {
     background: rgba(0,0,0,0.03);
 }
 
-.clients-stat-name {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-dark);
-    opacity: 0.5;
+.clients-stat-name img {
+    max-width:20%;
 }
 
 .clients-stat-metric {
