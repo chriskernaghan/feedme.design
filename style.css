@@ -478,6 +478,12 @@ footer a:hover {
     overflow: hidden;
 }
 
+.browser-screen img{
+   object-fit: cover;
+   height:100%;
+   width:100%;
+}
+
 /* Skeleton mock content inside browser */
 .mock-nav {
     height: 36px;
