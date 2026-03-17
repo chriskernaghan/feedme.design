@@ -2165,6 +2165,10 @@ footer a:hover {
 .hero{
    padding:12rem;
 }
+
+   .hero-left p{
+      max-width:100%;
+   }
 }
 
 @media (max-width: 1024px) {
