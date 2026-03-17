@@ -538,7 +538,7 @@ footer a:hover {
     border: 1px solid var(--sand);
 }
 
-.browser-badge {
+.browser-badge a{
     position: absolute;
     bottom: -14px;
     right: 2rem;
