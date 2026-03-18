@@ -1096,6 +1096,10 @@ footer a:hover {
 .pricing-custom .pricing-cta {
     border: 2px solid var(--midnight);
     background: transparent;
+    display: inline-block;
+    width: auto;
+    padding: 1rem 2.5rem;
+    margin-top: auto;
 }
 
 .pricing-custom .pricing-cta:hover {
