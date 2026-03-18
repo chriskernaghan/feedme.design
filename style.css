@@ -32,6 +32,10 @@ body {
    NAVIGATION
    ========================================================================== */
 
+html {
+  scroll-behavior: smooth;
+}
+
 nav {
     position: fixed;
     top: 0;
