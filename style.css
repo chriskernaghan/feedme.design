@@ -331,6 +331,12 @@ nav {
     background: var(--accent-dim);
 }
 
+.cycling-word {
+  display: inline-block;
+  min-width: 9ch; /* match the length of your longest word e.g. 'optimised' */
+  color: var(--orange); /* keep your highlight colour */
+}
+
 footer {
     background: var(--midnight);
     padding: 4rem;
