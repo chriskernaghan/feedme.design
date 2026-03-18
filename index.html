@@ -322,5 +322,45 @@
     <script src="/nav.js"></script>
     <script src="/footer.js"></script>
 
+    <script>
+
+const words = ['running', 'secure', 'updated', 'optimised'];
+let currentIndex = 0;
+const target = document.querySelector('.cycling-word');
+
+function typeWord(word, callback) {
+    let i = 0;
+    const interval = setInterval(function() {
+        target.textContent = word.slice(0, i + 1);
+        i++;
+        if (i === word.length) {
+            clearInterval(interval);
+            setTimeout(callback, 1800);
+        }
+    }, 80);
+}
+
+function deleteWord(callback) {
+    let text = target.textContent;
+    const interval = setInterval(function() {
+        text = text.slice(0, -1);
+        target.textContent = text;
+        if (text.length === 0) {
+            clearInterval(interval);
+            setTimeout(callback, 300);
+        }
+    }, 60);
+}
+
+function cycle() {
+    currentIndex = (currentIndex + 1) % words.length;
+    deleteWord(function() {
+        typeWord(words[currentIndex], cycle);
+    });
+}
+
+typeWord(words[0], cycle);
+    </script>
+
 </body>
 </html>
