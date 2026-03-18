@@ -1093,6 +1093,17 @@ footer a:hover {
     border-style: solid;
 }
 
+.pricing-custom .pricing-cta {
+    border: 2px solid var(--midnight);
+    background: transparent;
+}
+
+.pricing-custom .pricing-cta:hover {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: white;
+}
+
 .pricing-custom h3 {
     font-family: "DM Serif Display", serif;
     font-size: 1.7rem;
