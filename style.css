@@ -368,7 +368,7 @@ footer a:hover {
 }
 
 .highlight{
-   color: var(--highlight)
+   color: var(--accent);
 }
 
 .hero-left {
