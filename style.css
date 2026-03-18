@@ -574,6 +574,11 @@ footer a:hover {
     animation: pulseDot 2s ease-in-out infinite;
 }
 
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
+}
+
 /* ==========================================================================
    HOMEPAGE — MARQUEE STRIP
    ========================================================================== */
