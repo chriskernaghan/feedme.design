@@ -3,7 +3,6 @@ fetch('/nav.html')
     .then(function(html) {
         document.getElementById('nav-placeholder').outerHTML = html;
 
-        // Hamburger logic (runs after nav is injected)
         var hamburger = document.getElementById('hamburger');
         var mobileMenu = document.getElementById('mobileMenu');
 
@@ -16,6 +15,19 @@ fetch('/nav.html')
             link.addEventListener('click', function() {
                 hamburger.classList.remove('open');
                 mobileMenu.classList.remove('open');
+            });
+        });
+
+        // Prevent page reload when clicking anchor links on the homepage
+        document.querySelectorAll('a[href^="/index.html#"]').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+                    e.preventDefault();
+                    var target = document.querySelector(link.getAttribute('href').replace('/index.html', ''));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
             });
         });
     });
