@@ -367,6 +367,10 @@ footer a:hover {
     overflow: hidden;
 }
 
+.highlight{
+   color: var(--highlight)
+}
+
 .hero-left {
     z-index: 1;
     animation: fadeInUp 0.9s ease-out 0.2s backwards;
