@@ -333,8 +333,7 @@ nav {
 
 .cycling-word {
   display: inline-block;
-  min-width: 9ch; /* match the length of your longest word e.g. 'optimised' */
-  color: var(--orange); /* keep your highlight colour */
+  min-width: 8ch; /* match the length of your longest word e.g. 'optimised' */
 }
 
 footer {
@@ -403,6 +402,7 @@ footer a:hover {
     color: var(--midnight);
     margin-bottom: 1.8rem;
     letter-spacing: -0.03em;
+    max-width:75%;
 }
 
 .hero-left h1 em {
