@@ -2271,6 +2271,10 @@ footer a:hover {
 
 @media (max-width: 768px) {
 
+   .clients-anchor{
+      justify-content:center;
+   }
+
    .hero-left h1{
       max-width:70%;
    }
