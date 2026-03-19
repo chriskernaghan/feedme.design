@@ -333,7 +333,7 @@ nav {
 
 .cycling-word {
   display: inline-block;
-  min-width: 8ch; /* match the length of your longest word e.g. 'optimised' */
+  min-width: stretch;
 }
 
 footer {
