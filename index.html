@@ -14,30 +14,33 @@
 
     <div id="nav-placeholder"></div>
 
-    <!-- HERO: Split layout -->
+    <!-- HERO: Centered, confident, full-width -->
     <section class="hero">
-        <div class="hero-left">
-            <h1>Keep your site <span class="highlight cycling-word"></span> while you run your business</h1>
-            <p>We handle the maintenance, updates, and optimisation so you can focus on what actually matters. Expert WordPress care — without the agency price tag.</p>
-            <div class="hero-actions">
-                <a href="#contact" class="cta-button">Start Your Free Audit</a>
-                <a href="case-studies/catagen.html" class="hero-link">See our work →</a>
+        <div class="hero-centered">
+            <div class="hero-label"><span class="hero-label-dot"></span>WordPress Maintenance</div>
+            <h1>Expert WordPress care,<br><span class="hero-accent">without the agency price tag</span></h1>
+            <p class="hero-sub">We keep your site fast, secure, and up to date — so you can stop worrying about it and get back to running your business.</p>
+            <div class="hero-cta-group">
+                <a href="#contact" class="cta-button hero-cta-primary">
+                    Get Your Free Audit
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+                </a>
+                <a href="case-studies/catagen.html" class="hero-cta-secondary">See our work</a>
             </div>
-        </div>
-        <div class="hero-right">
-            <div class="browser-mockup">
-                <div class="browser-bar">
-                    <span class="browser-dot"></span>
-                    <span class="browser-dot"></span>
-                    <span class="browser-dot"></span>
-                    <div class="browser-url">catagen.com</div>
+            <div class="hero-proof">
+                <div class="hero-proof-item">
+                    <span class="hero-proof-number">4 yrs</span>
+                    <span class="hero-proof-label">Avg. client relationship</span>
                 </div>
-                <div class="browser-screen">
-                    <img src="catagen-preview.png" alt="Catagen website" class="browser-screenshot">
+                <div class="hero-proof-sep"></div>
+                <div class="hero-proof-item">
+                    <span class="hero-proof-number">99.9%</span>
+                    <span class="hero-proof-label">Uptime</span>
                 </div>
-                <div class="browser-badge">
-                    <a href="https://catagen.com"><span class="badge-dot"></span>
-                    Live &amp; maintained</a>
+                <div class="hero-proof-sep"></div>
+                <div class="hero-proof-item">
+                    <span class="hero-proof-number">&lt;1hr</span>
+                    <span class="hero-proof-label">Response time</span>
                 </div>
             </div>
         </div>
@@ -321,46 +324,6 @@
 
     <script src="/nav.js"></script>
     <script src="/footer.js"></script>
-
-    <script>
-
-const words = ['running', 'secure', 'updated', 'optimised'];
-let currentIndex = 0;
-const target = document.querySelector('.cycling-word');
-
-function typeWord(word, callback) {
-    let i = 0;
-    const interval = setInterval(function() {
-        target.textContent = word.slice(0, i + 1);
-        i++;
-        if (i === word.length) {
-            clearInterval(interval);
-            setTimeout(callback, 3600);
-        }
-    }, 80);
-}
-
-function deleteWord(callback) {
-    let text = target.textContent;
-    const interval = setInterval(function() {
-        text = text.slice(0, -1);
-        target.textContent = text;
-        if (text.length === 0) {
-            clearInterval(interval);
-            setTimeout(callback, 300);
-        }
-    }, 60);
-}
-
-function cycle() {
-    currentIndex = (currentIndex + 1) % words.length;
-    deleteWord(function() {
-        typeWord(words[currentIndex], cycle);
-    });
-}
-
-typeWord(words[0], cycle);
-    </script>
 
 </body>
 </html>
