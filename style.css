@@ -514,7 +514,7 @@ footer a:hover {
 }
 
 /* ==========================================================================
-   HOMEPAGE — MARQUEE STRIP
+   HOMEPAGE — MARQUEE STRIP (Testimonials)
    ========================================================================== */
 
 .marquee-strip {
@@ -529,7 +529,7 @@ footer a:hover {
     align-items: center;
     gap: 0;
     white-space: nowrap;
-    animation: marqueeScroll 30s linear infinite;
+    animation: marqueeScroll 45s linear infinite;
     width: max-content;
 }
 
@@ -552,77 +552,88 @@ footer a:hover {
 }
 
 /* ==========================================================================
-   HOMEPAGE — CLIENTS GRID
+   HOMEPAGE — CLIENTS
    ========================================================================== */
 
-.clients-grid-section {
+.clients-section {
+    padding: 6rem 4rem;
     background: var(--sand);
-    padding: 0;
     border-bottom: 1px solid rgba(0,0,0,0.06);
 }
 
-.clients-grid-inner {
-    display: grid;
-    grid-template-columns: 1fr repeat(3, 1fr);
-    grid-template-rows: auto auto;
-    max-width: 100%;
+.clients-inner {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.clients-anchor {
-    background: var(--midnight);
-    padding: 3rem 2.5rem;
-    display: flex;
-    align-items: center;
-    grid-row: 1 / 3;
+.clients-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
 }
 
-.clients-anchor p {
+.clients-header h2 {
     font-family: "DM Serif Display", serif;
-    font-size: 1.2rem;
-    color: var(--cream);
-    line-height: 1.35;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--midnight);
     letter-spacing: -0.02em;
-    opacity: 0.9;
+    margin-top: 0.5rem;
 }
 
-.clients-stat-card {
+.clients-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.client-card {
+    background: white;
+    border-radius: 16px;
     padding: 2.5rem;
-    border-left: 1px solid rgba(0,0,0,0.08);
-    border-bottom: 1px solid rgba(0,0,0,0.06);
     text-decoration: none;
+    color: inherit;
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
-    transition: background 0.25s ease;
-    color: inherit;
+    gap: 0.5rem;
+    transition: all 0.35s ease;
+    border: 1px solid rgba(0,0,0,0.04);
 }
 
-.clients-stat-card:nth-child(5),
-.clients-stat-card:nth-child(6),
-.clients-stat-card:nth-child(7) {
-    border-bottom: none;
+.client-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
 }
 
-.clients-stat-card:hover {
-    background: rgba(0,0,0,0.03);
-}
-
-.clients-stat-name img {
-    max-width:35%;
-}
-
-.clients-stat-metric {
+.client-num {
     font-family: "DM Serif Display", serif;
-    font-size: 2.5rem;
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+}
+
+.client-name {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dark);
+    opacity: 0.5;
+}
+
+.client-metric {
+    font-family: "DM Serif Display", serif;
+    font-size: 2.8rem;
     color: var(--midnight);
     letter-spacing: -0.03em;
     line-height: 1.1;
 }
 
-.clients-stat-label {
-    font-size: 0.88rem;
+.client-label {
+    font-size: 0.9rem;
     color: var(--text-dark);
     opacity: 0.6;
+    line-height: 1.4;
 }
 
 /* ==========================================================================
@@ -1105,7 +1116,6 @@ footer a:hover {
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
 }
 
-/* Abstract geometric card images — editorial feel without real photos */
 .post-card-image {
     height: 200px;
     position: relative;
@@ -2161,10 +2171,6 @@ footer a:hover {
 
 @media (max-width: 768px) {
 
-    .clients-anchor {
-        justify-content: center;
-    }
-
     .section-label {
         display: none;
     }
@@ -2213,7 +2219,7 @@ footer a:hover {
     }
 
     .hero-proof {
-        flex-wrap: wrap;
+        grid-template-columns: repeat(3, 1fr);
         gap: 1.5rem;
     }
 
@@ -2230,15 +2236,14 @@ footer a:hover {
         display: none;
     }
 
-    .clients-grid-inner {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: auto;
+    /* Clients responsive */
+    .clients-section {
+        padding: 4rem 2rem;
     }
 
-    .clients-anchor {
-        grid-row: auto;
-        grid-column: 1 / -1;
-        padding: 2rem;
+    .clients-cards {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
     }
 
     .services,
