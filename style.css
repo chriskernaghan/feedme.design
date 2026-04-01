@@ -50,10 +50,11 @@ nav {
 }
 
 .logo {
-    font-family: "DM Serif Display", serif;
-    font-size: 1.8rem;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1.5rem;
+    font-weight: 700;
     color: var(--midnight);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.04em;
     text-decoration: none;
 }
 
