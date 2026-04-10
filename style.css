@@ -226,7 +226,7 @@ nav {
 .mobile-menu {
     display: none;
     position: fixed;
-    top: 80px;
+    top: 96px;
     left: 0;
     width: 100%;
     background: var(--cream);
