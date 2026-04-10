@@ -433,22 +433,22 @@ footer a:hover {
 }
 
 /* ==========================================================================
-   HOMEPAGE — HERO (Left-aligned with side proof)
+   HOMEPAGE — HERO V2 (Structured grid layout)
    ========================================================================== */
 
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 8rem 4rem 4rem;
+.hero-v2 {
+    padding: 10rem 4rem 0;
+    background: var(--cream);
     position: relative;
 }
 
-.hero-content {
-    max-width: 680px;
+.hero-v2-inner {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.hero-tag {
+/* Tag line */
+.hero-v2-tag {
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
@@ -457,13 +457,13 @@ footer a:hover {
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
     opacity: 0;
     animation: heroFadeUp 0.6s ease forwards;
     animation-delay: 0.15s;
 }
 
-.hero-tag::before {
+.hero-v2-tag::before {
     content: '';
     display: block;
     width: 2rem;
@@ -471,63 +471,89 @@ footer a:hover {
     background: var(--accent);
 }
 
-.hero h1 {
+/* Split: headline left, desc + CTA right */
+.hero-v2-top {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 5rem;
+    align-items: end;
+    padding-bottom: 3.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.hero-v2-headline {
     font-family: "DM Serif Display", serif;
-    font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+    font-size: clamp(2.8rem, 4.5vw, 4.25rem);
     line-height: 1.08;
-    font-weight: 400;
-    color: var(--midnight);
-    margin-bottom: 1.75rem;
     letter-spacing: -0.02em;
+    color: var(--midnight);
+    font-weight: 400;
     opacity: 0;
     animation: heroFadeUp 0.7s ease forwards;
     animation-delay: 0.3s;
 }
 
-.hero-accent {
+.hero-v2-headline .accent {
     color: var(--accent);
     font-style: italic;
 }
 
-.hero-sub {
-    font-size: 1.1rem;
-    line-height: 1.75;
-    color: var(--muted);
-    max-width: 520px;
-    margin-bottom: 2.5rem;
-    font-weight: 400;
+.hero-v2-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    padding-bottom: 0.4rem;
     opacity: 0;
     animation: heroFadeUp 0.7s ease forwards;
     animation-delay: 0.45s;
 }
 
-.hero-cta-group {
+.hero-v2-desc {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--muted);
+    font-weight: 400;
+    max-width: 480px;
+}
+
+.hero-v2-cta-row {
     display: flex;
     align-items: center;
     gap: 1.75rem;
-    opacity: 0;
-    animation: heroFadeUp 0.7s ease forwards;
-    animation-delay: 0.6s;
 }
 
-.hero-cta-primary {
+.hero-v2-cta-primary {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.95rem 2.2rem;
+    background: var(--accent);
+    color: white;
+    padding: 0.9rem 2rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.2);
 }
 
-.hero-cta-primary svg {
-    width: 16px;
-    height: 16px;
+.hero-v2-cta-primary:hover {
+    background: var(--accent-dim);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255, 107, 53, 0.3);
+}
+
+.hero-v2-cta-primary svg {
+    width: 15px;
+    height: 15px;
     transition: transform 0.2s ease;
 }
 
-.hero-cta-primary:hover svg {
+.hero-v2-cta-primary:hover svg {
     transform: translateX(3px);
 }
 
-.hero-cta-secondary {
+.hero-v2-cta-secondary {
     font-size: 0.9rem;
     font-weight: 500;
     color: var(--midnight);
@@ -536,7 +562,7 @@ footer a:hover {
     position: relative;
 }
 
-.hero-cta-secondary::after {
+.hero-v2-cta-secondary::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -548,60 +574,110 @@ footer a:hover {
     transition: opacity 0.2s ease;
 }
 
-.hero-cta-secondary:hover::after {
+.hero-v2-cta-secondary:hover::after {
     opacity: 1;
 }
 
-/* Hero proof — right side, vertical */
-.hero-proof-side {
-    position: absolute;
-    right: 4rem;
-    top: 50%;
-    transform: translateY(-50%);
+/* Stat grid — 4 columns with vertical dividers */
+.hero-v2-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid var(--border);
+    opacity: 0;
+    animation: heroFadeUp 0.7s ease forwards;
+    animation-delay: 0.6s;
+}
+
+.hero-v2-stat {
+    padding: 2.25rem 2rem;
+    border-right: 1px solid var(--border);
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
-    opacity: 0;
-    animation: fadeIn 1s ease forwards;
-    animation-delay: 0.9s;
+    gap: 0.4rem;
+    transition: background 0.3s ease;
 }
 
-.hero-proof-side-item {
-    text-align: right;
+.hero-v2-stat:last-child {
+    border-right: none;
 }
 
-.hero-proof-side-number {
-    font-family: "DM Serif Display", serif;
-    font-size: 2rem;
-    color: var(--midnight);
+.hero-v2-stat:hover {
+    background: rgba(0, 0, 0, 0.015);
+}
+
+.hero-v2-stat-emoji {
+    font-size: 1.15rem;
+    margin-bottom: 0.2rem;
     line-height: 1;
+}
+
+.hero-v2-stat-value {
+    font-family: "DM Serif Display", serif;
+    font-size: 1.65rem;
     letter-spacing: -0.02em;
-    display: block;
+    color: var(--midnight);
+    line-height: 1.1;
 }
 
-.hero-proof-side-label {
-    font-size: 0.65rem;
+.hero-v2-stat-label {
+    font-size: 0.68rem;
     font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
     color: var(--muted);
-    margin-top: 0.35rem;
-    display: block;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
-/* Respect reduced motion */
+/* Trust / logo strip */
+.hero-v2-trust {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    padding: 1.75rem 0;
+    opacity: 0;
+    animation: heroFadeUp 0.7s ease forwards;
+    animation-delay: 0.75s;
+}
+
+.hero-v2-trust-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.hero-v2-trust-logos {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.hero-v2-trust-logo {
+    font-family: "DM Serif Display", serif;
+    font-size: 1rem;
+    color: var(--midnight);
+    opacity: 0.35;
+    white-space: nowrap;
+    transition: opacity 0.3s ease;
+    letter-spacing: -0.01em;
+}
+
+.hero-v2-trust-logo:hover {
+    opacity: 0.65;
+}
+
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-    .hero-tag,
-    .hero h1,
-    .hero-sub,
-    .hero-cta-group,
-    .hero-proof-side {
+    .hero-v2-tag,
+    .hero-v2-headline,
+    .hero-v2-right,
+    .hero-v2-stats,
+    .hero-v2-trust {
         opacity: 1;
         animation: none;
         transform: none;
-    }
-    .hero-proof-side {
-        transform: translateY(-50%);
     }
 }
 
@@ -2215,9 +2291,23 @@ footer a:hover {
    ========================================================================== */
 
 @media (max-width: 1024px) {
-    /* Hero */
-    .hero-proof-side {
-        display: none;
+    /* Hero V2 */
+    .hero-v2-top {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .hero-v2-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-v2-stat:nth-child(2) {
+        border-right: none;
+    }
+
+    .hero-v2-stat:nth-child(1),
+    .hero-v2-stat:nth-child(2) {
+        border-bottom: 1px solid var(--border);
     }
 
     /* Clients */
@@ -2282,33 +2372,39 @@ footer a:hover {
         display: flex;
     }
 
-    /* Hero responsive */
-    .hero {
-        padding: 8rem 2rem 3rem;
-        min-height: auto;
+    /* Hero V2 responsive */
+    .hero-v2 {
+        padding: 8rem 2rem 0;
     }
 
-    .hero h1 {
+    .hero-v2-headline {
         font-size: 2.4rem;
     }
 
-    .hero-sub {
-        font-size: 1rem;
-    }
-
-    .hero-cta-group {
+    .hero-v2-cta-row {
         flex-direction: column;
         align-items: flex-start;
         gap: 1rem;
     }
 
-    .hero-cta-primary {
+    .hero-v2-cta-primary {
         width: 100%;
         justify-content: center;
     }
 
-    .hero-proof-side {
-        display: none;
+    .hero-v2-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .hero-v2-trust {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: flex-start;
+    }
+
+    .hero-v2-trust-logos {
+        flex-wrap: wrap;
+        gap: 1.5rem;
     }
 
     .cta-button {
