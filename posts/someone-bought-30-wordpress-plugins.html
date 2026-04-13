@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Someone Bought 30 WordPress Plugins and Planted a Backdoor in All of Them — feedme.design</title>
+    <meta name="description" content="A massive WordPress supply chain attack compromised 30+ plugins. Here's what happened, what it means for your business, and what you should do about it.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Epilogue:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Epilogue:wght@300;400;500;600;700&display=swap"></noscript>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <div id="nav-placeholder"></div>
+
+    <section class="post-hero">
+        <span class="post-tag">WordPress Security</span>
+        <h1>Someone Bought 30 WordPress Plugins and Planted a Backdoor in All of Them</h1>
+        <div class="post-meta">
+            <span>Chris Kernaghan</span>
+            <span>13 Apr 2026</span>
+            <span>7 min read</span>
+        </div>
+    </section>
+
+    <article class="post-body">
+
+        <p>Last week, one of the biggest WordPress security incidents in years came to light. Someone purchased a portfolio of over 30 WordPress plugins — legitimate, well-established plugins that had been around for nearly a decade — and quietly planted malicious code in every single one of them.</p>
+
+        <p>This isn't a theoretical risk. It affected hundreds of thousands of live websites. And if your site runs WordPress, it's worth understanding what happened and what to do about it.</p>
+
+        <h2>What actually happened</h2>
+
+        <p>A company called Essential Plugin (formerly WP Online Support) had been building free and premium WordPress plugins since around 2015. They were a legitimate development team based in India, and their plugins covered all the usual stuff — sliders, testimonial widgets, countdown timers, image galleries, FAQ sections. Bread-and-butter WordPress tools that thousands of small business sites rely on.</p>
+
+        <p>By late 2024, the business was struggling. Revenue had dropped significantly, and the original owner listed the entire portfolio for sale on Flippa — a well-known marketplace for buying and selling online businesses.</p>
+
+        <p>A buyer going by "Kris" purchased everything for a six-figure sum. And here's where it goes wrong.</p>
+
+        <p>Within months of taking over, the new owner's very first code update to these plugins included a hidden backdoor — a piece of code designed to sit quietly and wait. It did nothing for eight months. Then, in early April 2026, it activated.</p>
+
+        <h2>What the malicious code did</h2>
+
+        <p>Once activated, the backdoor reached out to a server controlled by the attacker, downloaded additional malicious code, and injected it deep into the affected websites. Specifically, it targeted a critical WordPress file called <code>wp-config.php</code> — one of the core files that makes your site work.</p>
+
+        <p>The injected code was clever. It generated hidden spam content — fake pages, dodgy links, redirects — but only showed them to Google's crawlers. If you visited your own website, everything looked completely normal. You'd have no idea anything was wrong. But Google was seeing an entirely different version of your site, stuffed with spam links that could tank your search rankings and damage your reputation.</p>
+
+        <p>It's the digital equivalent of someone putting up fake billboards around your shop that only certain people can see.</p>
+
+        <h2>How big was the damage?</h2>
+
+        <p>On 7 April 2026, the WordPress.org Plugins Team permanently shut down all 31 plugins from this developer in a single day. That's an extraordinary response — it almost never happens at that scale. Here are just some of the plugins affected:</p>
+
+        <ul>
+            <li>Countdown Timer Ultimate</li>
+            <li>Popup Anything on Click</li>
+            <li>WP Testimonial with Widget</li>
+            <li>WP Team Showcase and Slider</li>
+            <li>Blog Designer for Post and Widget</li>
+            <li>WP Logo Showcase Responsive Slider</li>
+            <li>Timeline and History Slider</li>
+            <li>Hero Banner Ultimate</li>
+            <li>Portfolio and Projects</li>
+            <li>Post Grid and Filter Ultimate</li>
+        </ul>
+
+        <p>There were over 30 in total. If any of those names look familiar, keep reading.</p>
+
+        <h2>Why this matters for your business</h2>
+
+        <p>This attack is worth paying attention to because it exploits something most business owners would never think to worry about: <strong>what happens when a trusted plugin changes hands.</strong></p>
+
+        <p>You installed a plugin three years ago. It worked fine. It had thousands of reviews. The developer seemed reputable. You moved on and forgot about it — because why wouldn't you?</p>
+
+        <p>But behind the scenes, that developer sold up. The new owner inherited full access to push code updates directly to every site running those plugins. And WordPress has no mechanism to flag that a plugin has changed ownership. No notification. No additional review. The update just lands on your site like any other.</p>
+
+        <p>This isn't the first time it's happened, either. Back in 2017, a buyer purchased a plugin called Display Widgets — which had around 200,000 active installations — and injected payday loan spam using the same playbook. That attacker went on to compromise at least nine plugins the same way.</p>
+
+        <p>The Essential Plugin case is the same approach at a much larger scale.</p>
+
+        <h2>What should you do right now?</h2>
+
+        <p>If you manage a WordPress site — or someone manages one for you — here's a practical checklist:</p>
+
+        <h3>1. Check if any of these plugins are on your site</h3>
+
+        <p>Log into your WordPress dashboard, go to <strong>Plugins</strong>, and look through the list. If you see anything from the list above — or any plugin by "Essential Plugin" or the older "WP Online Support" brand — it needs attention immediately. Either remove it entirely if you're not actively using it, or replace it with an alternative.</p>
+
+        <h3>2. Ask your developer to check wp-config.php</h3>
+
+        <p>This is the file the malware targeted. If your site was affected, the malicious code was appended to a specific line in this file. It adds about 6KB of extra code, so if the file is noticeably larger than expected, the site was actively compromised and needs a proper cleanup — not just a plugin removal.</p>
+
+        <h3>3. Update everything</h3>
+
+        <p>WordPress itself pushed a forced update to neutralise the phone-home mechanism in the affected plugins. But that update didn't clean up the damage already done. Make sure your WordPress core, all plugins, and your theme are fully up to date.</p>
+
+        <h3>4. Run a security scan</h3>
+
+        <p>If you have a security plugin like Wordfence or Sucuri installed, run a full scan now. If you don't have one, this is a good time to add one. If your site was compromised, a scan will flag the modified files.</p>
+
+        <h3>5. Check Google Search Console</h3>
+
+        <p>Since the spam was specifically targeted at Google's crawlers, check your Google Search Console account for any unusual indexing — pages you didn't create, unexpected spikes in indexed URLs, or manual action warnings. If you don't have Search Console set up, that's another thing worth sorting.</p>
+
+        <h2>The bigger picture</h2>
+
+        <p>The uncomfortable truth here is that WordPress's plugin ecosystem relies heavily on trust, and that trust has some structural gaps. There's no formal review process when a plugin changes ownership. There's no notification to the hundreds of thousands of site owners who depend on that plugin. The original developer's reputation carries over to the new owner by default.</p>
+
+        <p>For individual business owners, the practical takeaway is this: <strong>plugins need ongoing attention, not just installation.</strong> Every plugin on your site is a potential doorway. The more you have, the more doors there are to watch. Keeping your plugin count lean, removing anything you're not actively using, and making sure someone is regularly reviewing what's installed — that's the best defence against this kind of attack.</p>
+
+        <p>It's also a strong argument for having someone actively managing your WordPress site rather than leaving it on autopilot. A maintenance plan that includes regular plugin audits, security monitoring, and update management would have caught this — or at least significantly reduced the window of exposure.</p>
+
+        <div class="callout">
+            <strong>Not sure if your site is affected?</strong>
+            <p>If you'd like us to take a quick look at your WordPress site and check whether any of these compromised plugins are installed, get in touch. No charge, no obligation — it takes five minutes and it's worth the peace of mind.</p>
+        </div>
+
+        <p><em>This post is based on the detailed technical investigation published by <a href="https://anchor.host/someone-bought-30-wordpress-plugins-and-planted-a-backdoor-in-all-of-them/" target="_blank" rel="noopener">Austin Ginder at Anchor Hosting</a>, who discovered and documented the attack across his managed hosting fleet. If you're technically minded, the full write-up is well worth a read.</em></p>
+
+    </article>
+
+    <section class="post-cta">
+        <div class="post-cta-inner">
+            <h3>Worried about your WordPress site?</h3>
+            <p>We'll audit your plugins, check for vulnerabilities, and make sure everything's locked down.</p>
+            <a href="/#contact" class="cta-button">Get Your Free Audit</a>
+        </div>
+    </section>
+
+    <div class="post-nav">
+        <a href="/posts/does-your-side-hustle-need-a-website.html">← Previous post</a>
+        <a href="/blog.html">All posts</a>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="/nav.js"></script>
+    <script src="/footer.js"></script>
+
+</body>
+</html>
