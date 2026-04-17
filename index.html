@@ -366,5 +366,36 @@
     <script src="/nav.js"></script>
     <script src="/footer.js"></script>
 
+    <script>
+(function() {
+    const strip = document.querySelector('.marquee-strip');
+    const track = document.querySelector('.marquee-track');
+    if (!strip || !track) return;
+
+    let speed = 1;
+    let target = 1;
+    let raf;
+
+    function tick() {
+        speed += (target - speed) * 0.03;
+        if (Math.abs(speed - target) < 0.001) speed = target;
+        track.style.animationDuration = (45 / speed) + 's';
+        if (speed !== target) raf = requestAnimationFrame(tick);
+    }
+
+    strip.addEventListener('mouseenter', function() {
+        target = 0.01;
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(tick);
+    });
+
+    strip.addEventListener('mouseleave', function() {
+        target = 1;
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(tick);
+    });
+})();
+</script>
+
 </body>
 </html>
