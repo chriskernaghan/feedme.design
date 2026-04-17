@@ -24,7 +24,7 @@
 
 body {
     font-family: "Epilogue", sans-serif;
-    background: var(--cream);
+    background: var(--snow);
     color: var(--text-dark);
     overflow-x: hidden;
     line-height: 1.6;
@@ -43,15 +43,15 @@ nav {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 1.5rem 4rem;
+    padding: 1.25rem 4rem;
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
     z-index: 1000;
-    background: rgba(245, 241, 232, 0.9);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     transition: padding 0.3s ease;
 }
 
@@ -111,14 +111,12 @@ nav {
     font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.2);
     white-space: nowrap;
 }
 
 .nav-cta:hover {
     background: var(--accent-dim);
     transform: translateY(-1px);
-    box-shadow: 0 6px 18px rgba(255, 107, 53, 0.3);
 }
 
 .nav-cta::after {
@@ -229,8 +227,8 @@ nav {
     top: 80px;
     left: 0;
     width: 100%;
-    background: var(--cream);
-    border-bottom: 1px solid var(--sand);
+    background: var(--snow);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     flex-direction: column;
     z-index: 999;
     box-shadow: 0 10px 30px rgba(0,0,0,0.08);
@@ -247,7 +245,7 @@ nav {
     font-weight: 500;
     font-size: 1.1rem;
     padding: 1.1rem 2rem;
-    border-bottom: 1px solid var(--sand);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     transition: color 0.3s ease, background 0.3s ease;
 }
 
@@ -257,7 +255,7 @@ nav {
 
 .mobile-menu a:hover {
     color: var(--accent);
-    background: var(--sand);
+    background: rgba(0, 0, 0, 0.02);
 }
 
 .mobile-menu .dropdown-toggle {
@@ -402,12 +400,11 @@ nav {
     font-size: 0.95rem;
     border-radius: 50px;
     transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 8px 24px rgba(255, 107, 53, 0.28);
 }
 
 .cta-button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 14px 36px rgba(255, 107, 53, 0.38);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.1);
     background: var(--accent-dim);
 }
 
@@ -438,7 +435,7 @@ footer a:hover {
 
 .hero-v2 {
     padding: 10rem 4rem;
-    background: var(--cream);
+    background: var(--snow);
     position: relative;
     overflow: hidden;
 }
@@ -535,13 +532,12 @@ footer a:hover {
     font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.2);
 }
 
 .hero-v2-cta-primary:hover {
     background: var(--accent-dim);
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(255, 107, 53, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
 .hero-v2-cta-primary svg {
@@ -756,7 +752,7 @@ footer a:hover {
 }
 
 .client-card-v2 {
-    background: var(--cream);
+    background: var(--snow);
     padding: 2.75rem 2.25rem;
     display: flex;
     flex-direction: column;
@@ -768,7 +764,7 @@ footer a:hover {
 }
 
 .client-card-v2:hover {
-    background: var(--snow);
+    background: rgba(0, 0, 0, 0.015);
 }
 
 .client-card-name {
@@ -1169,13 +1165,11 @@ footer a:hover {
 .pricing-cta:hover {
     background: var(--accent);
     color: white;
-    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
 }
 
 .pricing-card.featured .pricing-cta {
     background: var(--accent);
     color: white;
-    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
 }
 
 .pricing-card.featured .pricing-cta:hover {
@@ -1280,7 +1274,7 @@ footer a:hover {
 }
 
 .post-card {
-    background: var(--cream);
+    background: var(--snow);
     border-radius: 16px;
     text-decoration: none;
     color: inherit;
@@ -1506,7 +1500,7 @@ footer a:hover {
 
 .blog-hero {
     padding: 12rem 4rem 6rem;
-    background: var(--cream);
+    background: var(--snow);
     position: relative;
     overflow: hidden;
 }
@@ -1539,8 +1533,8 @@ footer a:hover {
 
 .filter-bar {
     padding: 2rem 4rem;
-    background: var(--cream);
-    border-bottom: 1px solid var(--sand);
+    background: var(--snow);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
@@ -1553,7 +1547,7 @@ footer a:hover {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 2px solid var(--sand);
+    border: 2px solid rgba(0, 0, 0, 0.1);
     background: transparent;
     color: var(--text-dark);
     font-family: "Epilogue", sans-serif;
@@ -1578,14 +1572,14 @@ footer a:hover {
     gap: 2rem;
     align-items: start;
     padding: 3rem 0;
-    border-bottom: 1px solid var(--sand);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     text-decoration: none;
     color: inherit;
     transition: all 0.3s ease;
 }
 
 .post-row:first-child {
-    border-top: 1px solid var(--sand);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .post-row:hover .post-row-title {
@@ -1647,7 +1641,7 @@ footer a:hover {
 
 .post-hero {
     padding: 12rem 4rem 5rem;
-    background: var(--cream);
+    background: var(--snow);
     max-width: 800px;
     margin: 0 auto;
     animation: fadeInUp 0.8s ease-out backwards;
@@ -1781,7 +1775,7 @@ footer a:hover {
     max-width: 800px;
     margin: 0 auto;
     padding: 3rem 4rem;
-    border-top: 1px solid var(--sand);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -2368,7 +2362,7 @@ footer a:hover {
     }
 
     nav {
-        padding: 1.5rem 2rem;
+        padding: 1.25rem 2rem;
         display: flex;
         justify-content: space-between;
     }
