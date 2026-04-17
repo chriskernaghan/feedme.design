@@ -299,6 +299,10 @@ nav {
     to   { transform: translateX(-50%); }
 }
 
+.marquee-strip:hover .marquee-track {
+    animation-play-state: paused;
+}
+
 @keyframes heroFadeUp {
     from { opacity: 0; transform: translateY(16px); }
     to   { opacity: 1; transform: translateY(0); }
