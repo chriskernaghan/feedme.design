@@ -705,6 +705,10 @@ footer a:hover {
     border-top: 1px solid rgba(255,255,255,0.05);
 }
 
+.marquee-strip a {
+    text-decoration:none;
+}
+
 .marquee-track {
     display: flex;
     align-items: center;
