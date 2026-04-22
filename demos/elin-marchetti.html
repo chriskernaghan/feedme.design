@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elin Marchetti — Contemporary Painter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage: #c7d3c4;
+    --sage-deep: #8ea28a;
+    --blue: #b8c9d6;
+    --blue-deep: #7a93a6;
+    --lavender: #c9bfd4;
+    --lavender-deep: #9e8fb0;
+    --cream: #f6f3ec;
+    --paper: #fbfaf5;
+    --ink: #2c3440;
+    --ink-soft: #4a5564;
+    --muted: #8a8f9a;
+    --line: rgba(44, 52, 64, 0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Subtle paper grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(44,52,64,0.015) 1px, transparent 0);
+    background-size: 3px 3px;
+    mix-blend-mode: multiply;
+  }
+
+  .wrap {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    padding: 28px 40px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    z-index: 100;
+    background: rgba(251, 250, 245, 0.72);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.4s ease;
+  }
+  nav.scrolled { border-bottom-color: var(--line); }
+
+  .mark {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    font-style: italic;
+  }
+  .mark span { font-style: normal; }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 400;
+    position: relative;
+    transition: color 0.3s;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: -4px;
+    width: 0; height: 1px;
+    background: var(--ink);
+    transition: width 0.4s ease;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border: 1px solid var(--ink);
+    padding: 10px 20px;
+    border-radius: 999px;
+    transition: all 0.3s;
+  }
+  .nav-cta:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    padding: 180px 0 120px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-shape-1, .hero-shape-2, .hero-shape-3 {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.55;
+    z-index: 0;
+  }
+  .hero-shape-1 {
+    width: 520px; height: 520px;
+    background: var(--sage);
+    top: -100px; right: -120px;
+    animation: float 18s ease-in-out infinite;
+  }
+  .hero-shape-2 {
+    width: 420px; height: 420px;
+    background: var(--lavender);
+    bottom: -80px; left: 10%;
+    animation: float 22s ease-in-out infinite reverse;
+  }
+  .hero-shape-3 {
+    width: 360px; height: 360px;
+    background: var(--blue);
+    top: 40%; right: 25%;
+    opacity: 0.4;
+    animation: float 26s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(40px, -30px) scale(1.08); }
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-text .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.1s forwards;
+  }
+  .hero-text .eyebrow::before {
+    content: '';
+    width: 40px; height: 1px;
+    background: var(--muted);
+  }
+
+  .hero-text h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(48px, 6.2vw, 92px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 36px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.25s forwards;
+  }
+  .hero-text h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--blue-deep);
+  }
+
+  .hero-text p {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    max-width: 440px;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.4s forwards;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 48px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.55s forwards;
+  }
+  .hero-meta div span {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .hero-meta div strong {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 17px;
+    color: var(--ink);
+  }
+
+  /* Hero "canvas" artwork */
+  .hero-canvas {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    opacity: 0;
+    animation: fadeIn 1.2s ease 0.3s forwards;
+  }
+  .canvas-frame {
+    position: absolute;
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow:
+      0 30px 60px -20px rgba(44, 52, 64, 0.18),
+      0 10px 20px -10px rgba(44, 52, 64, 0.08);
+  }
+  .canvas-a {
+    inset: 0 20% 20% 0;
+    background:
+      radial-gradient(ellipse at 30% 20%, var(--lavender) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 70%, var(--sage) 0%, transparent 50%),
+      linear-gradient(160deg, var(--blue) 0%, var(--cream) 100%);
+  }
+  .canvas-b {
+    inset: 25% 0 0 30%;
+    background:
+      radial-gradient(ellipse at 70% 30%, var(--sage-deep) 0%, transparent 40%),
+      radial-gradient(ellipse at 20% 80%, var(--lavender-deep) 0%, transparent 50%),
+      linear-gradient(200deg, var(--cream) 0%, var(--blue) 60%, var(--lavender) 100%);
+  }
+  .canvas-label {
+    position: absolute;
+    bottom: -28px; left: 0;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* ===== SECTION STRUCTURE ===== */
+  section { padding: 140px 0; position: relative; }
+  .section-head {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 60px;
+    align-items: end;
+    margin-bottom: 80px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--line);
+  }
+  .section-num {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 22px;
+    color: var(--muted);
+  }
+  .section-head h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+  .section-head h2 em {
+    font-style: italic;
+    color: var(--sage-deep);
+  }
+
+  /* ===== WORK ===== */
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 32px;
+  }
+
+  .work-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .work-item:hover { transform: translateY(-6px); }
+
+  .work-item .img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .work-item:hover .img { transform: scale(1.04); }
+
+  .work-item .meta {
+    padding: 20px 4px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .work-item .meta h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--ink);
+  }
+  .work-item .meta span {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .w1 { grid-column: 1 / 6; }
+  .w1 .img { background: linear-gradient(145deg, var(--sage) 0%, var(--blue) 60%, var(--cream) 100%); position: relative; }
+  .w1 .img::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 30% 40%, rgba(158,143,176,0.5) 0%, transparent 40%),
+      radial-gradient(circle at 70% 70%, rgba(142,162,138,0.4) 0%, transparent 45%);
+  }
+
+  .w2 { grid-column: 6 / 10; margin-top: 80px; }
+  .w2 .img { background: linear-gradient(190deg, var(--cream) 0%, var(--lavender) 70%); aspect-ratio: 3/4; position: relative; }
+  .w2 .img::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 60%, rgba(122,147,166,0.4) 0%, transparent 60%);
+  }
+
+  .w3 { grid-column: 10 / 13; }
+  .w3 .img { background: linear-gradient(45deg, var(--blue-deep) 0%, var(--blue) 50%, var(--cream) 100%); aspect-ratio: 3/4; position: relative; }
+  .w3 .img::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 80% 20%, rgba(199,211,196,0.7) 0%, transparent 50%);
+  }
+
+  .w4 { grid-column: 1 / 4; margin-top: -40px; }
+  .w4 .img { background: linear-gradient(200deg, var(--lavender) 0%, var(--sage) 100%); aspect-ratio: 3/4; position: relative; }
+  .w4 .img::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 40% 60%, rgba(246,243,236,0.6) 0%, transparent 50%);
+  }
+
+  .w5 { grid-column: 4 / 9; }
+  .w5 .img { background: linear-gradient(160deg, var(--cream) 0%, var(--blue) 50%, var(--lavender-deep) 100%); position: relative; }
+  .w5 .img::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 30%, rgba(142,162,138,0.5) 0%, transparent 45%),
+      radial-gradient(ellipse at 75% 75%, rgba(201,191,212,0.6) 0%, transparent 50%);
+  }
+
+  .w6 { grid-column: 9 / 13; margin-top: 40px; }
+  .w6 .img { background: linear-gradient(230deg, var(--sage-deep) 0%, var(--sage) 40%, var(--cream) 100%); aspect-ratio: 4/5; position: relative; }
+  .w6 .img::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 60% 40%, rgba(184,201,214,0.7) 0%, transparent 55%);
+  }
+
+  /* ===== ABOUT ===== */
+  .about {
+    background: linear-gradient(180deg, var(--paper) 0%, var(--cream) 100%);
+  }
+  .about-inner {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 100px;
+    align-items: start;
+  }
+  .about-portrait {
+    aspect-ratio: 4/5;
+    background:
+      radial-gradient(ellipse at 50% 30%, var(--lavender) 0%, transparent 55%),
+      radial-gradient(ellipse at 30% 80%, var(--sage) 0%, transparent 60%),
+      linear-gradient(160deg, var(--blue) 0%, var(--cream) 100%);
+    border-radius: 2px;
+    position: sticky;
+    top: 120px;
+    box-shadow: 0 30px 60px -20px rgba(44, 52, 64, 0.15);
+  }
+  .about-text p {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 1.5;
+    color: var(--ink);
+    margin-bottom: 32px;
+    letter-spacing: -0.01em;
+  }
+  .about-text p:first-child::first-letter {
+    font-size: 72px;
+    float: left;
+    line-height: 0.85;
+    margin: 8px 12px 0 0;
+    color: var(--blue-deep);
+    font-style: italic;
+  }
+  .about-text p.smaller {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+  }
+
+  /* ===== EXHIBITIONS ===== */
+  .ex-list { list-style: none; }
+  .ex-row {
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr auto;
+    gap: 40px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: center;
+    transition: padding 0.4s ease;
+  }
+  .ex-row:hover { padding-left: 20px; }
+  .ex-row:first-child { border-top: 1px solid var(--line); }
+
+  .ex-year {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--muted);
+  }
+  .ex-title {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .ex-venue {
+    font-size: 14px;
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+  }
+  .ex-type {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 6px 14px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+  }
+  .ex-type.solo { color: var(--lavender-deep); border-color: var(--lavender); }
+  .ex-type.group { color: var(--sage-deep); border-color: var(--sage); }
+  .ex-type.fair { color: var(--blue-deep); border-color: var(--blue); }
+
+  /* ===== CONTACT ===== */
+  .contact {
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-shape {
+    position: absolute;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--blue) 0%, transparent 70%);
+    opacity: 0.4;
+    filter: blur(60px);
+    top: -200px; right: -200px;
+  }
+  .contact-inner {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .contact h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(48px, 6vw, 80px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin-bottom: 40px;
+  }
+  .contact h2 em { font-style: italic; color: var(--lavender-deep); }
+
+  .contact-email {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: clamp(28px, 4vw, 44px);
+    color: var(--ink);
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    margin-bottom: 60px;
+    padding-bottom: 8px;
+  }
+  .contact-email::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 100%; height: 1px;
+    background: var(--ink);
+    transform: scaleX(1);
+    transform-origin: right;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .contact-email:hover::after {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .contact-meta {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    padding-top: 60px;
+    border-top: 1px solid var(--line);
+  }
+  .contact-meta div span {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .contact-meta div a,
+  .contact-meta div p {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    color: var(--ink);
+    text-decoration: none;
+    font-style: italic;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    padding: 40px 0;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .wrap { padding: 0 24px; }
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    .hero-inner { grid-template-columns: 1fr; gap: 60px; }
+    .hero { padding: 140px 0 80px; }
+    .about-inner { grid-template-columns: 1fr; gap: 60px; }
+    .about-portrait { position: relative; top: 0; max-width: 400px; }
+    .section-head { grid-template-columns: 1fr; gap: 20px; }
+    section { padding: 90px 0; }
+    .work-grid { gap: 20px; }
+    .w1, .w2, .w3, .w4, .w5, .w6 { grid-column: 1 / 13; margin-top: 0; }
+    .ex-row {
+      grid-template-columns: 80px 1fr;
+      gap: 20px;
+    }
+    .ex-venue, .ex-type { grid-column: 2; }
+    .contact-meta { flex-direction: column; gap: 32px; }
+    .hero-meta { gap: 28px; flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="mark"><em>Elin</em> <span>Marchetti</span></a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#exhibitions">Exhibitions</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get in touch</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-shape-1"></div>
+  <div class="hero-shape-2"></div>
+  <div class="hero-shape-3"></div>
+  <div class="wrap">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="eyebrow">Contemporary painter · est. 2014</div>
+        <h1>Painting the <em>quiet</em><br>between things.</h1>
+        <p>Elin Marchetti is an abstract painter based in Edinburgh, working in oil and soft pigment. Her work has been shown across the UK and Europe since 2016.</p>
+        <div class="hero-meta">
+          <div>
+            <span>Based in</span>
+            <strong>Edinburgh, UK</strong>
+          </div>
+          <div>
+            <span>Represented by</span>
+            <strong>Fenwick &amp; Hall</strong>
+          </div>
+          <div>
+            <span>Currently</span>
+            <strong>Open for commissions</strong>
+          </div>
+        </div>
+      </div>
+      <div class="hero-canvas">
+        <div class="canvas-frame canvas-a"></div>
+        <div class="canvas-frame canvas-b"></div>
+        <div class="canvas-label">Untitled (Study III), 2025 — oil on linen</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- WORK -->
+<section id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">— 01</div>
+      <h2>Selected <em>works</em></h2>
+    </div>
+    <div class="work-grid">
+      <div class="work-item w1">
+        <div class="img"></div>
+        <div class="meta"><h3>Long Afternoon</h3><span>2025 · Oil on linen</span></div>
+      </div>
+      <div class="work-item w2">
+        <div class="img"></div>
+        <div class="meta"><h3>Tidepool</h3><span>2024 · Oil &amp; pigment</span></div>
+      </div>
+      <div class="work-item w3">
+        <div class="img"></div>
+        <div class="meta"><h3>Blue Hour</h3><span>2024 · Oil on canvas</span></div>
+      </div>
+      <div class="work-item w4">
+        <div class="img"></div>
+        <div class="meta"><h3>Soft Ground</h3><span>2023 · Pigment on paper</span></div>
+      </div>
+      <div class="work-item w5">
+        <div class="img"></div>
+        <div class="meta"><h3>Field Study No. 4</h3><span>2023 · Oil on linen</span></div>
+      </div>
+      <div class="work-item w6">
+        <div class="img"></div>
+        <div class="meta"><h3>Quiet Room</h3><span>2022 · Oil on board</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">— 02</div>
+      <h2>On the <em>practice</em></h2>
+    </div>
+    <div class="about-inner">
+      <div class="about-portrait"></div>
+      <div class="about-text">
+        <p>Elin's paintings begin in silence. A long look at a window. The pause between two pieces of music. The space a room holds after someone has left it.</p>
+        <p>Working primarily in oil, she builds her canvases in thin, patient layers — letting each wash settle before the next, so that colour seems to rise from within rather than sit on the surface. The work resists narrative. It asks, instead, to be sat with.</p>
+        <p class="smaller">Marchetti studied Fine Art at Edinburgh College of Art (MFA, 2014) and has exhibited at Ingleby Gallery, the Royal Scottish Academy, and in group shows across Oslo, Copenhagen, and Lisbon. Her work is held in private collections in the UK, Norway, and the United States.</p>
+        <p class="smaller">She lives and works in a converted printworks in Leith.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXHIBITIONS -->
+<section id="exhibitions">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">— 03</div>
+      <h2>Selected <em>exhibitions</em></h2>
+    </div>
+    <ul class="ex-list">
+      <li class="ex-row">
+        <span class="ex-year">2025</span>
+        <span class="ex-title">Long Afternoon</span>
+        <span class="ex-venue">Fenwick &amp; Hall, London</span>
+        <span class="ex-type solo">Solo</span>
+      </li>
+      <li class="ex-row">
+        <span class="ex-year">2025</span>
+        <span class="ex-title">Quiet Measures</span>
+        <span class="ex-venue">Galleri Format, Oslo</span>
+        <span class="ex-type group">Group</span>
+      </li>
+      <li class="ex-row">
+        <span class="ex-year">2024</span>
+        <span class="ex-title">Minor Weather</span>
+        <span class="ex-venue">Ingleby Gallery, Edinburgh</span>
+        <span class="ex-type solo">Solo</span>
+      </li>
+      <li class="ex-row">
+        <span class="ex-year">2024</span>
+        <span class="ex-title">Art Rotterdam</span>
+        <span class="ex-venue">Van Nelle Fabriek, Rotterdam</span>
+        <span class="ex-type fair">Fair</span>
+      </li>
+      <li class="ex-row">
+        <span class="ex-year">2023</span>
+        <span class="ex-title">Between Rooms</span>
+        <span class="ex-venue">Kunsthall 3,14, Bergen</span>
+        <span class="ex-type group">Group</span>
+      </li>
+      <li class="ex-row">
+        <span class="ex-year">2022</span>
+        <span class="ex-title">Soft Ground</span>
+        <span class="ex-venue">Arusha Gallery, Edinburgh</span>
+        <span class="ex-type solo">Solo</span>
+      </li>
+      <li class="ex-row">
+        <span class="ex-year">2021</span>
+        <span class="ex-title">RSA New Contemporaries</span>
+        <span class="ex-venue">Royal Scottish Academy, Edinburgh</span>
+        <span class="ex-type group">Group</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="contact-shape"></div>
+  <div class="wrap">
+    <div class="contact-inner">
+      <h2>For enquiries, commissions<br>&amp; <em>studio visits</em>.</h2>
+      <a href="mailto:studio@elinmarchetti.com" class="contact-email">studio@elinmarchetti.com</a>
+      <div class="contact-meta">
+        <div>
+          <span>Representation</span>
+          <p>Fenwick &amp; Hall, London</p>
+        </div>
+        <div>
+          <span>Studio</span>
+          <p>Leith, Edinburgh</p>
+        </div>
+        <div>
+          <span>Instagram</span>
+          <a href="#">@elin.marchetti</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; width:100%;">
+    <span>© Elin Marchetti, 2026</span>
+    <span>Site by feedme.design</span>
+  </div>
+</footer>
+
+<script>
+  // Nav border on scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.work-item, .ex-row, .about-portrait, .about-text > *').forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = `opacity 0.9s ease ${i * 0.05}s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.05}s`;
+    io.observe(el);
+  });
+</script>
+
+</body>
+</html>
