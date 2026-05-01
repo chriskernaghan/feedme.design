@@ -47,6 +47,21 @@
             <a href="#clients" class="hero-v2-cta-secondary">See our work</a>
         </div>
     </div>
+
+    <!-- Terminal status feed -->
+    <div class="hero-terminal" aria-hidden="true">
+        <div class="hero-terminal-bar">
+            <div class="hero-terminal-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <div class="hero-terminal-status">
+                <span class="hero-terminal-pulse"></span>
+                <span class="hero-terminal-status-text">All systems operational</span>
+            </div>
+            <div class="hero-terminal-clock" id="hero-terminal-clock">--:--:--</div>
+        </div>
+        <div class="hero-terminal-feed" id="hero-terminal-feed"></div>
+    </div>
 </div>
         </div>
     </section>
@@ -452,6 +467,108 @@
     strip.addEventListener('mouseleave', function() { target = 1; });
 
     requestAnimationFrame(tick);
+})();
+</script>
+
+<script>
+(function() {
+    const feed = document.getElementById('hero-terminal-feed');
+    const clock = document.getElementById('hero-terminal-clock');
+    if (!feed || !clock) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const sites = [
+        'acme-co.com',
+        'northern-firm.co.uk',
+        'studio-portfolio.com',
+        'apex-agency.co.uk',
+        'meadow-cafe.com'
+    ];
+
+    const events = [
+        { type: 'backup',   verb: 'Backup',           detail: () => `${(Math.floor(Math.random() * 400) + 120)}MB`, label: 'BACKUP' },
+        { type: 'plugin',   verb: 'Plugins updated',  detail: () => `${Math.floor(Math.random() * 6) + 2} packages`, label: 'UPDATE' },
+        { type: 'uptime',   verb: 'Uptime check',     detail: () => `${(Math.random() * 80 + 40).toFixed(0)}ms`, label: 'PING' },
+        { type: 'ssl',      verb: 'SSL renewed',      detail: () => `valid 90 days`, label: 'SSL' },
+        { type: 'security', verb: 'Security scan',    detail: () => `0 threats`, label: 'SCAN' },
+        { type: 'core',     verb: 'WP core updated',  detail: () => `6.7.2 → 6.7.3`, label: 'CORE' }
+    ];
+
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+    function updateClock() {
+        const d = new Date();
+        clock.textContent = pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    function timestamp() {
+        const d = new Date();
+        return pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
+    }
+
+    function pickEvent() { return events[Math.floor(Math.random() * events.length)]; }
+    function pickSite()  { return sites[Math.floor(Math.random() * sites.length)]; }
+
+    function makeRow(evt, site) {
+        const row = document.createElement('div');
+        row.className = 'hero-terminal-row hero-terminal-row--pending';
+
+        row.innerHTML =
+            '<span class="hero-terminal-time">' + timestamp() + '</span>' +
+            '<span class="hero-terminal-tag hero-terminal-tag--' + evt.type + '">' + evt.label + '</span>' +
+            '<span class="hero-terminal-body">' +
+                '<span class="hero-terminal-spinner"></span>' +
+                '<span class="hero-terminal-text">' + evt.verb + ' · ' + site + '</span>' +
+            '</span>';
+        return row;
+    }
+
+    function completeRow(row, evt, site) {
+        row.classList.remove('hero-terminal-row--pending');
+        row.classList.add('hero-terminal-row--done');
+        const text = row.querySelector('.hero-terminal-text');
+        const spinner = row.querySelector('.hero-terminal-spinner');
+        if (spinner) {
+            spinner.outerHTML = '<span class="hero-terminal-check">✓</span>';
+        }
+        if (text) {
+            text.innerHTML = evt.verb + ' · ' + site + ' <span class="hero-terminal-detail">· ' + evt.detail() + '</span>';
+        }
+    }
+
+    const MAX_ROWS = 6;
+
+    function tick() {
+        const evt = pickEvent();
+        const site = pickSite();
+        const row = makeRow(evt, site);
+        feed.appendChild(row);
+
+        // Trim oldest rows (animate fade-out before removal)
+        while (feed.children.length > MAX_ROWS) {
+            const oldest = feed.firstElementChild;
+            oldest.classList.add('hero-terminal-row--exit');
+            setTimeout(() => { if (oldest.parentNode) oldest.parentNode.removeChild(oldest); }, 350);
+        }
+
+        // Force reflow so the entry animation plays
+        // eslint-disable-next-line no-unused-expressions
+        row.offsetHeight;
+        row.classList.add('hero-terminal-row--enter');
+
+        // Random "thinking time" before completion (450-1100ms)
+        const thinkTime = 450 + Math.random() * 650;
+        setTimeout(() => completeRow(row, evt, site), thinkTime);
+
+        // Schedule next event (1.6-3.2s)
+        const nextDelay = 1600 + Math.random() * 1600;
+        setTimeout(tick, nextDelay);
+    }
+
+    // Stagger initial load so it doesn't all appear at once
+    setTimeout(tick, 600);
 })();
 </script>
 
