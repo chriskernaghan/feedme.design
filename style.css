@@ -594,9 +594,9 @@ footer a:hover {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem 1.4rem;
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    gap: 0.6rem 2rem;
     opacity: 0;
     animation: heroFadeUp 0.7s ease forwards;
     animation-delay: 0.6s;
