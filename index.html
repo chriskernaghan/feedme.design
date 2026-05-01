@@ -494,27 +494,56 @@
         { type: 'core',     verb: 'WP core updated',  detail: () => `6.7.2 → 6.7.3`, label: 'CORE' }
     ];
 
-    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+    const MAX_ROWS = 6;
+    const TICK_INTERVAL = 2400; // ms between events (fixed cadence avoids drift bugs)
 
-    function updateClock() {
-        const d = new Date();
-        clock.textContent = pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
-    }
-    updateClock();
-    setInterval(updateClock, 1000);
+    let tickTimer = null;
+    let clockTimer = null;
+    let running = false;
+
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
 
     function timestamp() {
         const d = new Date();
         return pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
     }
 
+    function updateClock() {
+        clock.textContent = timestamp();
+    }
+
     function pickEvent() { return events[Math.floor(Math.random() * events.length)]; }
     function pickSite()  { return sites[Math.floor(Math.random() * sites.length)]; }
+
+    function safeRemove(row) {
+        if (!row) return;
+        // Cancel any pending completion timer attached to this row
+        if (row._completeTimer) {
+            clearTimeout(row._completeTimer);
+            row._completeTimer = null;
+        }
+        if (row._removeTimer) {
+            clearTimeout(row._removeTimer);
+            row._removeTimer = null;
+        }
+        if (row.parentNode) row.parentNode.removeChild(row);
+    }
+
+    function completeRow(row, evt, site) {
+        if (!row.isConnected) return;
+        row.classList.remove('hero-terminal-row--pending');
+        row.classList.add('hero-terminal-row--done');
+        const text = row.querySelector('.hero-terminal-text');
+        const spinner = row.querySelector('.hero-terminal-spinner');
+        if (spinner) spinner.outerHTML = '<span class="hero-terminal-check">✓</span>';
+        if (text) {
+            text.innerHTML = evt.verb + ' · ' + site + ' <span class="hero-terminal-detail">· ' + evt.detail() + '</span>';
+        }
+    }
 
     function makeRow(evt, site) {
         const row = document.createElement('div');
         row.className = 'hero-terminal-row hero-terminal-row--pending';
-
         row.innerHTML =
             '<span class="hero-terminal-time">' + timestamp() + '</span>' +
             '<span class="hero-terminal-tag hero-terminal-tag--' + evt.type + '">' + evt.label + '</span>' +
@@ -525,32 +554,27 @@
         return row;
     }
 
-    function completeRow(row, evt, site) {
-        row.classList.remove('hero-terminal-row--pending');
-        row.classList.add('hero-terminal-row--done');
-        const text = row.querySelector('.hero-terminal-text');
-        const spinner = row.querySelector('.hero-terminal-spinner');
-        if (spinner) {
-            spinner.outerHTML = '<span class="hero-terminal-check">✓</span>';
-        }
-        if (text) {
-            text.innerHTML = evt.verb + ' · ' + site + ' <span class="hero-terminal-detail">· ' + evt.detail() + '</span>';
-        }
-    }
-
-    const MAX_ROWS = 6;
-
     function tick() {
+        if (!document.body.contains(feed)) {
+            stop();
+            return;
+        }
+
         const evt = pickEvent();
         const site = pickSite();
         const row = makeRow(evt, site);
         feed.appendChild(row);
 
-        // Trim oldest rows (animate fade-out before removal)
+        // Trim oldest rows immediately if over limit
         while (feed.children.length > MAX_ROWS) {
             const oldest = feed.firstElementChild;
+            if (!oldest) break;
             oldest.classList.add('hero-terminal-row--exit');
-            setTimeout(() => { if (oldest.parentNode) oldest.parentNode.removeChild(oldest); }, 350);
+            oldest._removeTimer = setTimeout(() => safeRemove(oldest), 350);
+            // If it's somehow still here in 1s, force-remove
+            setTimeout(() => { if (oldest.parentNode) safeRemove(oldest); }, 1000);
+            // Break the loop after marking — let CSS handle the transition
+            break;
         }
 
         // Force reflow so the entry animation plays
@@ -558,17 +582,43 @@
         row.offsetHeight;
         row.classList.add('hero-terminal-row--enter');
 
-        // Random "thinking time" before completion (450-1100ms)
-        const thinkTime = 450 + Math.random() * 650;
-        setTimeout(() => completeRow(row, evt, site), thinkTime);
-
-        // Schedule next event (1.6-3.2s)
-        const nextDelay = 1600 + Math.random() * 1600;
-        setTimeout(tick, nextDelay);
+        // Fixed completion delay — stays well within tick interval
+        row._completeTimer = setTimeout(() => {
+            completeRow(row, evt, site);
+            row._completeTimer = null;
+        }, 700);
     }
 
-    // Stagger initial load so it doesn't all appear at once
-    setTimeout(tick, 600);
+    function start() {
+        if (running) return;
+        running = true;
+        updateClock();
+        clockTimer = setInterval(updateClock, 1000);
+        tickTimer = setInterval(tick, TICK_INTERVAL);
+        // Fire one immediately so the feed populates
+        tick();
+    }
+
+    function stop() {
+        running = false;
+        if (tickTimer) { clearInterval(tickTimer); tickTimer = null; }
+        if (clockTimer) { clearInterval(clockTimer); clockTimer = null; }
+    }
+
+    // Pause when tab is hidden, resume when visible
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            stop();
+        } else {
+            start();
+        }
+    });
+
+    // Cleanup on unload
+    window.addEventListener('pagehide', stop);
+
+    // Kick off after a short delay so the page settles first
+    setTimeout(start, 600);
 })();
 </script>
 
