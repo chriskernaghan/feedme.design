@@ -3,17 +3,18 @@
    ========================================================================== */
 
 :root {
-    --midnight: #0a0e27;
-    --slate: #1a1f3a;
+    --midnight: #08101C;
+    --slate: #111A2B;
     --cream: #f5f1e8;
     --sand: #e8dcc4;
-    --accent: #ff6b35;
-    --accent-dim: #ff8c5f;
+    --accent: #D4FF3A;
+    --accent-dim: #C2EE26;
+    --accent-text: #08101C;
     --text-dark: #2d3142;
     --text-light: #a8a8b8;
     --snow: #ffffff;
     --muted: #8a8680;
-    --border: rgba(10, 14, 39, 0.08);
+    --border: rgba(8, 16, 28, 0.08);
 }
 
 * {
@@ -62,7 +63,7 @@ nav {
 }
 
 .logo {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--midnight);
@@ -93,13 +94,13 @@ nav {
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--accent);
+    background: var(--midnight);
     transition: width 0.3s ease;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
-    color: var(--accent);
+    color: var(--midnight);
 }
 
 .nav-links a:hover::after,
@@ -110,11 +111,11 @@ nav {
 /* Nav CTA button */
 .nav-cta {
     background: var(--accent);
-    color: white;
+    color: var(--accent-text);
     padding: 0.65rem 1.5rem;
     border-radius: 50px;
     font-size: 0.85rem;
-    font-weight: 600;
+    font-weight: 700;
     text-decoration: none;
     transition: all 0.3s ease;
     white-space: nowrap;
@@ -172,7 +173,7 @@ nav {
 
 .dropdown-menu a:hover {
     background: var(--sand);
-    color: var(--accent);
+    color: var(--midnight);
 }
 
 .dropdown-menu a::after {
@@ -260,7 +261,7 @@ nav {
 }
 
 .mobile-menu a:hover {
-    color: var(--accent);
+    color: var(--midnight);
     background: rgba(0, 0, 0, 0.02);
 }
 
@@ -280,15 +281,15 @@ nav {
 /* Mobile CTA */
 .mobile-cta {
     background: var(--accent);
-    color: white !important;
+    color: var(--accent-text) !important;
     text-align: center;
-    font-weight: 600;
+    font-weight: 700;
     transition: background 0.3s ease;
 }
 
 .mobile-cta:hover {
     background: var(--accent-dim) !important;
-    color: white !important;
+    color: var(--accent-text) !important;
 }
 
 /* ==========================================================================
@@ -337,16 +338,17 @@ nav {
 
 .section-label {
     display: inline-block;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
+    font-weight: 600;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--midnight);
     margin-bottom: 1rem;
 }
 
 .section-label--light {
-    color: rgba(255, 107, 53, 0.85);
+    color: var(--accent);
 }
 
 .section-header {
@@ -355,11 +357,13 @@ nav {
 }
 
 .section-header h2 {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 600;
     color: var(--midnight);
     margin-bottom: 1rem;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
 }
 
 .section-header p {
@@ -384,11 +388,12 @@ nav {
 }
 
 .section-header-left h2 {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
     color: var(--midnight);
-    line-height: 1.15;
-    letter-spacing: -0.02em;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
     margin-top: 0.25rem;
 }
 
@@ -404,9 +409,9 @@ nav {
     display: inline-block;
     padding: 1.1rem 2.8rem;
     background: var(--accent);
-    color: white;
+    color: var(--accent-text);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 0.95rem;
     border-radius: 50px;
     transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -414,7 +419,7 @@ nav {
 
 .cta-button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.15);
     background: var(--accent-dim);
 }
 
@@ -460,11 +465,12 @@ footer a:hover {
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
+    font-weight: 600;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--midnight);
     margin-bottom: 2rem;
     opacity: 0;
     animation: heroFadeUp 0.6s ease forwards;
@@ -476,7 +482,7 @@ footer a:hover {
     display: block;
     width: 2rem;
     height: 1px;
-    background: var(--accent);
+    background: var(--midnight);
 }
 
 /* Split: headline + stats left, desc + CTA right */
@@ -495,20 +501,23 @@ footer a:hover {
 }
 
 .hero-v2-headline {
-    font-family: "DM Serif Display", serif;
-    font-size: clamp(2.8rem, 4.5vw, 4.25rem);
-    line-height: 1.08;
-    letter-spacing: -0.02em;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(2.8rem, 4.8vw, 4.5rem);
+    line-height: 1.02;
+    letter-spacing: -0.04em;
     color: var(--midnight);
-    font-weight: 400;
+    font-weight: 600;
     opacity: 0;
     animation: heroFadeUp 0.7s ease forwards;
     animation-delay: 0.3s;
 }
 
 .hero-v2-headline .accent {
-    color: var(--accent);
-    font-style: italic;
+    color: var(--midnight);
+    background: var(--accent);
+    padding: 0 0.2em;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
 }
 
 .hero-v2-right {
@@ -540,11 +549,11 @@ footer a:hover {
     align-items: center;
     gap: 0.5rem;
     background: var(--accent);
-    color: white;
+    color: var(--accent-text);
     padding: 0.9rem 2rem;
     border-radius: 50px;
     font-size: 0.9rem;
-    font-weight: 600;
+    font-weight: 700;
     text-decoration: none;
     transition: all 0.3s ease;
 }
@@ -552,7 +561,7 @@ footer a:hover {
 .hero-v2-cta-primary:hover {
     background: var(--accent-dim);
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 24px rgba(212, 255, 58, 0.25);
 }
 
 .hero-v2-cta-primary svg {
@@ -618,10 +627,18 @@ footer a:hover {
 }
 
 .stat-tick {
-    color: var(--accent);
+    color: var(--midnight);
+    background: var(--accent);
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     font-weight: 700;
-    font-size: 0.85rem;
+    font-size: 0.6rem;
     line-height: 1;
+    flex-shrink: 0;
 }
 
 /* Trust / logo strip */
@@ -772,10 +789,11 @@ footer a:hover {
 }
 
 .client-card-name {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 1.65rem;
+    font-weight: 600;
     color: var(--midnight);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
     display: block;
     margin-bottom: 0.75rem;
 }
@@ -797,11 +815,12 @@ footer a:hover {
 .client-stat {}
 
 .client-stat-value {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 2.15rem;
+    font-weight: 600;
     color: var(--midnight);
     line-height: 1;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
     display: block;
 }
 
@@ -831,19 +850,20 @@ footer a:hover {
 .client-card-v2:hover .client-card-arrow {
     background: var(--accent);
     border-color: var(--accent);
-    color: var(--snow);
+    color: var(--accent-text);
 }
 
 /* Client num (shared) */
 .client-num {
-    font-family: "DM Serif Display", serif;
-    font-size: 0.85rem;
-    font-style: italic;
-    color: var(--accent);
-    letter-spacing: 0.05em;
-    opacity: 0.8;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--midnight);
+    letter-spacing: 0.1em;
+    opacity: 0.5;
     display: block;
     margin-bottom: 0.75rem;
+    text-transform: uppercase;
 }
 
 /* ==========================================================================
@@ -889,18 +909,20 @@ footer a:hover {
 }
 
 .service-row-num {
-    font-family: "DM Serif Display", serif;
-    font-size: 0.85rem;
-    color: var(--accent);
-    font-style: italic;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--midnight);
     min-width: 2rem;
-    opacity: 0.8;
+    opacity: 0.5;
+    letter-spacing: 0.1em;
 }
 
 .service-row-name {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 1.5rem;
-    letter-spacing: -0.01em;
+    font-weight: 600;
+    letter-spacing: -0.02em;
     color: var(--midnight);
 }
 
@@ -928,13 +950,15 @@ footer a:hover {
     right: -15%;
     width: 60%;
     height: 120%;
-    background: radial-gradient(circle, rgba(255, 107, 53, 0.06) 0%, transparent 65%);
+    background: radial-gradient(circle, rgba(212, 255, 58, 0.05) 0%, transparent 65%);
     pointer-events: none;
 }
 
 .process-inner {
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
 .process-header {
@@ -943,10 +967,11 @@ footer a:hover {
 }
 
 .process-header h2 {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 600;
     color: var(--cream);
-    line-height: 1.15;
+    line-height: 1.05;
     letter-spacing: -0.03em;
     margin-top: 0.5rem;
 }
@@ -965,25 +990,26 @@ footer a:hover {
 }
 
 .process-step-v2:hover {
-    border-color: rgba(245, 241, 232, 0.15);
+    border-color: rgba(212, 255, 58, 0.3);
 }
 
 .step-number-v2 {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 2.5rem;
+    font-weight: 500;
     color: var(--accent);
-    opacity: 0.35;
     margin-bottom: 1.5rem;
     line-height: 1;
-    font-style: italic;
+    letter-spacing: -0.03em;
 }
 
 .process-step-v2 h3 {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 1.25rem;
+    font-weight: 600;
     color: var(--cream);
     margin-bottom: 0.85rem;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
 }
 
 .process-step-v2 p {
@@ -1029,7 +1055,7 @@ footer a:hover {
 .pricing-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
-    border-color: rgba(255, 107, 53, 0.3);
+    border-color: var(--midnight);
 }
 
 .pricing-card.featured {
@@ -1047,9 +1073,9 @@ footer a:hover {
     top: 1.5rem;
     right: 1.5rem;
     background: var(--accent);
-    color: white;
+    color: var(--accent-text);
     font-size: 0.7rem;
-    font-weight: 600;
+    font-weight: 700;
     padding: 0.3rem 0.8rem;
     border-radius: 50px;
     letter-spacing: 0.05em;
@@ -1057,11 +1083,12 @@ footer a:hover {
 }
 
 .pricing-tier {
-    font-family: "DM Serif Display", serif;
-    font-size: 1rem;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
     color: var(--text-light);
     margin-bottom: 0.5rem;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
 }
 
@@ -1070,12 +1097,13 @@ footer a:hover {
 }
 
 .pricing-price {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 3.5rem;
+    font-weight: 600;
     color: var(--midnight);
     line-height: 1;
     margin-bottom: 0.3rem;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.04em;
 }
 
 .pricing-card.featured .pricing-price {
@@ -1147,10 +1175,14 @@ footer a:hover {
 
 .pricing-features li::before {
     content: "✓";
-    color: var(--accent);
+    color: var(--midnight);
     font-weight: 700;
     flex-shrink: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.pricing-card.featured .pricing-features li::before {
+    color: var(--accent);
 }
 
 .pricing-cta {
@@ -1159,22 +1191,22 @@ footer a:hover {
     padding: 1rem 2rem;
     border-radius: 50px;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 0.93rem;
     transition: all 0.3s ease;
-    background: var(--sand);
-    color: var(--midnight);
+    background: var(--midnight);
+    color: var(--cream);
     margin-top: auto;
 }
 
 .pricing-cta:hover {
     background: var(--accent);
-    color: white;
+    color: var(--accent-text);
 }
 
 .pricing-card.featured .pricing-cta {
     background: var(--accent);
-    color: white;
+    color: var(--accent-text);
 }
 
 .pricing-card.featured .pricing-cta:hover {
@@ -1190,13 +1222,14 @@ footer a:hover {
 }
 
 .pricing-custom:hover {
-    border-color: var(--accent);
+    border-color: var(--midnight);
     border-style: solid;
 }
 
 .pricing-custom .pricing-cta {
     border: 2px solid var(--midnight);
     background: transparent;
+    color: var(--midnight);
     display: inline-block;
     width: auto;
     padding: 1rem 2.5rem;
@@ -1206,14 +1239,16 @@ footer a:hover {
 .pricing-custom .pricing-cta:hover {
     border-color: var(--accent);
     background: var(--accent);
-    color: white;
+    color: var(--accent-text);
 }
 
 .pricing-custom h3 {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 1.7rem;
+    font-weight: 600;
     color: var(--midnight);
-    line-height: 1.2;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
     margin-bottom: 1rem;
 }
 
@@ -1249,11 +1284,12 @@ footer a:hover {
 }
 
 .posts-header h2 {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 600;
     color: var(--midnight);
     letter-spacing: -0.03em;
-    line-height: 1.1;
+    line-height: 1.05;
     margin-top: 0.4rem;
 }
 
@@ -1266,10 +1302,14 @@ footer a:hover {
     transition: color 0.3s ease;
     flex-shrink: 0;
     padding-bottom: 0.25rem;
+    border-bottom: 1px solid var(--midnight);
 }
 
 .view-all-link:hover {
-    color: var(--accent);
+    color: var(--accent-text);
+    background: var(--accent);
+    padding: 0.25rem 0.5rem;
+    border-bottom: 1px solid var(--accent);
 }
 
 .posts-grid {
@@ -1293,6 +1333,7 @@ footer a:hover {
 .post-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    border-color: var(--midnight);
 }
 
 .post-card-image {
@@ -1323,16 +1364,16 @@ footer a:hover {
     position: absolute;
     bottom: 1.5rem;
     left: 1.5rem;
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 2rem;
+    font-weight: 600;
     color: rgba(245,241,232,0.18);
-    font-style: italic;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
     line-height: 1;
 }
 
 .post-card-image--2 {
-    background: #5c3d2e;
+    background: #1a2536;
 }
 
 .post-card-image--2::before {
@@ -1342,7 +1383,7 @@ footer a:hover {
     left: 15%;
     width: 50%;
     height: 80%;
-    border: 1px solid rgba(255,107,53,0.3);
+    border: 1px solid rgba(212, 255, 58, 0.3);
     border-radius: 50%;
 }
 
@@ -1351,16 +1392,16 @@ footer a:hover {
     position: absolute;
     bottom: 1.5rem;
     left: 1.5rem;
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 2rem;
+    font-weight: 600;
     color: rgba(245,241,232,0.18);
-    font-style: italic;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
     line-height: 1;
 }
 
 .post-card-image--3 {
-    background: #2a3d2e;
+    background: #14202F;
 }
 
 .post-card-image--3::before {
@@ -1372,8 +1413,8 @@ footer a:hover {
     height: 100%;
     background: repeating-linear-gradient(
         45deg,
-        rgba(255,107,53,0.06) 0px,
-        rgba(255,107,53,0.06) 1px,
+        rgba(212, 255, 58, 0.08) 0px,
+        rgba(212, 255, 58, 0.08) 1px,
         transparent 1px,
         transparent 28px
     );
@@ -1384,11 +1425,11 @@ footer a:hover {
     position: absolute;
     bottom: 1.5rem;
     left: 1.5rem;
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 2rem;
+    font-weight: 600;
     color: rgba(245,241,232,0.18);
-    font-style: italic;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
     line-height: 1;
 }
 
@@ -1408,11 +1449,11 @@ footer a:hover {
 
 .post-tag {
     background: var(--accent);
-    color: white;
+    color: var(--accent-text);
     padding: 0.2rem 0.75rem;
     border-radius: 50px;
     font-size: 0.72rem;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     flex-shrink: 0;
@@ -1424,11 +1465,12 @@ footer a:hover {
 }
 
 .post-card h3 {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 1.35rem;
+    font-weight: 600;
     color: var(--midnight);
-    line-height: 1.25;
-    letter-spacing: -0.01em;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
 }
 
 .post-card p {
@@ -1459,10 +1501,12 @@ footer a:hover {
 }
 
 .faq-inner > h2 {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
     color: var(--midnight);
     letter-spacing: -0.03em;
+    line-height: 1.05;
     margin-bottom: 3rem;
 }
 
@@ -1499,7 +1543,8 @@ footer a:hover {
 }
 
 .faq-question:hover {
-    color: var(--accent);
+    color: var(--midnight);
+    opacity: 0.65;
 }
 
 .faq-icon {
@@ -1579,7 +1624,7 @@ footer a:hover {
     left: -20%;
     width: 60%;
     height: 150%;
-    background: radial-gradient(circle, rgba(255, 107, 53, 0.08) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(212, 255, 58, 0.06) 0%, transparent 70%);
     pointer-events: none;
 }
 
@@ -1596,11 +1641,13 @@ footer a:hover {
 }
 
 .contact-header h2 {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 600;
     color: var(--cream);
     margin-bottom: 1rem;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
 }
 
 .contact-header p {
@@ -1634,14 +1681,16 @@ footer a:hover {
     right: -20%;
     width: 60%;
     height: 150%;
-    background: radial-gradient(circle, rgba(255, 107, 53, 0.06) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(212, 255, 58, 0.08) 0%, transparent 70%);
 }
 
 .blog-hero h1 {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 600;
     color: var(--midnight);
-    letter-spacing: -0.03em;
+    letter-spacing: -0.04em;
+    line-height: 1.02;
     margin-bottom: 1rem;
     animation: fadeInUp 0.8s ease-out backwards;
 }
@@ -1679,7 +1728,7 @@ footer a:hover {
 .filter-tag.active {
     background: var(--accent);
     border-color: var(--accent);
-    color: white;
+    color: var(--accent-text);
 }
 
 .posts-list {
@@ -1705,7 +1754,9 @@ footer a:hover {
 }
 
 .post-row:hover .post-row-title {
-    color: var(--accent);
+    color: var(--midnight);
+    background: var(--accent);
+    box-shadow: 0.2em 0 0 var(--accent), -0.2em 0 0 var(--accent);
 }
 
 .post-row:hover .post-row-arrow {
@@ -1715,21 +1766,24 @@ footer a:hover {
 .post-row-tag {
     display: inline-block;
     background: var(--accent);
-    color: white;
+    color: var(--accent-text);
     padding: 0.2rem 0.8rem;
     border-radius: 50px;
     font-size: 0.75rem;
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: 0.8rem;
 }
 
 .post-row-title {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 600;
     color: var(--midnight);
     margin-bottom: 0.8rem;
-    line-height: 1.2;
-    transition: color 0.3s ease;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    transition: color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    display: inline;
 }
 
 .post-row-excerpt {
@@ -1737,6 +1791,7 @@ footer a:hover {
     opacity: 0.7;
     line-height: 1.7;
     max-width: 700px;
+    margin-top: 0.8rem;
 }
 
 .post-row-meta {
@@ -1753,7 +1808,7 @@ footer a:hover {
 
 .post-row-arrow {
     font-size: 1.5rem;
-    color: var(--accent);
+    color: var(--midnight);
     transition: transform 0.3s ease;
 }
 
@@ -1770,22 +1825,23 @@ footer a:hover {
 }
 
 .post-hero h1 {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 600;
     color: var(--midnight);
-    letter-spacing: -0.03em;
-    line-height: 1.1;
+    letter-spacing: -0.04em;
+    line-height: 1.02;
     margin-bottom: 1.5rem;
 }
 
 .post-hero .post-tag {
     display: inline-block;
     background: var(--accent);
-    color: white;
+    color: var(--accent-text);
     padding: 0.3rem 1rem;
     border-radius: 50px;
     font-size: 0.8rem;
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: 1.5rem;
 }
 
@@ -1814,32 +1870,44 @@ footer a:hover {
 }
 
 .post-body h2 {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 2rem;
+    font-weight: 600;
     color: var(--midnight);
     margin: 3rem 0 1.2rem;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
 }
 
 .post-body h3 {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 1.4rem;
+    font-weight: 600;
     color: var(--midnight);
+    letter-spacing: -0.02em;
     margin: 2rem 0 0.8rem;
 }
 
 .post-body strong { color: var(--midnight); font-weight: 600; }
 
 .post-body a {
-    color: var(--accent);
+    color: var(--midnight);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
+    background-image: linear-gradient(var(--accent), var(--accent));
+    background-size: 100% 0.3em;
+    background-position: 0 88%;
+    background-repeat: no-repeat;
+    padding: 0 0.1em;
+    transition: background-size 0.2s ease;
 }
 
-.post-body a:hover { text-decoration: underline; }
+.post-body a:hover {
+    background-size: 100% 100%;
+}
 
 .post-body blockquote {
-    border-left: 4px solid var(--accent);
+    border-left: 4px solid var(--midnight);
     padding: 1rem 2rem;
     margin: 2rem 0;
     background: white;
@@ -1847,11 +1915,12 @@ footer a:hover {
 }
 
 .post-body blockquote p {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 1.3rem;
-    font-style: italic;
+    font-weight: 500;
     margin: 0;
     color: var(--midnight);
+    letter-spacing: -0.02em;
 }
 
 .post-body ul,
@@ -1881,10 +1950,13 @@ footer a:hover {
 }
 
 .post-cta-inner h3 {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 2rem;
+    font-weight: 600;
     color: var(--cream);
     margin-bottom: 1rem;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
 }
 
 .post-cta-inner p {
@@ -1905,13 +1977,18 @@ footer a:hover {
 }
 
 .post-nav a {
-    color: var(--accent);
+    color: var(--midnight);
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s ease;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 2px;
 }
 
-.post-nav a:hover { opacity: 0.7; }
+.post-nav a:hover {
+    background: var(--accent);
+    padding: 2px 6px;
+}
 
 /* Callout box */
 .callout {
@@ -1929,11 +2006,13 @@ footer a:hover {
 }
 
 .callout strong {
-    color: var(--cream);
+    color: var(--accent);
     display: block;
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 1.2rem;
+    font-weight: 600;
     margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
 }
 
 /* Signal cards */
@@ -1944,28 +2023,32 @@ footer a:hover {
     align-items: start;
     background: white;
     border: 1px solid var(--sand);
-    border-left: 4px solid var(--accent);
+    border-left: 4px solid var(--midnight);
     border-radius: 12px;
     padding: 1.75rem;
     margin: 2rem 0;
 }
 
 .signal-badge {
-    background: var(--midnight);
-    color: var(--cream);
-    font-family: "DM Serif Display", serif;
-    font-size: 1rem;
+    background: var(--accent);
+    color: var(--accent-text);
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
     padding: 0.4rem 0.8rem;
     border-radius: 4px;
     white-space: nowrap;
     line-height: 1.4;
     text-align: center;
+    letter-spacing: -0.01em;
 }
 
 .signal-content h3 {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 1.2rem;
+    font-weight: 600;
     color: var(--midnight);
+    letter-spacing: -0.02em;
     margin: 0 0 0.5rem;
 }
 
@@ -1989,7 +2072,7 @@ footer a:hover {
     border-radius: 16px;
     padding: 2rem 2rem 2rem 2.5rem;
     margin: 2rem 0;
-    border-left: 5px solid var(--accent);
+    border-left: 5px solid var(--midnight);
     display: grid;
     grid-template-columns: 3rem 1fr;
     gap: 1.5rem;
@@ -1998,18 +2081,29 @@ footer a:hover {
 
 .tip-number,
 .sign-number {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 2.5rem;
-    color: var(--accent);
-    font-style: italic;
+    font-weight: 600;
+    color: var(--midnight);
     line-height: 1;
+    letter-spacing: -0.04em;
+    background: var(--accent);
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
 }
 
 .tip-content h3,
 .sign-content h3 {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 1.3rem;
+    font-weight: 600;
     color: var(--midnight);
+    letter-spacing: -0.02em;
     margin-bottom: 0.6rem;
 }
 
@@ -2033,16 +2127,20 @@ footer a:hover {
 }
 
 .stat-callout-item .number {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 3rem;
+    font-weight: 600;
     color: var(--accent);
     display: block;
+    letter-spacing: -0.04em;
+    line-height: 1;
 }
 
 .stat-callout-item .label {
     color: var(--text-light);
     font-size: 0.9rem;
     line-height: 1.4;
+    margin-top: 0.5rem;
 }
 
 /* Price cards */
@@ -2053,28 +2151,32 @@ footer a:hover {
     align-items: start;
     background: white;
     border: 1px solid var(--sand);
-    border-left: 4px solid var(--accent);
+    border-left: 4px solid var(--midnight);
     border-radius: 12px;
     padding: 1.75rem;
     margin: 2rem 0;
 }
 
 .price-badge {
-    background: var(--midnight);
-    color: var(--cream);
-    font-family: "DM Serif Display", serif;
-    font-size: 1rem;
+    background: var(--accent);
+    color: var(--accent-text);
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
     padding: 0.4rem 0.8rem;
     border-radius: 4px;
     white-space: nowrap;
     line-height: 1.4;
     text-align: center;
+    letter-spacing: -0.01em;
 }
 
 .price-content h3 {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 1.2rem;
+    font-weight: 600;
     color: var(--midnight);
+    letter-spacing: -0.02em;
     margin: 0 0 0.5rem;
 }
 
@@ -2104,9 +2206,10 @@ footer a:hover {
     color: var(--cream);
     padding: 0.9rem 1.25rem;
     text-align: left;
-    font-family: "DM Serif Display", serif;
-    font-weight: normal;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 600;
     font-size: 1rem;
+    letter-spacing: -0.01em;
 }
 
 .comparison-table th:first-child { width: 35%; }
@@ -2120,7 +2223,12 @@ footer a:hover {
 .comparison-table tr:last-child td { border-bottom: none; }
 .comparison-table tr:nth-child(even) td { background: white; }
 
-.win { color: var(--accent); font-weight: 600; }
+.win {
+    color: var(--midnight);
+    background: var(--accent);
+    padding: 0.1em 0.3em;
+    font-weight: 700;
+}
 
 /* Verdict cards */
 .verdict-card {
@@ -2130,28 +2238,32 @@ footer a:hover {
     align-items: start;
     background: white;
     border: 1px solid var(--sand);
-    border-left: 4px solid var(--accent);
+    border-left: 4px solid var(--midnight);
     border-radius: 12px;
     padding: 1.75rem;
     margin: 2rem 0;
 }
 
 .verdict-label {
-    background: var(--midnight);
-    color: var(--cream);
-    font-family: "DM Serif Display", serif;
+    background: var(--accent);
+    color: var(--accent-text);
+    font-family: "Space Grotesk", sans-serif;
     font-size: 0.9rem;
+    font-weight: 600;
     padding: 0.4rem 0.8rem;
     border-radius: 4px;
     white-space: nowrap;
     text-align: center;
     line-height: 1.4;
+    letter-spacing: -0.01em;
 }
 
 .verdict-content h3 {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 1.2rem;
+    font-weight: 600;
     color: var(--midnight);
+    letter-spacing: -0.02em;
     margin: 0 0 0.4rem;
 }
 
@@ -2179,7 +2291,7 @@ footer a:hover {
     right: -10%;
     width: 60%;
     height: 140%;
-    background: radial-gradient(circle, rgba(255, 107, 53, 0.15) 0%, transparent 60%);
+    background: radial-gradient(circle, rgba(212, 255, 58, 0.12) 0%, transparent 60%);
     pointer-events: none;
 }
 
@@ -2197,9 +2309,10 @@ footer a:hover {
 }
 
 .case-label {
-    font-size: 0.85rem;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--accent);
     margin-bottom: 2rem;
@@ -2208,11 +2321,12 @@ footer a:hover {
 }
 
 .case-hero h1 {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 600;
     color: var(--cream);
-    line-height: 1.1;
-    letter-spacing: -0.03em;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
     margin-bottom: 2rem;
     animation: fadeInUp 0.8s ease-out 0.1s backwards;
 }
@@ -2238,9 +2352,10 @@ footer a:hover {
 }
 
 .case-meta-label {
-    font-size: 0.75rem;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.7rem;
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--text-light);
     margin-bottom: 0.5rem;
@@ -2263,20 +2378,22 @@ footer a:hover {
 }
 
 .case-section-label {
-    font-size: 0.75rem;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--midnight);
     margin-bottom: 1rem;
 }
 
 .case-section h2 {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
     color: var(--midnight);
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
     margin-bottom: 1.5rem;
 }
 
@@ -2305,7 +2422,7 @@ footer a:hover {
     content: "→";
     position: absolute;
     left: 0;
-    color: var(--accent);
+    color: var(--midnight);
     font-weight: 700;
 }
 
@@ -2326,19 +2443,22 @@ footer a:hover {
     background: white;
     padding: 2.5rem;
     border-radius: 16px;
-    border-left: 4px solid var(--accent);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 4px solid var(--midnight);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .outcome-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    border-left-color: var(--accent);
 }
 
 .outcome-card h3 {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 1.5rem;
+    font-weight: 600;
     color: var(--midnight);
+    letter-spacing: -0.02em;
     margin-bottom: 0.8rem;
 }
 
@@ -2351,7 +2471,7 @@ footer a:hover {
 }
 
 .timeline {
-    background: var(--sand);
+    background: var(--midnight);
     border-radius: 16px;
     padding: 3rem;
     margin: 3rem 0;
@@ -2368,17 +2488,20 @@ footer a:hover {
 }
 
 .timeline-number {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: 3rem;
+    font-weight: 600;
     color: var(--accent);
     display: block;
     margin-bottom: 0.5rem;
-    font-style: italic;
+    letter-spacing: -0.04em;
+    line-height: 1;
 }
 
 .timeline-label {
     font-size: 0.9rem;
-    color: var(--text-dark);
+    color: var(--cream);
+    opacity: 0.7;
     font-weight: 500;
 }
 
@@ -2402,11 +2525,13 @@ footer a:hover {
 }
 
 .case-cta h2 {
-    font-family: "DM Serif Display", serif;
+    font-family: "Space Grotesk", sans-serif;
     font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
     color: var(--cream);
     margin-bottom: 1.5rem;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
 }
 
 .case-cta p {
