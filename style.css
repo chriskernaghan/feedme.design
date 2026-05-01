@@ -485,7 +485,6 @@ footer a:hover {
     gap: 5rem;
     align-items: end;
     padding-bottom: 3.5rem;
-    border-bottom: 1px solid var(--border);
 }
 
 .hero-v2-left {
