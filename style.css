@@ -542,7 +542,9 @@ footer a:hover {
     display: flex;
     align-items: center;
     gap: 1.75rem;
-    animation: 0.7s ease 0.3s 1 normal forwards running heroFadeUp;
+    opacity: 0;
+    animation: heroFadeUp 0.7s ease forwards;
+    animation-delay: 0.5s;
 }
 
 .hero-v2-cta-primary {
@@ -701,6 +703,7 @@ footer a:hover {
     .hero-v2-headline,
     .hero-v2-right,
     .hero-v2-stats,
+    .hero-v2-cta-row,
     .hero-v2-trust {
         opacity: 1;
         animation: none;
