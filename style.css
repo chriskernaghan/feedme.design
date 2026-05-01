@@ -708,6 +708,202 @@ footer a:hover {
 }
 
 /* ==========================================================================
+   HOMEPAGE — HERO TERMINAL (right-column status feed)
+   ========================================================================== */
+
+.hero-terminal {
+    background: var(--midnight);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(8, 16, 28, 0.18), 0 0 0 1px rgba(8, 16, 28, 0.04);
+    font-family: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+    width: 100%;
+    max-width: 480px;
+    justify-self: end;
+    align-self: end;
+    opacity: 0;
+    animation: heroFadeUp 0.7s ease forwards;
+    animation-delay: 0.5s;
+}
+
+.hero-terminal-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hero-terminal-dots {
+    display: flex;
+    gap: 0.4rem;
+    flex-shrink: 0;
+}
+
+.hero-terminal-dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.hero-terminal-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.7rem;
+    color: rgba(245, 241, 232, 0.55);
+    letter-spacing: 0.04em;
+}
+
+.hero-terminal-pulse {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 0 var(--accent);
+    animation: heroTerminalPulse 2s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+@keyframes heroTerminalPulse {
+    0%   { box-shadow: 0 0 0 0 rgba(212, 255, 58, 0.6); }
+    70%  { box-shadow: 0 0 0 8px rgba(212, 255, 58, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(212, 255, 58, 0); }
+}
+
+.hero-terminal-clock {
+    font-size: 0.7rem;
+    color: rgba(245, 241, 232, 0.45);
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+}
+
+.hero-terminal-feed {
+    padding: 0.75rem 0.5rem;
+    height: 280px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+}
+
+.hero-terminal-feed::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--midnight), transparent);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hero-terminal-row {
+    display: grid;
+    grid-template-columns: 64px 60px 1fr;
+    gap: 0.6rem;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    color: rgba(245, 241, 232, 0.85);
+    border-radius: 6px;
+    transform: translateY(8px);
+    opacity: 0;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.hero-terminal-row--enter {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.hero-terminal-row--exit {
+    opacity: 0;
+    transform: translateY(-4px);
+}
+
+.hero-terminal-time {
+    font-size: 0.7rem;
+    color: rgba(245, 241, 232, 0.4);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+}
+
+.hero-terminal-tag {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.18rem 0.45rem;
+    border-radius: 3px;
+    text-align: center;
+    background: rgba(245, 241, 232, 0.08);
+    color: rgba(245, 241, 232, 0.7);
+    line-height: 1.4;
+}
+
+.hero-terminal-tag--backup   { background: rgba(212, 255, 58, 0.12); color: var(--accent); }
+.hero-terminal-tag--plugin   { background: rgba(245, 241, 232, 0.08); color: rgba(245, 241, 232, 0.8); }
+.hero-terminal-tag--uptime   { background: rgba(212, 255, 58, 0.12); color: var(--accent); }
+.hero-terminal-tag--ssl      { background: rgba(245, 241, 232, 0.08); color: rgba(245, 241, 232, 0.8); }
+.hero-terminal-tag--security { background: rgba(212, 255, 58, 0.12); color: var(--accent); }
+.hero-terminal-tag--core     { background: rgba(245, 241, 232, 0.08); color: rgba(245, 241, 232, 0.8); }
+
+.hero-terminal-body {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-width: 0;
+}
+
+.hero-terminal-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.hero-terminal-detail {
+    color: rgba(245, 241, 232, 0.45);
+    font-size: 0.72rem;
+}
+
+.hero-terminal-row--done .hero-terminal-text {
+    color: rgba(245, 241, 232, 0.9);
+}
+
+.hero-terminal-spinner {
+    width: 9px;
+    height: 9px;
+    border: 1.5px solid rgba(245, 241, 232, 0.2);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: heroTerminalSpin 0.7s linear infinite;
+    flex-shrink: 0;
+}
+
+@keyframes heroTerminalSpin {
+    to { transform: rotate(360deg); }
+}
+
+.hero-terminal-check {
+    width: 9px;
+    height: 9px;
+    color: var(--accent);
+    font-size: 0.75rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
    HOMEPAGE — MARQUEE STRIP (Testimonials)
    ========================================================================== */
 
@@ -2551,6 +2747,11 @@ footer a:hover {
         gap: 2rem;
     }
 
+    .hero-terminal {
+        max-width: 100%;
+        justify-self: stretch;
+    }
+
     /* Clients */
     .clients-grid-v2 {
         grid-template-columns: 1fr;
@@ -2624,6 +2825,10 @@ footer a:hover {
 
     .hero-v2-headline {
         font-size: 2.4rem;
+    }
+
+    .hero-terminal {
+        display: none;
     }
 
     .hero-v2-cta-row {
