@@ -1322,12 +1322,12 @@ footer a:hover {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: var(--sand);
+    background: rgba(212, 255, 58, 0.18);
     padding: 0.5rem 1rem;
     border-radius: 50px;
     font-size: 0.88rem;
     font-weight: 600;
-    color: var(--text-dark);
+    color: var(--midnight);
     margin-bottom: 2rem;
 }
 
@@ -1789,17 +1789,6 @@ footer a:hover {
     color: var(--text-dark);
     opacity: 0.8;
     max-width: 680px;
-}
-
-@media (max-width: 768px) {
-    .faq-section {
-        padding: 5rem 2rem;
-    }
-
-    .faq-question {
-        font-size: 0.95rem;
-        padding: 1.5rem 0;
-    }
 }
 
 /* ==========================================================================
@@ -2797,7 +2786,7 @@ footer a:hover {
     }
 
     nav {
-        padding: 1.25rem 2rem;
+        padding: 1.25rem 1.25rem;
     }
 
     .nav-inner {
@@ -2818,9 +2807,29 @@ footer a:hover {
         display: flex;
     }
 
+    /* Mobile: left-align everything for consistency in column layout */
+    .section-header {
+        text-align: left;
+        margin-bottom: 2rem;
+    }
+
+    .section-header h2 {
+        font-size: 2rem;
+        line-height: 1.05;
+    }
+
+    .section-header p {
+        margin: 0;
+    }
+
+    .section-header-left h2 {
+        font-size: 2rem;
+        line-height: 1.05;
+    }
+
     /* Hero V2 responsive */
     .hero-v2 {
-        padding: 7rem 1.5rem 4rem;
+        padding: 7rem 1.25rem 3rem;
     }
 
     .hero-v2-headline {
@@ -2880,7 +2889,7 @@ footer a:hover {
 
     /* Clients responsive */
     .clients-section {
-        padding: 4rem 2rem;
+        padding: 3rem 1.25rem;
     }
 
     .clients-grid-v2 {
@@ -2889,20 +2898,41 @@ footer a:hover {
 
     /* Services responsive */
     .services-v2 {
-        padding: 4rem 2rem;
+        padding: 3rem 1.25rem;
+    }
+
+    .service-row {
+        padding: 1.5rem 0;
+        gap: 1rem;
     }
 
     .service-row-name {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        line-height: 1.2;
     }
 
     .service-row-left {
-        gap: 1rem;
+        gap: 0.85rem;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .service-row-num {
+        flex-shrink: 0;
+    }
+
+    .service-row-from {
+        flex-shrink: 0;
+        font-size: 0.8rem;
     }
 
     /* Process responsive */
     .process {
-        padding: 5rem 2rem;
+        padding: 3.5rem 1.25rem;
+    }
+
+    .process-header {
+        margin-bottom: 2.5rem;
     }
 
     .process-steps-v2 {
@@ -2911,7 +2941,19 @@ footer a:hover {
 
     /* Pricing responsive */
     .pricing {
-        padding: 5rem 2rem;
+        padding: 3.5rem 1.25rem;
+    }
+
+    .pricing .section-header {
+        margin-bottom: 2.5rem;
+    }
+
+    .pricing-grid {
+        gap: 1.25rem;
+    }
+
+    .pricing-card {
+        padding: 2rem;
     }
 
     .pricing-card.featured {
@@ -2920,13 +2962,14 @@ footer a:hover {
 
     /* Blog responsive */
     .latest-posts {
-        padding: 5rem 2rem;
+        padding: 3.5rem 1.25rem;
     }
 
     .posts-header {
         flex-direction: column;
         align-items: flex-start;
-        gap: 0.5rem;
+        gap: 0.75rem;
+        margin-bottom: 2rem;
     }
 
     .posts-grid {
@@ -2937,41 +2980,83 @@ footer a:hover {
         display: flex;
     }
 
+    .post-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    /* FAQ responsive */
+    .faq-section {
+        padding: 3.5rem 1.25rem;
+    }
+
+    .faq-inner > h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .faq-question {
+        font-size: 0.95rem;
+        padding: 1.5rem 0;
+    }
+
     /* Contact responsive */
     .contact-section {
-        padding: 5rem 2rem;
+        padding: 3.5rem 1.25rem;
+    }
+
+    .contact-header {
+        text-align: left;
+        margin-bottom: 2.5rem;
+    }
+
+    .contact-header h2 {
+        font-size: 2rem;
+    }
+
+    .contact-header p {
+        max-width: 100%;
     }
 
     /* Blog page responsive */
-    .blog-hero,
+    .blog-hero {
+        padding: 7rem 1.25rem 3rem;
+    }
+
     .filter-bar {
-        padding-left: 2rem;
-        padding-right: 2rem;
+        padding: 1.5rem 1.25rem;
     }
 
     .posts-list {
-        padding: 3rem 2rem 5rem;
+        padding: 2.5rem 1.25rem 4rem;
     }
 
     .post-row {
         grid-template-columns: 1fr;
+        padding: 2rem 0;
     }
 
     .post-row-meta {
         text-align: left;
     }
 
-    .post-hero,
-    .post-body,
-    .post-nav,
-    .post-cta {
-        padding-left: 2rem;
-        padding-right: 2rem;
+    .post-hero {
+        padding: 7rem 1.25rem 3rem;
+    }
+
+    .post-body {
+        padding: 2rem 1.25rem 4rem;
     }
 
     .post-nav {
+        padding: 2rem 1.25rem;
         flex-direction: column;
         text-align: center;
+    }
+
+    .post-cta {
+        padding: 0 1.25rem;
     }
 
     .signal-card,
@@ -3002,19 +3087,19 @@ footer a:hover {
     }
 
     .case-hero {
-        padding: 12rem 2rem 6rem;
+        padding: 7rem 1.25rem 4rem;
     }
 
     .case-content {
-        padding: 4rem 2rem;
+        padding: 3rem 1.25rem;
     }
 
     .case-cta {
-        padding: 4rem 2rem;
+        padding: 3rem 1.25rem;
     }
 
     .timeline {
-        padding: 2rem;
+        padding: 1.5rem;
     }
 
     .responsive-grid {
@@ -3023,6 +3108,11 @@ footer a:hover {
 
     .case-logo {
         max-width: 200px;
+    }
+
+    /* Footer */
+    footer {
+        padding: 3rem 1.25rem;
     }
 }
 
