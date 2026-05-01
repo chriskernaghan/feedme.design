@@ -2820,11 +2820,16 @@ footer a:hover {
 
     /* Hero V2 responsive */
     .hero-v2 {
-        padding: 8rem 2rem 0;
+        padding: 7rem 1.5rem 4rem;
     }
 
     .hero-v2-headline {
         font-size: 2.4rem;
+    }
+
+    .hero-v2-stats {
+        grid-template-columns: 1fr;
+        gap: 0.6rem;
     }
 
     .hero-terminal {
@@ -2833,13 +2838,19 @@ footer a:hover {
 
     .hero-v2-cta-row {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
         gap: 1rem;
+        width: 100%;
     }
 
     .hero-v2-cta-primary {
         width: 100%;
         justify-content: center;
+        box-sizing: border-box;
+    }
+
+    .hero-v2-cta-secondary {
+        align-self: flex-start;
     }
 
     .hero-v2-trust {
@@ -3018,7 +3029,7 @@ footer a:hover {
 /* Very small screens */
 @media (max-width: 380px) {
     .hero-v2 {
-        padding: 7rem 1.25rem 0;
+        padding: 6.5rem 1.25rem 3rem;
     }
 
     .hero-v2-headline {
