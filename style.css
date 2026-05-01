@@ -2492,11 +2492,15 @@ footer a:hover {
         display: none;
     }
 
-    nav {
-        padding: 1.25rem 2rem;
-        display: flex;
-        justify-content: space-between;
-    }
+nav {
+    padding: 1.25rem 2rem;
+}
+
+.nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
     .nav-links {
         display: none;
