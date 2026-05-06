@@ -1894,7 +1894,6 @@ footer a:hover {
 .filter-bar {
     padding: 2rem 4rem 1rem;
     background: var(--snow);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
