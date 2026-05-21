@@ -1,0 +1,66 @@
+---
+// Nav.astro — site-wide navigation
+// Replaces the old nav.html + nav.js fetch hack with a proper component.
+---
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="logo">WP Base</a>
+    <div class="nav-links">
+      <a href="/#clients">Case Studies</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/blog">Blog</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <div class="hamburger-bars">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <span class="hamburger-label">Menu</span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/#clients">Case Studies</a>
+  <a href="/#services">Services</a>
+  <a href="/#process">Process</a>
+  <a href="/#pricing">Pricing</a>
+  <a href="/blog">Blog</a>
+  <a href="/#contact" class="mobile-cta">Get Your Free Audit</a>
+</div>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+
+    document.querySelectorAll('.mobile-menu a, .nav-links a').forEach((link) => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      });
+    });
+  }
+
+  // Smooth scroll for on-page anchor links from the homepage
+  document.querySelectorAll('a[href^="/#"]').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+        e.preventDefault();
+        const href = link.getAttribute('href');
+        if (!href) return;
+        const target = document.querySelector(href.replace('/', ''));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  });
+</script>

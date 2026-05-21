@@ -1,0 +1,64 @@
+---
+// PostLayout.astro — wraps every blog post.
+// Receives frontmatter from the MDX file, plus prev/next from the dynamic route.
+
+import BaseLayout from './BaseLayout.astro';
+import PostCTA from '../components/PostCTA.astro';
+
+interface PostNavLink {
+  slug: string;
+  title: string;
+}
+
+interface Props {
+  frontmatter: {
+    title: string;
+    description: string;
+    tag: string;
+    date: Date;
+    readTime: string;
+    author: string;
+  };
+  prev?: PostNavLink | null;
+  next?: PostNavLink | null;
+}
+
+const { frontmatter, prev, next } = Astro.props;
+
+const formattedDate = new Date(frontmatter.date).toLocaleDateString('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<BaseLayout title={`${frontmatter.title} — feedme.design`} description={frontmatter.description}>
+  <div class="post-hero">
+    <div class="post-tag">{frontmatter.tag}</div>
+    <h1>{frontmatter.title}</h1>
+    <div class="post-meta">
+      <span>{frontmatter.author}</span>
+      <span>{formattedDate}</span>
+      <span>{frontmatter.readTime}</span>
+    </div>
+  </div>
+
+  <div class="post-body">
+    <slot />
+  </div>
+
+  <PostCTA />
+
+  <div class="post-nav">
+    {prev ? (
+      <a href={`/posts/${prev.slug}`}>← {prev.title}</a>
+    ) : (
+      <span></span>
+    )}
+    {next ? (
+      <a href={`/posts/${next.slug}`}>{next.title} →</a>
+    ) : (
+      <a href="/blog">All Posts →</a>
+    )}
+  </div>
+</BaseLayout>

@@ -1,0 +1,44 @@
+---
+title: "The 5 WordPress Security Basics Every Business Owner Should Know"
+description: "Most WordPress hacks exploit obvious weaknesses. Get the basics right and you've addressed the vast majority of the risk. Here are the five fundamentals every business owner should know."
+tag: "WordPress Security"
+date: 2026-02-05
+readTime: "6 min read"
+author: "Chris — feedme.design"
+---
+
+import TipCard from '../../components/TipCard.astro';
+
+A question I get asked often is some version of: "I'm not technical, do I really need to worry about this?" The answer is yes, but not in a way that should keep you up at night. WordPress security, at its core, is about removing obvious weaknesses. Get the basics right and you've addressed the vast majority of the risk.
+
+Here are the five fundamentals I'd walk any business owner through.
+
+<TipCard number="1" title="Keep Everything Updated">
+WordPress core, your theme, and every plugin you have installed should be updated promptly when updates are available. Most WordPress hacks exploit known vulnerabilities in outdated software, vulnerabilities that have already been patched. Staying current closes the door on the majority of automated attacks. If you're nervous about updates breaking something (a fair concern), the answer is to have a staging environment and a backup, not to skip updates indefinitely.
+</TipCard>
+
+<TipCard number="2" title="Use Strong, Unique Passwords and Two-Factor Authentication">
+Brute force attacks, bots hammering your login page with thousands of password combinations, are among the most common WordPress attacks. A strong, unique password makes this approach computationally impractical. Adding two-factor authentication (2FA) means that even if a password is somehow compromised, a login still requires a second piece of verification from your phone. Both are free and take minutes to set up. Use a password manager. There's no excuse for reusing passwords in 2026.
+</TipCard>
+
+<TipCard number="3" title="Limit Login Attempts">
+By default, WordPress allows unlimited login attempts. That's exactly what brute force bots rely on. A simple plugin like Limit Login Attempts Reloaded restricts how many failed attempts are allowed before an IP is temporarily blocked. It's a five-minute fix that meaningfully raises the barrier against automated attacks.
+</TipCard>
+
+<TipCard number="4" title="Take Regular Backups and Test Them">
+A backup is only valuable if it works when you need it. Ideally, you want daily automated backups stored in a separate location from your hosting (an S3 bucket, Dropbox, or a dedicated backup service). Critically, actually restore from your backup periodically to confirm it works. Many people have discovered during a crisis that their backup files were corrupted, incomplete, or out of date. Don't be one of them.
+</TipCard>
+
+<TipCard number="5" title="Install a Security Plugin and Set Up Monitoring">
+A good security plugin, Wordfence and Solid Security are both well-regarded, adds a firewall, scans your files for malware, monitors for suspicious activity, and alerts you when something looks wrong. Think of it as a smoke detector for your site. You hope you never need it, but you absolutely want it running. The free tiers of both plugins cover the core functionality for most business sites.
+</TipCard>
+
+## One More Thing: Change the Default Admin Username
+
+This one is so simple it almost doesn't deserve its own section, but I've seen enough sites still running with "admin" as the username that it's worth mentioning. If your WordPress admin username is "admin", change it. Attackers specifically target this default because so many sites never bother. Creating a new administrator account with a different username and deleting the old one takes about two minutes.
+
+> Security isn't about being impenetrable. It's about being less attractive than the next target.
+
+Most automated attacks aren't sophisticated. They're opportunistic. They're looking for easy targets, outdated software, default usernames, no login limits. Get the basics right and the vast majority of these attacks move on to someone else.
+
+If you'd like someone to check how your site stacks up against these basics, that's something we can do as part of a free audit. No obligation, no sales pitch, just a clear picture of where you stand.

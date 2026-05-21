@@ -1,0 +1,66 @@
+---
+// Clients.astro — case study cards. Data here so adding a client is one entry.
+
+const clients = [
+  {
+    num: '01',
+    name: 'Catagen',
+    desc: 'Full Squarespace-to-WordPress migration, custom Divi theme, and ongoing care across two domains.',
+    statValue: '4 yrs',
+    statLabel: '& counting',
+    href: '/case-studies/catagen',
+  },
+  {
+    num: '02',
+    name: 'Export Explore',
+    desc: 'Custom WordPress build with ongoing maintenance and performance monitoring.',
+    statValue: '100%',
+    statLabel: 'Uptime',
+    href: '/case-studies/exportexplore',
+  },
+  {
+    num: '03',
+    name: 'InclusionIQ',
+    desc: 'Full platform migration to WP Engine with bespoke theme and ongoing support.',
+    statValue: 'WP Engine',
+    statLabel: 'Platform',
+    href: '/case-studies/inclusion-iq',
+  },
+];
+---
+
+<section id="clients" class="clients-section">
+  <div class="clients-inner">
+    <div class="section-header-split">
+      <div class="section-header-left">
+        <span class="section-label">Selected Work</span>
+        <h2>Long-term partnerships,<br />not one-off projects.</h2>
+      </div>
+      <div class="section-header-right">
+        Every client relationship is built on trust, direct communication, and work that actually gets done.
+      </div>
+    </div>
+    <div class="clients-grid-v2">
+      {clients.map((client) => (
+        <a href={client.href} class="client-card-v2">
+          <div class="client-card-top">
+            <span class="client-num">{client.num}</span>
+            <span class="client-card-name">{client.name}</span>
+            <span class="client-card-desc">{client.desc}</span>
+          </div>
+          <div class="client-card-bottom">
+            <div class="client-stat">
+              <span class="client-stat-value">{client.statValue}</span>
+              <span class="client-stat-label" set:html={client.statLabel}></span>
+            </div>
+            <div class="client-card-arrow">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M4 12L12 4M12 4H5M12 4v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

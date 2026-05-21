@@ -1,0 +1,33 @@
+---
+// Marquee.astro — testimonial strip between hero and clients.
+// The duplicate set of items is intentional, it's what makes the loop seamless.
+// Quotes pulled into a const so edits stay simple.
+
+const quotes = [
+  { quote: 'Couldn\'t recommend Chris enough, our site hasn\'t gone down once.', client: 'Catagen', href: '/case-studies/catagen', external: false },
+  { quote: 'Finally, someone who just handles it without the back and forth.', client: 'Export Explore', href: '/case-studies/exportexplore', external: false },
+  { quote: 'We used to dread WordPress updates. Now we don\'t even think about them.', client: 'InclusionIQ', href: 'https://inclusioniq.co.uk', external: true },
+  { quote: 'Fast, honest, and easy to work with. Exactly what we needed.', client: 'ClimaTech Green Flight', href: '#clients', external: false },
+];
+
+// Duplicate the array for the seamless scroll loop.
+const items = [...quotes, ...quotes];
+---
+
+<div class="marquee-strip">
+  <div class="marquee-track">
+    {items.map((item, i) => (
+      <>
+        <a
+          href={item.href}
+          class="marquee-item"
+          target={item.external ? '_blank' : undefined}
+          rel={item.external ? 'noopener' : undefined}
+        >
+          "{item.quote}" <strong>, {item.client}</strong>
+        </a>
+        <span class="marquee-sep">·</span>
+      </>
+    ))}
+  </div>
+</div>

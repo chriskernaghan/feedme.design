@@ -1,0 +1,32 @@
+---
+// Services.astro — list of services with from-prices.
+
+const services = [
+  { num: '01', name: 'Maintenance Retainers', from: 'From £99/mo' },
+  { num: '02', name: 'Custom WordPress Builds', from: 'From £1,500' },
+  { num: '03', name: 'Platform Migrations', from: 'Get a quote' },
+  { num: '04', name: 'Analytics & Tracking Setup', from: 'From £350' },
+];
+---
+
+<section id="services" class="services-v2">
+  <div class="services-v2-inner">
+    <div class="section-header-split">
+      <div class="section-header-left">
+        <span class="section-label">Services</span>
+        <h2>Everything your WordPress<br />site needs to thrive.</h2>
+      </div>
+    </div>
+    <div class="services-rows">
+      {services.map((service) => (
+        <a class="service-row" href="#pricing">
+          <div class="service-row-left">
+            <span class="service-row-num">{service.num}</span>
+            <span class="service-row-name">{service.name}</span>
+          </div>
+          <span class="service-row-from">{service.from}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

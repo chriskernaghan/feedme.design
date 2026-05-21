@@ -1,0 +1,35 @@
+---
+// Dynamic route - one page per MDX file in src/content/posts/
+// Posts sorted newest first; prev/next links jump to the adjacent post in date order.
+
+import { getCollection } from 'astro:content';
+import PostLayout from '../../layouts/PostLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) => !data.draft);
+
+  const sorted = posts.sort(
+    (a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
+  );
+
+  return sorted.map((post, index) => {
+    const newer = sorted[index - 1] ?? null;
+    const older = sorted[index + 1] ?? null;
+    return {
+      params: { slug: post.slug },
+      props: {
+        post,
+        prev: older ? { slug: older.slug, title: older.data.title } : null,
+        next: newer ? { slug: newer.slug, title: newer.data.title } : null,
+      },
+    };
+  });
+}
+
+const { post, prev, next } = Astro.props;
+const { Content } = await post.render();
+---
+
+<PostLayout frontmatter={post.data} prev={prev} next={next}>
+  <Content />
+</PostLayout>

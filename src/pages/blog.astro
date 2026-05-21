@@ -1,0 +1,85 @@
+---
+// src/pages/blog.astro
+// Blog index, auto-generated from the posts content collection.
+// Add a new .mdx file to src/content/posts/ and it shows up here, sorted by date.
+
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const posts = await getCollection('posts', ({ data }) => !data.draft);
+
+const sortedPosts = posts.sort(
+  (a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
+);
+
+// Derive the tag list from the posts themselves, so removing a tag from
+// the schema or having no posts in a tag won't leave a dead filter button.
+const allTags = ['all', ...new Set(sortedPosts.map((p) => p.data.tag))];
+
+function formatDate(date: Date): string {
+  return new Date(date).toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  });
+}
+---
+
+<BaseLayout
+  title="Blog — feedme.design"
+  description="Practical WordPress advice for business owners who would rather be running their business."
+>
+  <div class="blog-hero">
+    <h1>The Blog</h1>
+    <p>Practical WordPress advice for business owners who would rather be running their business</p>
+  </div>
+
+  <div class="filter-bar">
+    {allTags.map((tag) => (
+      <button
+        class={`filter-tag ${tag === 'all' ? 'active' : ''}`}
+        data-filter={tag === 'all' ? 'all' : tag}
+      >
+        {tag === 'all' ? 'All Posts' : tag}
+      </button>
+    ))}
+  </div>
+
+  <div class="posts-list">
+    {sortedPosts.map((post) => (
+      <a href={`/posts/${post.slug}`} class="post-row" data-tag={post.data.tag}>
+        <div>
+          <span class="post-row-tag">{post.data.tag}</span>
+          <div class="post-row-title">{post.data.title}</div>
+          <div class="post-row-excerpt">{post.data.excerpt ?? post.data.description}</div>
+        </div>
+        <div class="post-row-meta">
+          <span class="post-row-date">{formatDate(post.data.date)}</span>
+          <span class="post-row-arrow">→</span>
+        </div>
+      </a>
+    ))}
+  </div>
+</BaseLayout>
+
+<script>
+  // Tag filter interaction
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-tag');
+  const rows = document.querySelectorAll<HTMLAnchorElement>('.post-row');
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const filter = button.dataset.filter;
+      buttons.forEach((b) => b.classList.remove('active'));
+      button.classList.add('active');
+
+      rows.forEach((row) => {
+        if (filter === 'all' || row.dataset.tag === filter) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

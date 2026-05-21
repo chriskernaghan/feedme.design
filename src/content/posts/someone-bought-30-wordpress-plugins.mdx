@@ -1,0 +1,99 @@
+---
+title: "Someone Bought 30 WordPress Plugins and Planted a Backdoor in All of Them"
+description: "A massive WordPress supply chain attack compromised 30+ trusted plugins. Here's what happened, what it means for your business, and what you should do about it."
+tag: "WordPress Security"
+date: 2026-04-13
+readTime: "4 min read"
+author: "Chris Kernaghan"
+---
+
+import Callout from '../../components/Callout.astro';
+
+Last week, one of the biggest WordPress security incidents in years came to light. Someone purchased a portfolio of over 30 WordPress plugins, legitimate, well-established plugins that had been around for nearly a decade, and quietly planted malicious code in every single one of them.
+
+This isn't a theoretical risk. It affected hundreds of thousands of live websites. And if your site runs WordPress, it's worth understanding what happened and what to do about it.
+
+## What actually happened
+
+A company called Essential Plugin (formerly WP Online Support) had been building free and premium WordPress plugins since around 2015. They were a legitimate development team based in India, and their plugins covered all the usual stuff, sliders, testimonial widgets, countdown timers, image galleries, FAQ sections. Bread-and-butter WordPress tools that thousands of small business sites rely on.
+
+By late 2024, the business was struggling. Revenue had dropped significantly, and the original owner listed the entire portfolio for sale on Flippa, a well-known marketplace for buying and selling online businesses.
+
+A buyer going by "Kris" purchased everything for a six-figure sum. And here's where it goes wrong.
+
+Within months of taking over, the new owner's very first code update to these plugins included a hidden backdoor, a piece of code designed to sit quietly and wait. It did nothing for eight months. Then, in early April 2026, it activated.
+
+## What the malicious code did
+
+Once activated, the backdoor reached out to a server controlled by the attacker, downloaded additional malicious code, and injected it deep into the affected websites. Specifically, it targeted a critical WordPress file called `wp-config.php`, one of the core files that makes your site work.
+
+The injected code was clever. It generated hidden spam content, fake pages, dodgy links, redirects, but only showed them to Google's crawlers. If you visited your own website, everything looked completely normal. You'd have no idea anything was wrong. But Google was seeing an entirely different version of your site, stuffed with spam links that could tank your search rankings and damage your reputation.
+
+It's the digital equivalent of someone putting up fake billboards around your shop that only certain people can see.
+
+## How big was the damage?
+
+On 7 April 2026, the WordPress.org Plugins Team permanently shut down all 31 plugins from this developer in a single day. That's an extraordinary response, it almost never happens at that scale. Here are just some of the plugins affected:
+
+- Countdown Timer Ultimate
+- Popup Anything on Click
+- WP Testimonial with Widget
+- WP Team Showcase and Slider
+- Blog Designer for Post and Widget
+- WP Logo Showcase Responsive Slider
+- Timeline and History Slider
+- Hero Banner Ultimate
+- Portfolio and Projects
+- Post Grid and Filter Ultimate
+
+There were over 30 in total. If any of those names look familiar, keep reading.
+
+## Why this matters for your business
+
+This attack is worth paying attention to because it exploits something most business owners would never think to worry about: **what happens when a trusted plugin changes hands.**
+
+You installed a plugin three years ago. It worked fine. It had thousands of reviews. The developer seemed reputable. You moved on and forgot about it, because why wouldn't you?
+
+But behind the scenes, that developer sold up. The new owner inherited full access to push code updates directly to every site running those plugins. And WordPress has no mechanism to flag that a plugin has changed ownership. No notification. No additional review. The update just lands on your site like any other.
+
+This isn't the first time it's happened, either. Back in 2017, a buyer purchased a plugin called Display Widgets, which had around 200,000 active installations, and injected payday loan spam using the same playbook. That attacker went on to compromise at least nine plugins the same way.
+
+The Essential Plugin case is the same approach at a much larger scale.
+
+## What should you do right now?
+
+If you manage a WordPress site, or someone manages one for you, here's a practical checklist:
+
+### 1. Check if any of these plugins are on your site
+
+Log into your WordPress dashboard, go to **Plugins**, and look through the list. If you see anything from the list above, or any plugin by "Essential Plugin" or the older "WP Online Support" brand, it needs attention immediately. Either remove it entirely if you're not actively using it, or replace it with an alternative.
+
+### 2. Ask your developer to check wp-config.php
+
+This is the file the malware targeted. If your site was affected, the malicious code was appended to a specific line in this file. It adds about 6KB of extra code, so if the file is noticeably larger than expected, the site was actively compromised and needs a proper cleanup, not just a plugin removal.
+
+### 3. Update everything
+
+WordPress itself pushed a forced update to neutralise the phone-home mechanism in the affected plugins. But that update didn't clean up the damage already done. Make sure your WordPress core, all plugins, and your theme are fully up to date.
+
+### 4. Run a security scan
+
+If you have a security plugin like Wordfence or Sucuri installed, run a full scan now. If you don't have one, this is a good time to add one. If your site was compromised, a scan will flag the modified files.
+
+### 5. Check Google Search Console
+
+Since the spam was specifically targeted at Google's crawlers, check your Google Search Console account for any unusual indexing, pages you didn't create, unexpected spikes in indexed URLs, or manual action warnings. If you don't have Search Console set up, that's another thing worth sorting.
+
+## The bigger picture
+
+The uncomfortable truth here is that WordPress's plugin ecosystem relies heavily on trust, and that trust has some structural gaps. There's no formal review process when a plugin changes ownership. There's no notification to the hundreds of thousands of site owners who depend on that plugin. The original developer's reputation carries over to the new owner by default.
+
+For individual business owners, the practical takeaway is this: **plugins need ongoing attention, not just installation.** Every plugin on your site is a potential doorway. The more you have, the more doors there are to watch. Keeping your plugin count lean, removing anything you're not actively using, and making sure someone is regularly reviewing what's installed, that's the best defence against this kind of attack.
+
+It's also a strong argument for having someone actively managing your WordPress site rather than leaving it on autopilot. A maintenance plan that includes regular plugin audits, security monitoring, and update management would have caught this, or at least significantly reduced the window of exposure.
+
+<Callout>
+**Not sure if your site is affected?** If you'd like us to take a quick look at your WordPress site and check whether any of these compromised plugins are installed, get in touch. No charge, no obligation, it takes five minutes and it's worth the peace of mind.
+</Callout>
+
+*This post is based on the detailed technical investigation published by [Austin Ginder at Anchor Hosting](https://anchor.host/someone-bought-30-wordpress-plugins-and-planted-a-backdoor-in-all-of-them/), who discovered and documented the attack across his managed hosting fleet. If you're technically minded, the full write-up is well worth a read.*

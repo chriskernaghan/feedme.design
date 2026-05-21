@@ -1,0 +1,22 @@
+---
+// TipCard.astro — numbered tip card for use inside MDX posts.
+// Usage in MDX:
+//   <TipCard number="1" title="Keep Everything Updated">
+//     Body content here, can be markdown or HTML.
+//   </TipCard>
+
+interface Props {
+  number: string | number;
+  title: string;
+}
+
+const { number, title } = Astro.props;
+---
+
+<div class="tip-card">
+  <div class="tip-number">{number}</div>
+  <div class="tip-content">
+    <h3>{title}</h3>
+    <slot />
+  </div>
+</div>

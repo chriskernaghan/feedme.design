@@ -1,0 +1,34 @@
+---
+// Homepage - composes the hero, marquee, and seven section components.
+// All section copy lives in the component files, edit those, not this file.
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Marquee from '../components/Marquee.astro';
+import Clients from '../components/Clients.astro';
+import Services from '../components/Services.astro';
+import Process from '../components/Process.astro';
+import Pricing from '../components/Pricing.astro';
+import LatestPosts from '../components/LatestPosts.astro';
+import FAQ from '../components/FAQ.astro';
+import Contact from '../components/Contact.astro';
+---
+
+<BaseLayout
+  title="WP Base — WordPress Maintenance for Small Businesses"
+  description="WordPress care without the agency price. Maintenance, custom builds, migrations and ongoing support for small businesses in Northern Ireland."
+>
+  <Hero />
+  <Marquee />
+  <Clients />
+  <Services />
+  <Process />
+  <Pricing />
+  <LatestPosts />
+  <FAQ />
+  <Contact />
+</BaseLayout>
+
+<script>
+  import '../scripts/homepage.ts';
+</script>

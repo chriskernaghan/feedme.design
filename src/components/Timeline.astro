@@ -1,0 +1,32 @@
+---
+// Timeline.astro — three-item numeric strip between sections.
+//
+// Usage in MDX:
+//   <Timeline items={[
+//     { number: "6-8", label: "Weeks from design to launch" },
+//     { number: "4+", label: "Years ongoing partnership" },
+//     { number: "1", label: "Platform that scales" },
+//   ]} />
+
+interface TimelineItem {
+  number: string;
+  label: string;
+}
+
+interface Props {
+  items: TimelineItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="timeline">
+  <div class="timeline-items">
+    {items.map((item) => (
+      <div class="timeline-item">
+        <span class="timeline-number">{item.number}</span>
+        <div class="timeline-label">{item.label}</div>
+      </div>
+    ))}
+  </div>
+</div>

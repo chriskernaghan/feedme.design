@@ -1,0 +1,28 @@
+---
+// StatCallout.astro — stat block for use inside MDX posts.
+// Usage:
+//   <StatCallout stats={[
+//     { number: "53%", label: "of mobile users leave after 3 seconds" },
+//     { number: "1s", label: "delay = 7% drop in conversions" },
+//   ]} />
+
+interface Stat {
+  number: string;
+  label: string;
+}
+
+interface Props {
+  stats: Stat[];
+}
+
+const { stats } = Astro.props;
+---
+
+<div class="stat-callout">
+  {stats.map((stat) => (
+    <div class="stat-callout-item">
+      <span class="number">{stat.number}</span>
+      <span class="label">{stat.label}</span>
+    </div>
+  ))}
+</div>

@@ -1,0 +1,75 @@
+---
+// Pricing.astro — three tiers plus custom card.
+
+const tiers = [
+  {
+    tier: 'Silver',
+    price: '99',
+    hours: '5 hours included',
+    featured: false,
+    features: [
+      'WordPress core updates',
+      'Plugin & theme updates',
+      'Daily backups',
+      'Uptime monitoring',
+      'Monthly report',
+    ],
+  },
+  {
+    tier: 'Gold',
+    price: '169',
+    hours: '10 hours included',
+    featured: true,
+    features: [
+      'Everything in Silver',
+      'Performance optimisation',
+      'Security scanning',
+      'Bug fixes & support',
+      'Priority response',
+    ],
+  },
+  {
+    tier: 'Platinum',
+    price: '239',
+    hours: '15 hours included',
+    featured: false,
+    features: [
+      'Everything in Gold',
+      'Content updates',
+      'Database optimisation',
+      'Dedicated account manager',
+      'Same-day response',
+    ],
+  },
+];
+---
+
+<section id="pricing" class="pricing">
+  <div class="section-header">
+    <span class="section-label">Pricing</span>
+    <h2>Simple, Transparent Pricing</h2>
+    <p>No surprises, no hidden fees, just reliable WordPress care at a fixed monthly rate</p>
+  </div>
+  <div class="pricing-grid">
+    {tiers.map((tier) => (
+      <div class={`pricing-card${tier.featured ? ' featured' : ''}`}>
+        {tier.featured && <div class="featured-label">Most Popular</div>}
+        <div class="pricing-tier">{tier.tier}</div>
+        <div class="pricing-price"><sup>£</sup>{tier.price}</div>
+        <div class="pricing-period">per month</div>
+        <div class="pricing-hours">⏱ {tier.hours}</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          {tier.features.map((f) => <li>{f}</li>)}
+        </ul>
+        <a href="#contact" class="pricing-cta">Get Started</a>
+      </div>
+    ))}
+    <div class="pricing-card pricing-custom">
+      <div class="pricing-tier">Custom</div>
+      <h3>Need something bespoke?</h3>
+      <p>For agencies and businesses with specific requirements, we offer flexible retainer arrangements tailored to your needs.</p>
+      <a href="#contact" class="pricing-cta">Let's Talk</a>
+    </div>
+  </div>
+</section>

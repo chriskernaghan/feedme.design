@@ -1,0 +1,29 @@
+---
+// OutcomeGrid.astro — 4-card grid used inside case study outcomes.
+//
+// Usage in MDX:
+//   <OutcomeGrid cards={[
+//     { heading: "Faster & More Scalable", body: "Built on WP Engine's..." },
+//     ...
+//   ]} />
+
+interface OutcomeCard {
+  heading: string;
+  body: string;
+}
+
+interface Props {
+  cards: OutcomeCard[];
+}
+
+const { cards } = Astro.props;
+---
+
+<div class="outcome-grid">
+  {cards.map((card) => (
+    <div class="outcome-card">
+      <h3>{card.heading}</h3>
+      <p>{card.body}</p>
+    </div>
+  ))}
+</div>

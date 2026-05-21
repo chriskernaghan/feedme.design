@@ -1,0 +1,28 @@
+---
+// Process.astro — four-step process explanation.
+
+const steps = [
+  { num: '01', title: 'Free Audit', body: "I review your site for performance, security and UX issues, and send you an honest assessment." },
+  { num: '02', title: 'Clear Plan', body: "A prioritised action list. What needs doing now, what can wait, and what it'll cost. No surprises." },
+  { num: '03', title: 'Get It Done', body: "I work directly in the codebase. Updates, fixes and improvements, handled properly the first time." },
+  { num: '04', title: 'Ongoing Care', body: "Monthly retainer keeps everything running. Security, updates, support, one message away." },
+];
+---
+
+<section id="process" class="process">
+  <div class="process-inner">
+    <div class="process-header">
+      <span class="section-label section-label--light">How it works</span>
+      <h2>No agencies. No layers.<br />Just results.</h2>
+    </div>
+    <div class="process-steps-v2">
+      {steps.map((step) => (
+        <div class="process-step-v2">
+          <div class="step-number-v2">{step.num}</div>
+          <h3>{step.title}</h3>
+          <p>{step.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

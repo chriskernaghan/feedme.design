@@ -1,0 +1,22 @@
+---
+// Dynamic route for case studies.
+// Drop a new .mdx file in src/content/caseStudies/, get a page at /case-studies/[slug].
+
+import { getCollection } from 'astro:content';
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+
+export async function getStaticPaths() {
+  const studies = await getCollection('caseStudies', ({ data }) => !data.draft);
+  return studies.map((study) => ({
+    params: { slug: study.slug },
+    props: { study },
+  }));
+}
+
+const { study } = Astro.props;
+const { Content } = await study.render();
+---
+
+<CaseStudyLayout frontmatter={study.data}>
+  <Content />
+</CaseStudyLayout>

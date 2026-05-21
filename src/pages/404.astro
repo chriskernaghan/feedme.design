@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page not found — feedme.design"
+  description="We couldn't find the page you were looking for."
+>
+  <div style="max-width: 700px; margin: 6rem auto 8rem; padding: 0 2rem; text-align: center;">
+    <h1 style="font-size: 3rem; margin-bottom: 1rem;">Page not found</h1>
+    <p style="font-size: 1.15rem; line-height: 1.7; margin-bottom: 2rem;">
+      The page you're looking for has moved or doesn't exist. If you got here from a link somewhere, the link is probably out of date.
+    </p>
+    <p style="margin-bottom: 2.5rem;">
+      <a href="/" style="color: var(--midnight); font-weight: 600; text-decoration: underline;">Go to the homepage</a>
+      &nbsp;&nbsp;·&nbsp;&nbsp;
+      <a href="/blog" style="color: var(--midnight); font-weight: 600; text-decoration: underline;">Read the blog</a>
+    </p>
+  </div>
+</BaseLayout>

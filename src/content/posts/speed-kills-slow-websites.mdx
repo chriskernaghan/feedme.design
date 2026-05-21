@@ -1,0 +1,51 @@
+---
+title: "Speed Kills: What a Slow Website Is Costing Your Business"
+description: "53% of mobile users abandon a website that takes longer than three seconds to load. Here's what's slowing your WordPress site down and what actually fixes it."
+tag: "Performance"
+date: 2026-02-10
+readTime: "4 min read"
+---
+
+import StatCallout from '../../components/StatCallout.astro';
+
+There's a number that tends to stop business owners in their tracks when I share it: **53% of mobile users abandon a website that takes longer than three seconds to load.** More than half. Gone. Before they've even seen what you do.
+
+And yet, the average WordPress site, left to its own devices, plugins accumulating, images unoptimised, no caching in place, loads in five, six, seven seconds or more. Some I've audited take twelve.
+
+<StatCallout stats={[
+  { number: "53%", label: "of mobile users leave after 3 seconds" },
+  { number: "1s", label: "delay = 7% drop in conversions" },
+  { number: "2×", label: "faster sites see double the engagement" },
+]} />
+
+## The Invisible Tax on Your Business
+
+The frustrating thing about page speed is that you never see the customers you lose. They arrived, waited, left. No bounce notification. No angry email. Just silence where a sale could have been.
+
+Google has been factoring page speed into search rankings since 2010, and they've doubled down on it with Core Web Vitals. A slow site isn't just losing the customers who visit, it's ranking lower in search results, so fewer people find it in the first place. It's a compound problem: slow speeds reduce visitors, and reduced visitors lower your authority, which reduces your ranking, which reduces your visitors further.
+
+> Every second you shave off your load time is money directly recovered from the floor.
+
+## Why WordPress Sites Slow Down
+
+WordPress isn't inherently slow. A well-optimised WordPress site can load in under a second. But out of the box, running default settings, with a theme that loads fifteen Google Fonts and a page builder that injects scripts on every page? It's slow. And it gets slower over time.
+
+**Images are usually the biggest culprit.** Someone uploads a 4MB photo from their iPhone, and WordPress serves that same 4MB file to every visitor. Modern image formats like WebP can cut that down by 80% with no visible quality loss. Most WordPress sites aren't using them.
+
+**Plugins pile up.** Each plugin can add CSS files, JavaScript files, database queries. Some plugins, particularly page builders, sliders, and form tools, are notoriously heavy. Many load their assets everywhere, even on pages where they're not used.
+
+**No caching.** Without caching, WordPress has to rebuild every page from scratch for every visitor: query the database, assemble the template, deliver the HTML. With caching, most visitors get a pre-built static file. The difference in server response time is dramatic.
+
+**Cheap hosting.** Shared hosting is fine for getting started, but a server that's handling thousands of sites on the same machine will always struggle under load. Moving to a quality managed WordPress host often shaves seconds off load time with zero other changes.
+
+## What Actually Fixes It
+
+The good news is that most speed problems are fixable, and the fixes have a very high return on investment. A proper performance pass on a slow WordPress site typically involves: implementing a caching layer, converting images to modern formats and serving them at the right sizes, loading CSS and JavaScript more efficiently, moving to a better host if necessary, and cleaning up the database.
+
+Done well, it's not unusual to see a site go from a six-second load time to under two seconds. That's not a marginal improvement, that's a fundamentally different experience for your visitors, and different results for your business.
+
+## How Fast Should Your Site Be?
+
+As a rough benchmark: under two seconds is good, under one second is excellent. You can check your own site right now using Google PageSpeed Insights, just paste in your URL and you'll get a score and a breakdown of what's dragging you down. If you're scoring below 70, there's meaningful work to be done.
+
+If you'd rather have someone else look at it, that's what we're here for.

@@ -1,0 +1,72 @@
+---
+// LabelCard.astro — flexible card component for posts.
+// Handles signal-card, price-card, verdict-card, sign-card patterns.
+// CSS for each variant already exists in global.css, untouched.
+//
+// Usage examples:
+//   <LabelCard variant="signal" badge="Signal one" title="Your forms are broken">
+//     Body content...
+//   </LabelCard>
+//
+//   <LabelCard variant="price" badge="£500 – £1,500" title="The DIY tier">
+//     ...
+//   </LabelCard>
+//
+//   <LabelCard variant="sign" number="1" title="Bounce rate is climbing">
+//     ...
+//   </LabelCard>
+//
+//   <LabelCard variant="verdict" label="Verdict" title="Use WordPress">
+//     ...
+//   </LabelCard>
+
+interface Props {
+  variant: 'signal' | 'price' | 'verdict' | 'sign';
+  title: string;
+  badge?: string;   // signal, price
+  number?: string | number;  // sign
+  label?: string;   // verdict
+}
+
+const { variant, title, badge, number, label } = Astro.props;
+---
+
+{variant === 'sign' && (
+  <div class="sign-card">
+    <div class="sign-number">{number}</div>
+    <div class="sign-content">
+      <h3>{title}</h3>
+      <slot />
+    </div>
+  </div>
+)}
+
+{variant === 'signal' && (
+  <div class="signal-card">
+    <div class="signal-badge" set:html={badge?.replace(' ', '<br>')}></div>
+    <div class="signal-content">
+      <h3>{title}</h3>
+      <slot />
+    </div>
+  </div>
+)}
+
+{variant === 'price' && (
+  <div class="price-card">
+    <div class="price-badge" set:html={badge?.replace(' – ', ' –<br>')}></div>
+    <div class="price-content">
+      <h3>{title}</h3>
+      <slot />
+    </div>
+  </div>
+)}
+
+{variant === 'verdict' && (
+  <div class="verdict-card">
+    <div class="verdict-content">
+      <div class="verdict-label">{label}</div>
+      <h3>{title}</h3>
+      <slot />
+    </div>
+  </div>
+)}

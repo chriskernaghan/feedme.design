@@ -1,0 +1,51 @@
+---
+// LatestPosts.astro — homepage blog teaser.
+// Pulls the three newest posts from the collection.
+// New post published → this section updates itself, no homepage edit needed.
+
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('posts', ({ data }) => !data.draft);
+const latest = allPosts
+  .sort((a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf())
+  .slice(0, 3);
+
+// Map post index in this section to the original .post-card-image--N class
+// so the existing CSS background image styling carries across.
+const imageClasses = ['post-card-image--3', 'post-card-image--1', 'post-card-image--2'];
+
+function formatDate(date: Date): string {
+  return new Date(date).toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  });
+}
+---
+
+<section class="latest-posts">
+  <div class="posts-inner">
+    <div class="posts-header">
+      <div>
+        <span class="section-label">From the blog</span>
+        <h2>Practical WordPress advice</h2>
+      </div>
+      <a href="/blog" class="view-all-link">View all posts →</a>
+    </div>
+    <div class="posts-grid">
+      {latest.map((post, i) => (
+        <a href={`/posts/${post.slug}`} class="post-card">
+          <div class={`post-card-image ${imageClasses[i] ?? imageClasses[0]}`}></div>
+          <div class="post-card-body">
+            <div class="post-meta">
+              <span class="post-tag">{post.data.tag}</span>
+              <span class="post-date">{formatDate(post.data.date)}</span>
+            </div>
+            <h3>{post.data.title}</h3>
+            <p>{post.data.excerpt ?? post.data.description}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

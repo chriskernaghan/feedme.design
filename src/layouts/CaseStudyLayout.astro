@@ -1,0 +1,76 @@
+---
+// CaseStudyLayout.astro — wraps every case study.
+// Hero with meta, then MDX body, then optional testimonial, then CTA.
+
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  frontmatter: {
+    title: string;
+    client: string;
+    industry: string;
+    timeline: string;
+    ongoing: string;
+    intro: string;
+    heroLogo?: string;
+    heroLogoHtml?: string;
+    cta: { heading: string; body: string };
+    testimonial?: { quote: string; name: string; role: string };
+  };
+}
+
+const { frontmatter } = Astro.props;
+const meta = [
+  { label: 'Client', value: frontmatter.client },
+  { label: 'Industry', value: frontmatter.industry },
+  { label: 'Timeline', value: frontmatter.timeline },
+  { label: 'Ongoing', value: frontmatter.ongoing },
+];
+---
+
+<BaseLayout
+  title={`${frontmatter.title} — feedme.design`}
+  description={frontmatter.intro}
+>
+  <div class="case-hero">
+    <div class="case-hero-content">
+      {frontmatter.heroLogo && (
+        <img src={frontmatter.heroLogo} alt={frontmatter.client} class="case-logo" />
+      )}
+      {frontmatter.heroLogoHtml && (
+        <div set:html={frontmatter.heroLogoHtml}></div>
+      )}
+      <span class="case-label">Case Study</span>
+      <h1>{frontmatter.title}</h1>
+      <p class="case-hero-intro">{frontmatter.intro}</p>
+      <div class="case-meta">
+        {meta.map((item) => (
+          <div class="case-meta-item">
+            <div class="case-meta-label">{item.label}</div>
+            <div class="case-meta-value">{item.value}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <div class="case-content">
+    <slot />
+
+    {frontmatter.testimonial && (
+      <div class="case-testimonial">
+        <p>"{frontmatter.testimonial.quote}"</p>
+        <div class="case-testimonial-attribution">
+          <div class="case-testimonial-name">{frontmatter.testimonial.name}</div>
+          <div class="case-testimonial-role">{frontmatter.testimonial.role}</div>
+        </div>
+      </div>
+    )}
+  </div>
+
+  <div class="case-cta">
+    <h2>{frontmatter.cta.heading}</h2>
+    <p>{frontmatter.cta.body}</p>
+    <a href="/#contact" class="cta-button">Get Your Free Audit</a>
+  </div>
+</BaseLayout>

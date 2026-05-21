@@ -1,0 +1,22 @@
+---
+// CaseSection.astro — section wrapper for case study bodies.
+// Handles the label + heading; MDX body goes in the slot.
+//
+// Usage:
+//   <CaseSection label="The Challenge" heading="Hitting the Limits of Squarespace">
+//     prose, lists, anything...
+//   </CaseSection>
+
+interface Props {
+  label: string;
+  heading: string;
+}
+
+const { label, heading } = Astro.props;
+---
+
+<div class="case-section">
+  <div class="case-section-label">{label}</div>
+  <h2>{heading}</h2>
+  <slot />
+</div>
