@@ -29,36 +29,38 @@ function formatDate(date: Date): string {
   title="Blog — feedme.design"
   description="Practical WordPress advice for business owners who would rather be running their business."
 >
-  <div class="blog-hero">
-    <h1>The Blog</h1>
-    <p>Practical WordPress advice for business owners who would rather be running their business</p>
-  </div>
+  <div class="blog-inner">
+    <div class="blog-hero">
+      <h1>The Blog</h1>
+      <p>Practical WordPress advice for business owners who would rather be running their business</p>
+    </div>
 
-  <div class="filter-bar">
-    {allTags.map((tag) => (
-      <button
-        class={`filter-tag ${tag === 'all' ? 'active' : ''}`}
-        data-filter={tag === 'all' ? 'all' : tag}
-      >
-        {tag === 'all' ? 'All Posts' : tag}
-      </button>
-    ))}
-  </div>
+    <div class="filter-bar">
+      {allTags.map((tag) => (
+        <button
+          class={`filter-tag ${tag === 'all' ? 'active' : ''}`}
+          data-filter={tag === 'all' ? 'all' : tag}
+        >
+          {tag === 'all' ? 'All Posts' : tag}
+        </button>
+      ))}
+    </div>
 
-  <div class="posts-list">
-    {sortedPosts.map((post) => (
-      <a href={`/posts/${post.slug}`} class="post-row" data-tag={post.data.tag}>
-        <div>
-          <span class="post-row-tag">{post.data.tag}</span>
-          <div class="post-row-title">{post.data.title}</div>
-          <div class="post-row-excerpt">{post.data.excerpt ?? post.data.description}</div>
-        </div>
-        <div class="post-row-meta">
-          <span class="post-row-date">{formatDate(post.data.date)}</span>
-          <span class="post-row-arrow">→</span>
-        </div>
-      </a>
-    ))}
+    <div class="posts-list">
+      {sortedPosts.map((post) => (
+        <a href={`/posts/${post.slug}`} class="post-row" data-tag={post.data.tag}>
+          <div>
+            <span class="post-row-tag">{post.data.tag}</span>
+            <div class="post-row-title">{post.data.title}</div>
+            <div class="post-row-excerpt">{post.data.excerpt ?? post.data.description}</div>
+          </div>
+          <div class="post-row-meta">
+            <span class="post-row-date">{formatDate(post.data.date)}</span>
+            <span class="post-row-arrow">→</span>
+          </div>
+        </a>
+      ))}
+    </div>
   </div>
 </BaseLayout>
 
