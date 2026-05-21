@@ -1858,7 +1858,7 @@ footer a:hover {
    ========================================================================== */
 
 .blog-hero {
-    padding: 12rem 4rem 2rem;
+    padding: 0 0 2rem;
     background: var(--snow);
     position: relative;
     overflow: hidden;
