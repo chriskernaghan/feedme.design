@@ -1,0 +1,57 @@
+---
+title: "What's Actually Slowing Your WordPress Site Down in 2026"
+description: "Most WordPress sites are slower than they need to be, and it's almost always the same five culprits. Here's what to look at, in order, when you're trying to work out where the seconds are going."
+tag: "Performance"
+date: 2026-05-22
+readTime: "5 min read"
+---
+
+I audit a lot of WordPress sites. The thing that surprises clients most isn't that their site is slow, they already suspect that. It's how predictable the reasons are. The same five issues come up over and over, and once you know what to look for, you can usually identify the worst offender in about thirty seconds.
+
+So here's the running order. If your site is loading in five seconds or more, the cause is almost certainly somewhere in this list.
+
+## 1. Images that haven't been resized or compressed
+
+This is the biggest one, and it's not close. A 4MB photo from someone's iPhone, uploaded straight into the media library and dropped onto a page, will be served at full resolution to every visitor, including the ones on mobile data who really didn't ask for that.
+
+Modern formats like WebP can shave 60 to 80% off image weight with no visible quality loss. Tools like ShortPixel, Imagify or Smush handle this automatically on upload. If your site has been running for a few years without any image optimisation in place, you almost certainly have a media library full of files that are five to ten times larger than they need to be.
+
+The fix is two-fold. Install an image optimisation plugin and let it process your existing library in bulk. Then make sure new uploads get the same treatment automatically going forward.
+
+## 2. Page builders that load themselves on every page
+
+Page builders are great for editing flexibility. They're less great for performance. The major ones, Elementor, Divi, WPBakery, often load their full CSS and JavaScript on every page of your site, regardless of whether that page actually uses page builder content.
+
+If your homepage is built in Elementor but your blog posts aren't, your blog posts are still loading the entire Elementor frontend. That's hundreds of kilobytes of code doing absolutely nothing for those visitors, just sitting there blocking the render.
+
+The fix depends on the builder. Some have settings to disable assets on pages where they're not needed. Some have third-party plugins that handle it (Asset CleanUp is good for this). And if your site is light enough on custom layout to consider it, dropping the page builder entirely in favour of the native block editor will give you the biggest performance boost of anything on this list.
+
+## 3. Plugins that should have been deleted years ago
+
+Every plugin you have installed is loading code. Even deactivated plugins can leave database entries that slow things down. And most WordPress sites I look at have at least one or two plugins installed that were activated three years ago for a specific purpose, never removed, and are still loading their assets on every page.
+
+Go to your Plugins page and ask yourself, honestly, when did I last use each of these? If the answer is "I don't know" or "I can't remember installing it", delete it. Don't deactivate, delete. You can always reinstall later if you turn out to need it.
+
+A lean plugin list is one of the highest-leverage performance changes you can make, and it costs nothing.
+
+## 4. No caching layer in place
+
+Without caching, WordPress rebuilds every page from scratch for every visitor. That means a database query, a PHP execution, a template assembly, a final HTML delivery. For a low-traffic site this isn't catastrophic, but it adds half a second or so to every request that genuinely doesn't need to be there.
+
+A proper caching plugin (WP Rocket if you'll pay for it, LiteSpeed Cache if your host supports it, W3 Total Cache if you're on a budget) takes that rebuild process and replaces it with serving a pre-built static file. The difference in server response time is usually dramatic.
+
+Worth noting: many decent hosts now include server-level caching that runs without a plugin. If you're on WP Engine, Kinsta, or any other managed WordPress host, check what's already enabled before installing anything yourself.
+
+## 5. The hosting itself
+
+Shared hosting is fine to start. It's how most sites begin. But there's a point where the maths flips, where the constraint isn't your site, it's the dozen other sites on the same server eating CPU and memory.
+
+If you've worked through items 1 to 4 above and your site is still slow, the bottleneck is probably your host. Moving to a quality managed WordPress host (WP Engine, Kinsta, SiteGround's higher tiers) often shaves a second or more off load time with no other changes. It's not the cheapest option, but if your site is actively bringing in business, paying £30/month instead of £5/month for hosting that's genuinely fast is a no-brainer.
+
+## How to actually measure this
+
+Don't guess. Google PageSpeed Insights is free, takes thirty seconds, and tells you exactly what's slow. It also gives you a breakdown of where time is being spent, which usually maps neatly onto the list above.
+
+If you're scoring under 70 on mobile, there's meaningful work to be done. Under 50, your site is actively losing you customers every day. Over 90 is the goal, and entirely achievable with sensible setup.
+
+If you'd like a second opinion on what's slowing your site down specifically, that's the kind of thing a free audit will tell you in plain English. No vague promises about "optimisation", just a clear list of what to fix and roughly what each one will buy you.

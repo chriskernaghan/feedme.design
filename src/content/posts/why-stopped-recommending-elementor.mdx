@@ -1,0 +1,67 @@
+---
+title: "Why I've Stopped Recommending Elementor for New Builds"
+description: "Elementor was the right answer in 2020. In 2026, for most small business sites, it isn't. Here's what's changed, and what I'm reaching for instead."
+tag: "Web Design"
+date: 2026-05-22
+readTime: "6 min read"
+---
+
+I've built more Elementor sites than I can count. For a long time it was my default recommendation when a client wanted something visual, editable, and quick to ship. The team behind it built something genuinely impressive, and the editing experience is still one of the best in the WordPress ecosystem.
+
+But I've stopped reaching for it on new builds. And after about six months of recommending alternatives, I'm confident enough in that call to write it down.
+
+This isn't a hit piece. Elementor still works. There are still situations where it's the right tool. But for the average small business site I'm building in 2026, the case for it has weakened considerably, and the case against has grown.
+
+## What changed
+
+The block editor got good.
+
+When Elementor first hit its stride around 2018-2019, the WordPress block editor was a frustrating, half-baked attempt at modern editing. Choosing a page builder over Gutenberg wasn't a close call. It was a clear quality-of-life decision.
+
+Six years later, the block editor is a different product. Full site editing has matured. The block library, both core and third-party, covers everything most small business sites actually need. The Site Editor lets you control headers, footers, and templates without touching code. Performance is significantly better than any of the major page builders because it's not loading a heavy frontend framework on top of WordPress.
+
+And critically, native blocks don't lock your content. If you build a page in the block editor and decide three years from now to switch themes, your content travels with you. Page builders, all of them, embed proprietary shortcodes or markup into your post content that breaks the moment you deactivate the plugin.
+
+## The performance gap is real
+
+I measure this on every audit. Elementor sites are consistently slower than block editor sites of equivalent complexity. Not by a small margin. Often by two to three seconds on mobile.
+
+The reason isn't that Elementor's code is bad. It's that the page builder model fundamentally requires loading a frontend rendering layer on top of WordPress, on every page that has page builder content. Even with all the optimisations Elementor has added in recent years (and they have added many), there's a structural cost you can't entirely engineer away.
+
+For a brochure site for a local solicitor in Newtownabbey, that cost might be invisible. They get fifteen visitors a day. For a site that's actively trying to rank in Google and convert mobile traffic, those seconds are real money.
+
+## The "easy editing" argument has weakened
+
+The main reason clients used to specifically request a page builder was that they wanted to edit their own site without learning code. That was a perfectly fair reason in 2019 when the alternative was the classic editor and pasting HTML into a wysiwyg box.
+
+In 2026, the block editor offers genuine drag-and-drop editing with a comparable learning curve. The mental model is different (you're working with blocks rather than columns and widgets), but the editing experience is comparable. I've onboarded non-technical clients to both, and the block editor has actually proven easier to teach in recent projects, possibly because it's more constrained and offers fewer ways to break the layout.
+
+## What I'm reaching for instead
+
+For most small business sites these days, my default stack is:
+
+- WordPress with the block editor (no page builder)
+- A lightweight theme (Kadence, GeneratePress, or a custom build for clients who want it bespoke)
+- A small number of well-chosen block plugins where the native library has gaps (Kadence Blocks is excellent)
+
+The result is a site that loads in under two seconds on mobile, ranks well in Google, and is genuinely editable by the client without anyone having to call me to change a phone number.
+
+For more visual or design-heavy projects (portfolios, agency sites, anything where the visual treatment is the product), I'll occasionally still reach for a page builder. But these days that's more likely to be Bricks or Breakdance than Elementor, and even then it's a deliberate choice rather than a default.
+
+## When Elementor still makes sense
+
+A few situations where I'd still recommend it:
+
+- The client is already using it, has built up Elementor expertise in-house, and a switch would cost more than it saves
+- The site has heavy custom layout requirements that the block editor genuinely can't handle without significant custom development
+- The client specifically wants the Elementor template library as a starting point and isn't price-sensitive enough to care about the performance trade-off
+
+These are legitimate reasons. I just find they describe a smaller portion of my client base than they used to.
+
+## The honest version
+
+The honest version of this is that the WordPress ecosystem has moved on, and I've moved with it. The block editor in 2026 is what page builders promised to be in 2018. For sites that don't need the kitchen sink, choosing a page builder now means accepting a performance penalty and content lock-in for editing convenience that the platform itself now provides natively.
+
+If you're commissioning a new site this year and a developer reflexively suggests Elementor without asking what you actually need, it's worth pushing back. Not because Elementor is bad, but because the question of what tool to use for your site should be a considered decision, not a default. The right answer for your site might still be Elementor. It might not. The point is asking the question.
+
+If you're not sure what's right for your situation, that's the sort of thing a free consultation will clear up quickly. No upsell, no preset answers, just a look at what your site actually needs to do and what makes sense to build it on.
