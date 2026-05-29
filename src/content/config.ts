@@ -22,6 +22,10 @@ const posts = defineCollection({
     readTime: z.string(),
     author: z.string().default('Chris — feedme.design'),
     excerpt: z.string().optional(),
+    // Card / hero image. Path lives in /public, e.g. "/blog/wrong-hosting.jpg".
+    // Optional, so posts without one fall back to a tinted placeholder.
+    image: z.string().optional(),
+    imageAlt: z.string().optional(),
     draft: z.boolean().default(false),
   }),
 });
