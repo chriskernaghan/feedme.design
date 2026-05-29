@@ -2,7 +2,7 @@
 // src/pages/blog.astro
 // Blog index, auto-generated from the posts content collection.
 // Add a new .mdx file to src/content/posts/ and it shows up here, sorted by date.
-// Layout: newest post = featured lead, next four = "Latest" rail, the rest = grid.
+// Layout: newest post = featured lead (page h1), next four = "Latest" rail, rest = grid.
 // When a tag filter is active the featured/rail collapse and the grid shows every
 // matching post instead.
 
@@ -38,11 +38,6 @@ function formatDate(date: Date): string {
 >
   <section class="hero-v2">
     <div class="hero-v2-inner">
-      <div class="blog-hero">
-        <h1>The Blog</h1>
-        <p>Practical WordPress advice for business owners who would rather be running their business</p>
-      </div>
-
       <div class="filter-bar">
         {allTags.map((tag) => (
           <button
@@ -69,7 +64,7 @@ function formatDate(date: Date): string {
             )}
             <div class="feature-card-body">
               <span class="feature-card-tag">{featured.data.tag}</span>
-              <h2 class="feature-card-title">{featured.data.title}</h2>
+              <h1 class="feature-card-title">{featured.data.title}</h1>
               <p class="feature-card-excerpt">{featured.data.excerpt ?? featured.data.description}</p>
               <div class="feature-card-meta">
                 <span>{formatDate(featured.data.date)}</span>
@@ -84,7 +79,7 @@ function formatDate(date: Date): string {
             {railPosts.map((post) => (
               <a href={`/posts/${post.slug}`} class="rail-item">
                 <span class="rail-item-tag">{post.data.tag}</span>
-                <h3 class="rail-item-title">{post.data.title}</h3>
+                <h2 class="rail-item-title">{post.data.title}</h2>
                 <div class="rail-item-meta">{formatDate(post.data.date)} · {post.data.readTime}</div>
               </a>
             ))}
