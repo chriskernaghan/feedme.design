@@ -1,7 +1,6 @@
 ---
 // PostLayout.astro — wraps every blog post.
 // Receives frontmatter from the MDX file, plus prev/next from the dynamic route.
-
 import BaseLayout from './BaseLayout.astro';
 import PostCTA from '../components/PostCTA.astro';
 
@@ -18,6 +17,8 @@ interface Props {
     date: Date;
     readTime: string;
     author: string;
+    image?: string;
+    imageAlt?: string;
   };
   prev?: PostNavLink | null;
   next?: PostNavLink | null;
@@ -30,17 +31,51 @@ const formattedDate = new Date(frontmatter.date).toLocaleDateString('en-GB', {
   month: 'long',
   year: 'numeric',
 });
+
+// Solo shop, so the author photo is a site-wide asset rather than per-post.
+// Drop a square headshot in /public/authors/ and set the path below; until then
+// the byline shows a lime initials circle.
+const authorAvatar: string | null = null; // e.g. '/authors/chris.jpg'
+const authorInitials = 'CK';
 ---
 
 <BaseLayout title={`${frontmatter.title} — feedme.design`} description={frontmatter.description}>
   <div class="post-hero">
-    <div class="post-tag">{frontmatter.tag}</div>
-    <h1>{frontmatter.title}</h1>
-    <div class="post-meta">
-      <span>{frontmatter.author}</span>
-      <span>{formattedDate}</span>
-      <span>{frontmatter.readTime}</span>
+    <div class="post-header-grid">
+      <div class="post-header-main">
+        <div class="post-header-meta">
+          <span class="post-tag">{frontmatter.tag}</span>
+          <span class="post-header-date">{formattedDate} · {frontmatter.readTime}</span>
+        </div>
+        <h1>{frontmatter.title}</h1>
+      </div>
+
+      <div class="post-header-aside">
+        <p class="post-standfirst">{frontmatter.description}</p>
+        <div class="post-byline">
+          {authorAvatar ? (
+            <img class="post-byline-avatar" src={authorAvatar} alt={frontmatter.author} />
+          ) : (
+            <div class="post-byline-avatar post-byline-avatar--initials" aria-hidden="true">{authorInitials}</div>
+          )}
+          <div>
+            <div class="post-byline-label">Written by</div>
+            <div class="post-byline-name">{frontmatter.author}</div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    {frontmatter.image ? (
+      <img
+        class="post-hero-image"
+        src={frontmatter.image}
+        alt={frontmatter.imageAlt ?? frontmatter.title}
+        loading="eager"
+      />
+    ) : (
+      <div class="post-hero-image post-hero-image--empty" aria-hidden="true"></div>
+    )}
   </div>
 
   <div class="post-body">
