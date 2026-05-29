@@ -2,6 +2,9 @@
 // src/pages/blog.astro
 // Blog index, auto-generated from the posts content collection.
 // Add a new .mdx file to src/content/posts/ and it shows up here, sorted by date.
+// Layout: newest post = featured lead, next four = "Latest" rail, the rest = grid.
+// When a tag filter is active the featured/rail collapse and the grid shows every
+// matching post instead.
 
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -13,6 +16,12 @@ const sortedPosts = posts.sort(
 );
 
 const allTags = ['all', ...new Set(sortedPosts.map((p) => p.data.tag))];
+
+// Featured = newest. Rail = next four. Both also live in the grid (hidden in the
+// default "all" view) so a tag filter can surface them without duplicating content.
+const [featured, ...rest] = sortedPosts;
+const railPosts = rest.slice(0, 4);
+const featuredSlugs = new Set([featured?.slug, ...railPosts.map((p) => p.slug)]);
 
 function formatDate(date: Date): string {
   return new Date(date).toLocaleDateString('en-GB', {
@@ -45,20 +54,77 @@ function formatDate(date: Date): string {
         ))}
       </div>
 
-      <div class="posts-list">
-        {sortedPosts.map((post) => (
-          <a href={`/posts/${post.slug}`} class="post-row" data-tag={post.data.tag}>
-            <div>
+      {featured && (
+        <div class="blog-featured" id="blogFeatured">
+          <a href={`/posts/${featured.slug}`} class="feature-card">
+            {featured.data.image ? (
+              <img
+                src={featured.data.image}
+                alt={featured.data.imageAlt ?? featured.data.title}
+                class="feature-card-thumb"
+                loading="eager"
+              />
+            ) : (
+              <div class="feature-card-thumb feature-card-thumb--empty" aria-hidden="true"></div>
+            )}
+            <div class="feature-card-body">
+              <span class="feature-card-tag">{featured.data.tag}</span>
+              <h2 class="feature-card-title">{featured.data.title}</h2>
+              <p class="feature-card-excerpt">{featured.data.excerpt ?? featured.data.description}</p>
+              <div class="feature-card-meta">
+                <span>{formatDate(featured.data.date)}</span>
+                <span class="dot">·</span>
+                <span>{featured.data.readTime}</span>
+              </div>
+            </div>
+          </a>
+
+          <div class="latest-rail">
+            <p class="latest-rail-label">Latest</p>
+            {railPosts.map((post) => (
+              <a href={`/posts/${post.slug}`} class="rail-item">
+                <span class="rail-item-tag">{post.data.tag}</span>
+                <h3 class="rail-item-title">{post.data.title}</h3>
+                <div class="rail-item-meta">{formatDate(post.data.date)} · {post.data.readTime}</div>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <p class="posts-grid-label" id="gridLabel">More from the blog</p>
+
+      <div class="posts-list" id="postsGrid">
+        {sortedPosts.map((post) => {
+          const inFeature = featuredSlugs.has(post.slug);
+          return (
+            <a
+              href={`/posts/${post.slug}`}
+              class="post-row"
+              data-tag={post.data.tag}
+              data-featured={inFeature ? 'true' : 'false'}
+              style={inFeature ? 'display:none' : undefined}
+            >
+              {post.data.image ? (
+                <img
+                  src={post.data.image}
+                  alt={post.data.imageAlt ?? post.data.title}
+                  class="post-row-thumb"
+                  loading="lazy"
+                />
+              ) : (
+                <div class="post-row-thumb post-row-thumb--empty" aria-hidden="true"></div>
+              )}
               <span class="post-row-tag">{post.data.tag}</span>
               <div class="post-row-title">{post.data.title}</div>
               <div class="post-row-excerpt">{post.data.excerpt ?? post.data.description}</div>
-            </div>
-            <div class="post-row-meta">
-              <span class="post-row-date">{formatDate(post.data.date)}</span>
-              <span class="post-row-arrow">→</span>
-            </div>
-          </a>
-        ))}
+              <div class="post-row-meta">
+                <span class="post-row-date">{formatDate(post.data.date)} · {post.data.readTime}</span>
+                <span class="post-row-arrow">→</span>
+              </div>
+            </a>
+          );
+        })}
       </div>
     </div>
   </section>
@@ -66,21 +132,32 @@ function formatDate(date: Date): string {
 
 <script>
   const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-tag');
-  const rows = document.querySelectorAll<HTMLAnchorElement>('.post-row');
+  const cards = document.querySelectorAll<HTMLAnchorElement>('.post-row');
+  const featuredBlock = document.getElementById('blogFeatured');
+  const gridLabel = document.getElementById('gridLabel');
+
+  function applyFilter(filter: string) {
+    const isAll = filter === 'all';
+
+    if (featuredBlock) featuredBlock.style.display = isAll ? '' : 'none';
+    if (gridLabel) gridLabel.style.display = isAll ? '' : 'none';
+
+    cards.forEach((card) => {
+      // In the default view, hide the cards already shown in the featured block.
+      // When filtering by tag, show every post that matches regardless.
+      const show = isAll
+        ? card.dataset.featured !== 'true'
+        : card.dataset.tag === filter;
+      card.style.display = show ? '' : 'none';
+    });
+  }
 
   buttons.forEach((button) => {
     button.addEventListener('click', () => {
-      const filter = button.dataset.filter;
+      const filter = button.dataset.filter ?? 'all';
       buttons.forEach((b) => b.classList.remove('active'));
       button.classList.add('active');
-
-      rows.forEach((row) => {
-        if (filter === 'all' || row.dataset.tag === filter) {
-          row.style.display = '';
-        } else {
-          row.style.display = 'none';
-        }
-      });
+      applyFilter(filter);
     });
   });
 </script>
