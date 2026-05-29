@@ -3037,6 +3037,7 @@ footer a:hover {
     .hero-v2-top {
         grid-template-columns: 1fr;
         gap: 2rem;
+        padding-bottom:0;
     }
 
     .hero-terminal {
