@@ -89,17 +89,6 @@ nav {
     transition: color 0.3s ease;
 }
 
-.nav-links a::after {
-    content: "";
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--midnight);
-    transition: width 0.3s ease;
-}
-
 .nav-links a:hover,
 .nav-links a.active {
     color: var(--midnight);
@@ -3165,10 +3154,6 @@ footer a:hover {
         width: 100%;
         justify-content: center;
         box-sizing: border-box;
-    }
-
-    .hero-v2-cta-secondary {
-        align-self: flex-start;
     }
 
     .hero-v2-trust {
