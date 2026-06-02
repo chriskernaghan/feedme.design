@@ -2764,11 +2764,11 @@ footer a:hover {
 .case-hero::before {
     content: "";
     position: absolute;
-    top: -20%;
-    right: -10%;
-    width: 60%;
-    height: 140%;
-    background: radial-gradient(circle, rgba(212, 255, 58, 0.12) 0%, transparent 60%);
+    top: -40%;
+    right: -25%;
+    width: 90%;
+    height: 180%;
+    background: radial-gradient(ellipse 60% 50% at 70% 40%, rgba(212, 255, 58, 0.14) 0%, rgba(212, 255, 58, 0.05) 35%, transparent 70%);
     pointer-events: none;
 }
 
@@ -2850,6 +2850,15 @@ footer a:hover {
     padding: 6rem 4rem;
 }
 
+/* Lets wide furniture (images, timeline, outcome grid) break out of the
+   800px reading column up to the 1200px frame, while prose stays readable.
+   Clamp stops it overflowing the viewport on mid-size screens. */
+.case-breakout {
+    width: min(var(--frame), calc(100vw - 8rem));
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
 .case-section {
     margin-bottom: 5rem;
 }
@@ -2881,12 +2890,16 @@ footer a:hover {
     margin-bottom: 1.5rem;
 }
 
-.case-list {
+.case-list,
+.case-section ul {
     list-style: none;
     margin: 2rem 0;
+    padding: 0;
 }
 
-.case-list li {
+.case-list li,
+.case-section ul li {
+    font-family: "Epilogue", sans-serif;
     font-size: 1.1rem;
     line-height: 1.8;
     color: var(--text-dark);
@@ -2895,7 +2908,8 @@ footer a:hover {
     position: relative;
 }
 
-.case-list li::before {
+.case-list li::before,
+.case-section ul li::before {
     content: "→";
     position: absolute;
     left: 0;
@@ -2903,10 +2917,76 @@ footer a:hover {
     font-weight: 700;
 }
 
+/* Solution points rendered as a 2-col tile grid instead of a bunched list */
+.solution-tiles {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin: 2.5rem 0;
+    list-style: none;
+    padding: 0;
+}
+
+.solution-tiles li {
+    background: var(--snow);
+    border: 1px solid rgba(8, 16, 28, 0.08);
+    border-left: 3px solid var(--accent);
+    border-radius: 14px;
+    padding: 1.75rem;
+    margin: 0;
+    font-family: "Epilogue", sans-serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-dark);
+}
+
+.solution-tiles li::before {
+    content: none;
+}
+
+.solution-tiles li strong {
+    display: block;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--midnight);
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.01em;
+}
+
 .case-image img {
     max-width: 100%;
     height: auto;
     display: block;
+}
+
+/* Image placeholder — mirrors the blog hero empty-state treatment.
+   Swap in a real <img> later; the breakout width carries over. */
+.case-placeholder {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 24px;
+    background: rgba(212, 255, 58, 0.18);
+    border: 1px dashed rgba(8, 16, 28, 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 3.5rem 0;
+}
+
+.case-placeholder span {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--midnight);
+    opacity: 0.5;
+}
+
+.case-placeholder--portrait {
+    aspect-ratio: 4 / 5;
+    margin: 0;
 }
 
 .outcome-grid {
@@ -2951,7 +3031,7 @@ footer a:hover {
     background: var(--midnight);
     border-radius: 16px;
     padding: 3rem;
-    margin: 3rem 0;
+    margin: 3.5rem 0;
 }
 
 .timeline-items {
@@ -2986,13 +3066,14 @@ footer a:hover {
     width: 100%;
     border-radius: 16px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-    margin: 3rem 0;
+    margin: 3.5rem 0;
 }
 
 .responsive-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
+    margin: 3.5rem 0;
 }
 
 .case-cta {
@@ -3399,6 +3480,19 @@ footer a:hover {
 
     .responsive-grid {
         grid-template-columns: 1fr;
+    }
+
+    .solution-tiles {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    /* On mobile the reading column already fills the screen, so the
+       breakout would push furniture wider than the viewport. Reset it. */
+    .case-breakout {
+        width: 100%;
+        margin-left: 0;
+        transform: none;
     }
 
     .case-logo {
