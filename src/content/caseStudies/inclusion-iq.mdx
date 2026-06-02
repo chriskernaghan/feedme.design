@@ -15,6 +15,7 @@ cta:
 import CaseSection from '../../components/CaseSection.astro';
 import Timeline from '../../components/Timeline.astro';
 import OutcomeGrid from '../../components/OutcomeGrid.astro';
+import CaseImage from '../../components/CaseImage.astro';
 
 <CaseSection label="The Challenge" heading="A Multi-Service Brand That Needed Room to Breathe">
 InclusionIQ isn't a single-service business. It's a recruitment agency, a consultancy, a training provider, and the home of The She Suite, a dedicated programme for female leadership and career advancement. All of that needed to live on one website without feeling fragmented or overwhelming.
@@ -33,15 +34,19 @@ We built InclusionIQ on WordPress, hosted on WP Engine, a managed platform built
 
 Key pieces of the build:
 
-- **Custom theme development.** A bespoke WordPress theme designed around InclusionIQ's brand, with distinct visual treatments for each service area.
-- **Job listings architecture.** Categorised by sector with clear calls to action for both candidates ("Find a Job") and employers ("Hire your next hire").
-- **The She Suite as a flagship section.** Treated as a destination in its own right, with space to grow as the programme expands.
-- **WP Engine hosting.** Automatic backups, staging environments, and enterprise-level security baked in.
-- **Performance and security.** Caching, CDN, image optimisation and security hardening configured from day one.
-- **Editorial control.** The InclusionIQ team can publish jobs, update consultancy content and add new programmes without touching code.
+<ul class="solution-tiles">
+<li><strong>Custom theme development</strong>A bespoke WordPress theme designed around InclusionIQ's brand, with distinct visual treatments for each service area.</li>
+<li><strong>Job listings architecture</strong>Categorised by sector with clear calls to action for both candidates ("Find a Job") and employers ("Hire your next hire").</li>
+<li><strong>The She Suite as a flagship section</strong>Treated as a destination in its own right, with space to grow as the programme expands.</li>
+<li><strong>WP Engine hosting</strong>Automatic backups, staging environments, and enterprise-level security baked in.</li>
+<li><strong>Performance and security</strong>Caching, CDN, image optimisation and security hardening configured from day one.</li>
+<li><strong>Editorial control</strong>The InclusionIQ team can publish jobs, update consultancy content and add new programmes without touching code.</li>
+</ul>
 
 The aim was to give InclusionIQ a site that works as hard as the team behind it, fast, reliable, and easy to keep current.
 </CaseSection>
+
+<CaseImage label="Desktop homepage" />
 
 <Timeline items={[
   { number: "4", label: "Service lines on one platform" },
