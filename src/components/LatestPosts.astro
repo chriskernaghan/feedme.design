@@ -2,6 +2,10 @@
 // LatestPosts.astro — homepage blog teaser.
 // Pulls the three newest posts from the collection.
 // New post published → this section updates itself, no homepage edit needed.
+//
+// Cards reuse the .post-row styling from the blog index (src/pages/blog.astro)
+// so the homepage and blog stay visually consistent. Posts without an image
+// fall back to the same tinted placeholder used on the blog page.
 
 import { getCollection } from 'astro:content';
 
@@ -9,10 +13,6 @@ const allPosts = await getCollection('posts', ({ data }) => !data.draft);
 const latest = allPosts
   .sort((a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf())
   .slice(0, 3);
-
-// Map post index in this section to the original .post-card-image--N class
-// so the existing CSS background image styling carries across.
-const imageClasses = ['post-card-image--3', 'post-card-image--1', 'post-card-image--2'];
 
 function formatDate(date: Date): string {
   return new Date(date).toLocaleDateString('en-GB', {
@@ -32,17 +32,26 @@ function formatDate(date: Date): string {
       </div>
       <a href="/blog" class="view-all-link">View all posts →</a>
     </div>
-    <div class="posts-grid">
-      {latest.map((post, i) => (
-        <a href={`/posts/${post.slug}`} class="post-card">
-          <div class={`post-card-image ${imageClasses[i] ?? imageClasses[0]}`}></div>
-          <div class="post-card-body">
-            <div class="post-meta">
-              <span class="post-tag">{post.data.tag}</span>
-              <span class="post-date">{formatDate(post.data.date)}</span>
-            </div>
-            <h3>{post.data.title}</h3>
-            <p>{post.data.excerpt ?? post.data.description}</p>
+
+    <div class="posts-list">
+      {latest.map((post) => (
+        <a href={`/posts/${post.slug}`} class="post-row">
+          {post.data.image ? (
+            <img
+              src={post.data.image}
+              alt={post.data.imageAlt ?? post.data.title}
+              class="post-row-thumb"
+              loading="lazy"
+            />
+          ) : (
+            <div class="post-row-thumb post-row-thumb--empty" aria-hidden="true"></div>
+          )}
+          <span class="post-row-tag">{post.data.tag}</span>
+          <div class="post-row-title">{post.data.title}</div>
+          <div class="post-row-excerpt">{post.data.excerpt ?? post.data.description}</div>
+          <div class="post-row-meta">
+            <span class="post-row-date">{formatDate(post.data.date)} · {post.data.readTime}</span>
+            <span class="post-row-arrow">→</span>
           </div>
         </a>
       ))}
