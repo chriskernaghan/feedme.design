@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="WP Base">
+  <rect width="512" height="512" rx="113" fill="#08101C"/>
+  <rect x="82" y="358" width="266" height="56" rx="28" fill="#D4FF3A"/>
+  <text x="256" y="250" text-anchor="middle" dominant-baseline="middle"
+        font-family="'Space Grotesk','Segoe UI',sans-serif" font-weight="700"
+        font-size="240" fill="#f5f1e8" letter-spacing="-8">WP</text>
+</svg>
