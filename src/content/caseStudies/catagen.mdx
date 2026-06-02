@@ -20,6 +20,7 @@ testimonial:
 import CaseSection from '../../components/CaseSection.astro';
 import Timeline from '../../components/Timeline.astro';
 import OutcomeGrid from '../../components/OutcomeGrid.astro';
+import CaseImage from '../../components/CaseImage.astro';
 
 <CaseSection label="The Challenge" heading="Hitting the Limits of Squarespace">
 Catagen came to us with a problem many growing businesses face: they had outgrown their website platform. Their Squarespace site had served them well in the early days, but as their team expanded and their technical requirements became more sophisticated, the limitations became clear.
@@ -37,16 +38,18 @@ We rebuilt Catagen's entire web presence from the ground up on WordPress, hosted
 
 The approach was straightforward but comprehensive:
 
-- **Custom theme development.** Built a bespoke WordPress theme tailored to Catagen's brand and technical requirements.
-- **Divi integration.** Incorporated Divi page builder to give the Catagen team intuitive, drag-and-drop editing capabilities without sacrificing code quality.
-- **WP Engine hosting.** Migrated to WP Engine for automatic backups, staging environments, and enterprise-level security.
-- **Performance optimisation.** Configured caching, CDN, and image optimisation from day one.
-- **Security hardening.** Implemented security best practices, monitoring, and regular updates.
+<ul class="solution-tiles">
+<li><strong>Custom theme development</strong>Built a bespoke WordPress theme tailored to Catagen's brand and technical requirements.</li>
+<li><strong>Divi integration</strong>Incorporated Divi page builder to give the Catagen team intuitive, drag-and-drop editing capabilities without sacrificing code quality.</li>
+<li><strong>WP Engine hosting</strong>Migrated to WP Engine for automatic backups, staging environments, and enterprise-level security.</li>
+<li><strong>Performance optimisation</strong>Configured caching, CDN, and image optimisation from day one.</li>
+<li><strong>Security hardening</strong>Implemented security best practices, monitoring, and regular updates.</li>
+</ul>
 
 The goal was to give Catagen the best of both worlds: the power and flexibility of WordPress with the ease of use they had on Squarespace.
 </CaseSection>
 
-<img src="/case-studies/catagen-desktop.png" alt="Catagen website desktop view" class="case-image" />
+<CaseImage label="Desktop homepage" />
 
 <Timeline items={[
   { number: "6-8", label: "Weeks from design to launch" },
@@ -70,9 +73,9 @@ The site is fully responsive, delivering a seamless experience whether the Catag
 
 The navigation adapts intelligently across devices, ensuring easy access to all content whether browsing services, reading case studies, or getting in touch.
 
-<div class="responsive-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-  <img src="/case-studies/catagen-mobile.png" alt="Catagen website mobile homepage" class="case-image" />
-  <img src="/case-studies/catagen-mobile-menu.png" alt="Catagen website mobile navigation" class="case-image" />
+<div class="responsive-grid case-breakout">
+  <CaseImage portrait label="Mobile homepage" />
+  <CaseImage portrait label="Mobile navigation" />
 </div>
 
 Today, Catagen has a website that reflects the quality and professionalism of their work in green emissions testing, and a platform that will grow with them for years to come.
