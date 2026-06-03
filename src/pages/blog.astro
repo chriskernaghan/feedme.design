@@ -38,6 +38,13 @@ function formatDate(date: Date): string {
 >
   <section class="hero-v2">
     <div class="hero-v2-inner">
+      <header class="blog-header">
+        <h1 class="blog-header-title">The WP Base Blog</h1>
+        <p class="blog-header-intro">
+          Practical notes on WordPress care, web design, and running a small business online, from a one-person studio in Northern Ireland.
+        </p>
+      </header>
+
       <div class="filter-bar">
         {allTags.map((tag) => (
           <button
@@ -64,7 +71,7 @@ function formatDate(date: Date): string {
             )}
             <div class="feature-card-body">
               <span class="feature-card-tag">{featured.data.tag}</span>
-              <h1 class="feature-card-title">{featured.data.title}</h1>
+              <h2 class="feature-card-title">{featured.data.title}</h2>
               <p class="feature-card-excerpt">{featured.data.excerpt ?? featured.data.description}</p>
               <div class="feature-card-meta">
                 <span>{formatDate(featured.data.date)}</span>
@@ -156,3 +163,4 @@ function formatDate(date: Date): string {
     });
   });
 </script>
+</document_content>
