@@ -1678,6 +1678,28 @@ footer a:hover {
     margin-top: 3rem;
 }
 
+.blog-header {
+  max-width: 640px;
+  margin: 0 0 2.5rem;
+}
+
+.blog-header-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  line-height: 1.05;
+  margin: 0 0 0.75rem;
+  color: var(--midnight, #08101C);
+}
+
+.blog-header-intro {
+  font-family: 'Epilogue', sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  color: var(--text-dark, #08101C);
+  opacity: 0.7;
+  margin: 0;
+}
+
 /* ==========================================================================
    FAQ
    ========================================================================== */
