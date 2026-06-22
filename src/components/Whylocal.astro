@@ -1,0 +1,38 @@
+---
+// WhyLocal.astro — block unique to the local page (not on the homepage).
+// Gives Google genuinely different, locally-relevant content and gives NI
+// visitors a real reason to pick a local developer over a faceless agency.
+const points = [
+  {
+    title: 'Down the road, not overseas',
+    body: "Based in Newtownabbey, working with businesses across Belfast and the wider NI area. Same timezone, same working hours, a real person who picks up.",
+  },
+  {
+    title: 'You deal with me, not a ticket queue',
+    body: "No call centres, no account managers, no being passed around. The person auditing your site is the person fixing it.",
+  },
+  {
+    title: 'Built for NI small businesses',
+    body: "Most of my clients are local firms who need their site to work and bring in enquiries, without paying agency rates for the privilege.",
+  },
+];
+---
+<section id="why-local" class="why-local-section">
+  <div class="why-local-inner">
+    <span class="section-label">Why local</span>
+    <h2>A Northern Ireland developer, on hand when you need one</h2>
+    <p class="why-local-lead">
+      When your site goes down or an enquiry form stops working, you don't want
+      to wait days for a reply from an agency three counties or three countries
+      away. You want someone local who knows your site and answers quickly.
+    </p>
+    <div class="why-local-grid">
+      {points.map((point) => (
+        <div class="why-local-card">
+          <h3>{point.title}</h3>
+          <p>{point.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
