@@ -9,9 +9,10 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  schema?: object;
 }
 
-const { title, description } = Astro.props;
+const { title, description, schema } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
@@ -44,6 +45,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
         href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Epilogue:wght@300;400;500;600;700&display=swap"
       />
     </noscript>
+
+    {schema && <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />}
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FY9Q040Q9P"></script>
