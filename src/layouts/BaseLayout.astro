@@ -1,64 +1,59 @@
 ---
-// northern-ireland.astro — local landing page for Northern Ireland search.
-// Same template as the homepage, but with local-focused copy in the hero,
-// a "why local" block, and a local FAQ. Proof/structure sections are reused
-// unchanged. Schema is passed into BaseLayout via the optional `schema` prop.
-import BaseLayout from '../layouts/BaseLayout.astro';
-import HeroLocal from '../components/HeroLocal.astro';
-import Marquee from '../components/Marquee.astro';
-import Clients from '../components/Clients.astro';
-import WhyLocal from '../components/WhyLocal.astro';
-import Process from '../components/Process.astro';
-import Pricing from '../components/Pricing.astro';
-import LatestPosts from '../components/LatestPosts.astro';
-import FAQLocal from '../components/FAQLocal.astro';
-import Contact from '../components/Contact.astro';
-
-const localBusinessSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
-  '@id': 'https://feedme.design/#localbusiness',
-  name: 'WP Base',
-  description:
-    'WordPress maintenance, web design and custom builds for small businesses across Northern Ireland.',
-  url: 'https://feedme.design/northern-ireland',
-  email: 'chris@feedme.design',
-  telephone: '+447379334695',
-  priceRange: '££',
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Newtownabbey',
-    addressRegion: 'Northern Ireland',
-    addressCountry: 'GB',
-  },
-  areaServed: [
-    { '@type': 'AdministrativeArea', name: 'Northern Ireland' },
-    { '@type': 'City', name: 'Belfast' },
-    { '@type': 'City', name: 'Newtownabbey' },
-  ],
-  knowsAbout: ['WordPress', 'Website maintenance', 'Web design', 'WordPress migrations'],
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '5.0',
-    reviewCount: '5',
-  },
-};
+// BaseLayout.astro — every page wraps itself in this.
+// Handles <head>, fonts, gtag, nav, footer. One file to rule them all.
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+interface Props {
+  title: string;
+  description?: string;
+  schema?: object;
+}
+const { title, description, schema } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
 ---
-<BaseLayout
-  title="WordPress Maintenance & Web Design in Northern Ireland — WP Base"
-  description="WordPress care for Northern Ireland small businesses. Maintenance, custom builds, migrations and support from a local developer in Newtownabbey — without the agency price."
-  schema={localBusinessSchema}
->
-  <HeroLocal />
-  <Marquee />
-  <Clients />
-  <WhyLocal />
-  <Process />
-  <Pricing />
-  <LatestPosts />
-  <FAQLocal />
-  <Contact />
-</BaseLayout>
-<script>
-  import '../scripts/homepage.ts';
-</script>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Epilogue:wght@300;400;500;600;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Epilogue:wght@300;400;500;600;700&display=swap"
+      />
+    </noscript>
+    {schema && <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />}
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FY9Q040Q9P"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-FY9Q040Q9P');
+    </script>
+  </head>
+  <body>
+    <Nav />
+    <slot />
+    <Footer />
+  </body>
+</html>
