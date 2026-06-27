@@ -142,10 +142,16 @@ const offer = [
 <style>
   .hosting-hero-section {
     padding: 7rem 1.5rem 4rem;
+    background: var(--midnight);
+    color: var(--snow);
   }
   .hosting-inner {
     max-width: 1200px;
     margin: 0 auto;
+  }
+  /* eyebrow label sits on a dark background in the hero, so lighten it */
+  .hosting-hero-section .section-label {
+    color: var(--text-light);
   }
   .hosting-headline {
     font-family: 'Space Grotesk', sans-serif;
@@ -162,7 +168,7 @@ const offer = [
     font-size: clamp(1.05rem, 2vw, 1.3rem);
     line-height: 1.6;
     max-width: 640px;
-    opacity: 0.85;
+    opacity: 0.9;
   }
   .hosting-cta-row {
     display: flex;
@@ -192,14 +198,14 @@ const offer = [
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 500;
     padding: 0.9rem 1.5rem;
-    border: 1px solid rgba(8, 16, 28, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 8px;
     text-decoration: none;
-    color: inherit;
+    color: var(--snow);
     transition: border-color 0.15s ease;
   }
   .hosting-cta-secondary:hover {
-    border-color: var(--midnight);
+    border-color: var(--snow);
   }
 
   .hosting-problem-section,
