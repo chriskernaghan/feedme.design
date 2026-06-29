@@ -1,0 +1,296 @@
+---
+// wordpress-maintenance.astro — service-depth landing page for WordPress
+// maintenance. Distinct lane from the homepage (sells the whole business) and
+// the northern-ireland page (owns the local term). This page goes deep on what
+// ongoing maintenance actually involves and what a care plan covers, national in
+// scope. Same self-contained pattern as hosting.astro / website-speed.astro.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Marquee from '../components/Marquee.astro';
+import Pricing from '../components/Pricing.astro';
+import Contact from '../components/Contact.astro';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'WordPress Maintenance',
+  provider: {
+    '@type': 'ProfessionalService',
+    name: 'WP Base',
+    url: 'https://wpbase.co.uk/',
+    email: 'hello@wpbase.co.uk',
+    telephone: '+447379334695',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Newtownabbey',
+      addressRegion: 'Northern Ireland',
+      addressCountry: 'GB',
+    },
+  },
+  description:
+    'Ongoing WordPress maintenance for small businesses. Updates, backups, security, performance and a real person to call when something needs doing. A care plan that keeps your site working so you do not have to think about it.',
+};
+
+const included = [
+  {
+    title: 'Core, theme and plugin updates',
+    body: "WordPress and its plugins put out updates constantly, and skipping them is how sites break or get hacked. I apply them carefully, check nothing broke afterwards, and roll back if anything does. You never see the faff, just a site that stays current.",
+  },
+  {
+    title: 'Backups that actually work',
+    body: 'Regular backups, stored off your server, tested so they restore when it counts. Plenty of sites have backups running that nobody has ever checked. The first time you need one is the worst time to find out it was broken.',
+  },
+  {
+    title: 'Security and uptime monitoring',
+    body: "I keep an eye on the site so problems get caught early, not when a customer emails to say it is down. SSL kept valid, login locked down sensibly, and an alert to me rather than a nasty surprise to you.",
+  },
+  {
+    title: 'Performance kept in check',
+    body: 'Sites get slower over time as content and images build up. I keep load times honest, so the site stays quick for the people landing on it from a search, not just for you on your own connection.',
+  },
+  {
+    title: 'Small fixes and changes',
+    body: "The bits that pile up: a new page, updated opening hours, a broken link, a form that stopped sending. Your plan hours cover the small jobs, so they get done rather than sitting on a list for months.",
+  },
+  {
+    title: 'A real person to ask',
+    body: "No ticketing system, no account manager relaying messages. You email me, I answer, I do the thing. For a small business that just wants the website handled, that direct line is most of the value.",
+  },
+];
+---
+<BaseLayout
+  title="WordPress Maintenance Services — WP Base"
+  description="Ongoing WordPress maintenance for small businesses. Updates, backups, security, performance and a real person to call. A simple care plan that keeps your site working so you do not have to think about it."
+  schema={serviceSchema}
+>
+  <section class="maint-hero-section">
+    <div class="maint-inner">
+      <span class="section-label">WordPress Maintenance</span>
+      <h1 class="maint-headline">
+        Your website,<br />
+        <span class="accent">handled</span>
+      </h1>
+      <p class="maint-lead">
+        A WordPress site is never finished. It needs updating, watching and the
+        occasional fix to stay fast, secure and working. A care plan covers all of
+        that for a fixed monthly fee, so the website is one less thing on your plate
+        and there is always someone to call when you need something done.
+      </p>
+      <div class="maint-cta-row">
+        <a href="#contact" class="maint-cta-primary">
+          Get Your Free Audit
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+        </a>
+        <a href="#whats-included" class="maint-cta-secondary">What's included</a>
+      </div>
+    </div>
+  </section>
+
+  <Marquee />
+
+  <section class="maint-problem-section">
+    <div class="maint-reading">
+      <span class="section-label">Why it matters</span>
+      <h2>A site left alone is a site slowly breaking</h2>
+      <p>
+        Most small business websites get built, launched, and then left. No updates,
+        no backups, nobody watching. It looks fine for a while, so it is easy to
+        assume it is fine. Then a plugin update is missed, a form stops sending
+        enquiries without anyone noticing, the software falls years behind, and one
+        day something gives way at the worst possible moment.
+      </p>
+      <p>
+        Maintenance is the unglamorous work that stops all of that. It is not
+        exciting, which is exactly why it gets skipped, and exactly why a site that
+        has someone looking after it pulls ahead of one that does not. The point of a
+        care plan is that you stop thinking about any of this, because it is handled.
+      </p>
+    </div>
+  </section>
+
+  <section id="whats-included" class="maint-offer-section">
+    <div class="maint-inner">
+      <span class="section-label">What a care plan covers</span>
+      <h2>Everything your site needs to keep working</h2>
+      <div class="maint-grid">
+        {included.map((item) => (
+          <div class="maint-card">
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="maint-honest-section">
+    <div class="maint-reading">
+      <span class="section-label">Worth saying plainly</span>
+      <h2>Built for small businesses, not agencies</h2>
+      <p>
+        I am one person who looks after a small number of sites properly, rather than
+        a big shop juggling hundreds. That means you deal with me directly, you are
+        not paying for layers of overhead, and your site actually gets attention
+        rather than sitting in a queue. For most small businesses that is the right
+        fit, and it costs a fraction of an agency retainer.
+      </p>
+      <p>
+        Not sure what state your site is in? That is what the free audit is for. I
+        take a proper look, tell you plainly what needs doing and what does not, and
+        there is no obligation to take a plan afterwards. If the site is in good shape,
+        I will say so.
+      </p>
+      <p class="maint-related-link">
+        <a href="/posts/why-wordpress-maintenance-matters">
+          Read: Why WordPress Maintenance Actually Matters →
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <Pricing />
+  <Contact />
+</BaseLayout>
+
+<style>
+  .maint-hero-section {
+    padding: 7rem 1.5rem 4rem;
+    background: var(--midnight);
+    color: var(--snow);
+  }
+  .maint-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  /* eyebrow label sits on a dark background in the hero, so lighten it */
+  .maint-hero-section .section-label {
+    color: var(--text-light);
+  }
+  .maint-headline {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.05;
+    margin: 1rem 0 1.5rem;
+  }
+  .maint-headline .accent {
+    color: var(--accent);
+  }
+  .maint-lead {
+    font-family: 'Epilogue', sans-serif;
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    line-height: 1.6;
+    max-width: 640px;
+    opacity: 0.9;
+  }
+  .maint-cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .maint-cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--accent);
+    color: var(--midnight);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    padding: 0.9rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: transform 0.15s ease;
+  }
+  .maint-cta-primary:hover {
+    transform: translateY(-2px);
+  }
+  .maint-cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    padding: 0.9rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--snow);
+    transition: border-color 0.15s ease;
+  }
+  .maint-cta-secondary:hover {
+    border-color: var(--snow);
+  }
+
+  .maint-problem-section,
+  .maint-honest-section {
+    padding: 4rem 1.5rem;
+  }
+  .maint-reading {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .maint-reading h2,
+  .maint-offer-section h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    line-height: 1.15;
+    margin: 0.75rem 0 1.5rem;
+  }
+  .maint-reading p {
+    font-family: 'Epilogue', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+    opacity: 0.85;
+  }
+  .maint-related-link a {
+    color: var(--midnight);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 2px;
+  }
+
+  .maint-offer-section {
+    padding: 4rem 1.5rem;
+  }
+  .maint-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .maint-card {
+    padding: 1.75rem;
+    border: 1px solid rgba(8, 16, 28, 0.1);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.4);
+  }
+  .maint-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin: 0 0 0.75rem;
+  }
+  .maint-card p {
+    font-family: 'Epilogue', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0.85;
+  }
+
+  @media (max-width: 980px) {
+    .maint-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 720px) {
+    .maint-grid {
+      grid-template-columns: 1fr;
+    }
+    .maint-hero-section {
+      padding-top: 5.5rem;
+    }
+  }
+</style>
