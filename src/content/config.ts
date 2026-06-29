@@ -20,7 +20,7 @@ const posts = defineCollection({
     ]),
     date: z.date(),
     readTime: z.string(),
-    author: z.string().default('Chris — feedme.design'),
+    author: z.string().default('Chris — wpbase.co.uk'),
     excerpt: z.string().optional(),
     // Card / hero image. Path lives in /public, e.g. "/blog/wrong-hosting.jpg".
     // Optional, so posts without one fall back to a tinted placeholder.
