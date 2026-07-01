@@ -74,15 +74,6 @@
       rgba(20,16,12,0.28) 22%,
       rgba(20,16,12,0) 45%);
   }
-  .hero-image .placeholder-fill {
-    position: absolute; inset: 0;
-    background: radial-gradient(120% 90% at 70% 10%, #3a4258 0%, #262c3d 55%, #1c2030 100%);
-  }
-  .hero-image .placeholder-note {
-    position: absolute; inset: 0; z-index: 2; display: flex; align-items: center;
-    justify-content: center; color: rgba(255,255,255,0.35);
-    font-size: 0.85rem; letter-spacing: 0.04em; text-align: center; padding: 0 20px;
-  }
   .hero-panel {
     background: var(--cream); position: relative; margin-top: -70px;
     border-top-left-radius: 26px; border-top-right-radius: 26px;
@@ -142,11 +133,12 @@
   .story .eyebrow::before { border-color: var(--rust); }
   .story p { color: rgba(244,239,230,0.82); font-size: 1.05rem; }
   .story-image {
-    aspect-ratio: 4/3; border-radius: 16px;
+    aspect-ratio: 4/3; border-radius: 16px; overflow: hidden;
     background: radial-gradient(120% 100% at 30% 20%, #3a4258, #1c2030);
     display: flex; align-items: center; justify-content: center;
-    color: rgba(255,255,255,0.35); font-size: 0.85rem; text-align: center; padding: 20px;
+    color: rgba(255,255,255,0.35); font-size: 0.85rem; text-align: center;
   }
+  .story-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .quote { padding: 100px 0; text-align: center; }
   .quote .eyebrow { margin-bottom: 22px; }
   .quote h2 { font-size: clamp(2rem, 4vw, 3.2rem); color: var(--ink); max-width: 720px; margin: 0 auto 20px; }
@@ -224,12 +216,7 @@
 </header>
 
 <section class="hero">
-  <div class="hero-image">
-    <div class="placeholder-fill"></div>
-    <div class="placeholder-note">
-      <img src="belfast-background.jpg" alt="">
-    </div>
-  </div>
+  <div class="hero-image" style="background-image: url('belfast-background.jpg');"></div>
 
   <div class="hero-panel">
     <div class="wrap">
@@ -340,7 +327,7 @@
       </p>
     </div>
     <div class="story-image">
-      <img src="office-interior.jpg" alt=""/>
+      <img src="office-interior.jpg" alt="Rafferty McGrath office interior">
     </div>
   </div>
 </section>
