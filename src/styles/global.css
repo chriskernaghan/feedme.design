@@ -3292,7 +3292,19 @@ footer a:hover {
 
     /* Hero V2 responsive */
     .hero-v2 {
-        padding: 7rem 1.25rem 3rem;
+        padding: 6.5rem 1.25rem 1.5rem;
+    }
+
+    .hero-v2-top {
+        gap: 1.5rem;
+    }
+
+    .hero-v2-left {
+        gap: 1.5rem;
+    }
+
+    .hero-v2-right {
+        gap: 1.25rem;
     }
 
     .hero-v2-headline {
@@ -3301,7 +3313,7 @@ footer a:hover {
 
     .hero-v2-stats {
         grid-template-columns: 1fr;
-        gap: 0.6rem;
+        gap: 0.5rem;
     }
 
     .hero-terminal {
