@@ -1,6 +1,10 @@
 ---
 // Nav.astro — site-wide navigation
-// Replaces the old nav.html + nav.js fetch hack with a proper component.
+// Desktop: single-column mega-menu with icon + description per service.
+// Mobile: Services collapses into a tap-to-expand accordion.
+// Icons are inline SVG (no dependencies). To add a service later, copy one
+// .mega-item block in the desktop menu and one .mobile-sublink in the mobile
+// accordion — nothing else needs to change.
 ---
 
 <nav>
@@ -9,11 +13,61 @@
     <div class="nav-links">
       <a href="/#clients">Case Studies</a>
       <div class="dropdown">
-        <a href="/wordpress-maintenance" class="dropdown-toggle">Services</a>
-        <div class="dropdown-menu">
-          <a href="/wordpress-maintenance">WordPress Maintenance</a>
-          <a href="/hosting">Hosting</a>
-          <a href="/website-speed">Website Speed</a>
+        <a href="/wordpress-maintenance" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+          Services
+          <svg class="dropdown-caret" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="dropdown-menu mega-menu">
+          <a href="/wordpress-maintenance" class="mega-item">
+            <span class="mega-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+              </svg>
+            </span>
+            <span class="mega-text">
+              <span class="mega-title">WordPress Maintenance</span>
+              <span class="mega-desc">Updates, backups and security handled for you</span>
+            </span>
+          </a>
+          <a href="/hosting" class="mega-item">
+            <span class="mega-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="7" rx="1.5"/>
+                <rect x="2" y="14" width="20" height="7" rx="1.5"/>
+                <line x1="6" y1="6.5" x2="6.01" y2="6.5"/>
+                <line x1="6" y1="17.5" x2="6.01" y2="17.5"/>
+              </svg>
+            </span>
+            <span class="mega-text">
+              <span class="mega-title">Hosting</span>
+              <span class="mega-desc">Fast, managed hosting kept in your own account</span>
+            </span>
+          </a>
+          <a href="/website-speed" class="mega-item">
+            <span class="mega-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>
+              </svg>
+            </span>
+            <span class="mega-text">
+              <span class="mega-title">Website Speed</span>
+              <span class="mega-desc">Faster load times that keep visitors around</span>
+            </span>
+          </a>
+          <a href="/northern-ireland" class="mega-item">
+            <span class="mega-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </span>
+            <span class="mega-text">
+              <span class="mega-title">Northern Ireland</span>
+              <span class="mega-desc">Local web design serving Belfast and beyond</span>
+            </span>
+          </a>
         </div>
       </div>
       <a href="/#pricing">Pricing</a>
@@ -33,11 +87,22 @@
 
 <div class="mobile-menu" id="mobileMenu">
   <a href="/#clients">Case Studies</a>
-  <a href="/wordpress-maintenance" class="mobile-services-label">Services</a>
-  <a href="/wordpress-maintenance" class="mobile-sublink">WordPress Maintenance</a>
-  <a href="/hosting" class="mobile-sublink">Hosting</a>
-  <a href="/website-speed" class="mobile-sublink">Website Speed</a>
-  <a href="/northern-ireland" class="mobile-sublink">Northern Ireland</a>
+
+  <div class="mobile-accordion" id="mobileServicesAccordion">
+    <button class="mobile-accordion-toggle" id="mobileServicesToggle" aria-expanded="false" aria-controls="mobileServicesPanel">
+      Services
+      <svg class="mobile-accordion-caret" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+        <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="mobile-accordion-panel" id="mobileServicesPanel">
+      <a href="/wordpress-maintenance" class="mobile-sublink">WordPress Maintenance</a>
+      <a href="/hosting" class="mobile-sublink">Hosting</a>
+      <a href="/website-speed" class="mobile-sublink">Website Speed</a>
+      <a href="/northern-ireland" class="mobile-sublink">Northern Ireland</a>
+    </div>
+  </div>
+
   <a href="/#pricing">Pricing</a>
   <a href="/blog">Blog</a>
   <a href="/#contact" class="mobile-cta">Get Your Free Audit</a>
@@ -49,6 +114,8 @@
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
   const mobileMenuBackdrop = document.getElementById('mobileMenuBackdrop');
+  const servicesToggle = document.getElementById('mobileServicesToggle');
+  const servicesAccordion = document.getElementById('mobileServicesAccordion');
 
   function closeMobileMenu() {
     hamburger?.classList.remove('open');
@@ -63,11 +130,22 @@
       mobileMenuBackdrop?.classList.toggle('open');
     });
 
+    // Close the menu when a real navigation link is tapped, but NOT when the
+    // Services accordion toggle is tapped (that just expands sub-items).
     document.querySelectorAll('.mobile-menu a, .nav-links a').forEach((link) => {
       link.addEventListener('click', closeMobileMenu);
     });
 
     mobileMenuBackdrop?.addEventListener('click', closeMobileMenu);
+  }
+
+  // Mobile Services accordion: tap to expand/collapse.
+  if (servicesToggle && servicesAccordion) {
+    servicesToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = servicesAccordion.classList.toggle('open');
+      servicesToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
   }
 
   // Smooth scroll for on-page anchor links from the homepage
